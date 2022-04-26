@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactSplitter", "ContactSplitter\ContactSplitter.csproj", "{98269927-8B6F-4552-A786-4D7CBFEEEB69}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactSplitterTest", "ContactSplitterTest\ContactSplitterTest.csproj", "{B090DF59-4528-474E-B9FD-B8855D2D3395}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{98269927-8B6F-4552-A786-4D7CBFEEEB69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98269927-8B6F-4552-A786-4D7CBFEEEB69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98269927-8B6F-4552-A786-4D7CBFEEEB69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B090DF59-4528-474E-B9FD-B8855D2D3395}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B090DF59-4528-474E-B9FD-B8855D2D3395}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B090DF59-4528-474E-B9FD-B8855D2D3395}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B090DF59-4528-474E-B9FD-B8855D2D3395}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

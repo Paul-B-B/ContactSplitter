@@ -7,4 +7,10 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Backend\Data\" />
+    <Folder Include="Backend\Model\Interfaces\" />
+    <Folder Include="Backend\Model\Implementations\" />
+  </ItemGroup>
+
 </Project>
