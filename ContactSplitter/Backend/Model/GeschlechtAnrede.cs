@@ -11,5 +11,7 @@ namespace ContactSplitter.Backend.Model
         public string Anrede { get; set; }
 
         public Geschlecht Geschlecht { get; set; }
+
+        public Sprache Sprache { get; set; }
     }
 }

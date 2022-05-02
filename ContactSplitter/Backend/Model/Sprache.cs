@@ -8,8 +8,8 @@ namespace ContactSplitter.Backend.Model
 {
     public enum Sprache
     {
-        Deutsch = 0,
-        Englisch = 1,
-        Unbekannt = 2
+        Unbekannt = 0,
+        Deutsch = 1,
+        Englisch = 2
     }
 }

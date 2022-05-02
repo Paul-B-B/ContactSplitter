@@ -2,37 +2,37 @@
   {
     "Anrede": "Herr",
     "Geschlecht": "0",
-    "Sprache":  "0"
+    "Sprache":  "1"
   },
   {
     "Anrede": "Mr.",
     "Geschlecht": "0",
-    "Sprache": "1"
+    "Sprache": "2"
   },
   {
     "Anrede": "Sir",
     "Geschlecht": "0",
-    "Sprache": "1"
+    "Sprache": "2"
   },
   {
     "Anrede": "Frau",
     "Geschlecht": "1",
-    "Sprache": "0"
+    "Sprache": "1"
   },
   {
     "Anrede": "Mrs",
     "Geschlecht": "1",
-    "Sprache": "1"
+    "Sprache": "2"
   },
   {
     "Anrede": "Ms",
     "Geschlecht": "1",
-    "Sprache": "1"
+    "Sprache": "2"
   },
   {
     "Anrede": "",
     "Geschlecht": "2",
-    "Sprache": "2"
+    "Sprache": "3"
   }
 ]
 
