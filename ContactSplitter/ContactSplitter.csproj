@@ -8,9 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Backend\Data\" />
-    <Folder Include="Backend\Model\Interfaces\" />
-    <Folder Include="Backend\Model\Implementations\" />
+    <Folder Include="Backend\Services\" />
   </ItemGroup>
 
 </Project>

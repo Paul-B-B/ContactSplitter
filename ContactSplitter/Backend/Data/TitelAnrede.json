@@ -1,0 +1,42 @@
+[
+  {
+    "Titel": "Professor",
+    "Anrede": "Prof."
+  },
+  {
+    "Titel": "Professorin",
+    "Anrede": "Prof."
+  },
+  {
+    "Titel": "Prof.",
+    "Anrede": "Prof."
+  },
+  {
+    "Titel": "Dr.",
+    "Anrede": "Dr."
+  },
+  {
+    "Titel": "Dr. rer. nat.",
+    "Anrede": "Dr."
+  },
+  {
+    "Titel": "Dipl.-Ing.",
+    "Anrede": "Dipl.-Ing."
+  },
+  {
+    "Titel": "M. Sc.",
+    "Anrede": ""
+  },
+  {
+    "Titel": "M.Sc.",
+    "Anrede": ""
+  },
+  {
+    "Titel": "B. Sc.",
+    "Anrede": ""
+  },
+  {
+    "Titel": "B.Sc.",
+    "Anrede": ""
+  }
+]
