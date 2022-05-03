@@ -15,21 +15,48 @@ namespace ContactSplitter.Backend.Services
     public class KontaktParser
     {
 
-        private string GeschlechtAnredeJsonName = "GeschlechtAnrede.json";
-        private string TitelAnredeJsonName = "TitelAnrede.json";
+        // Dateinamen
+        private readonly string GeschlechtAnredeJsonName = "GeschlechtAnrede.json";
+        private readonly string TitelAnredeJsonName = "TitelAnrede.json";
 
-        private List<TitelAnrede> TitelAnredeListe;
-        private List<GeschlechtAnrede> GeschlechtAnredeListe;
+        // RegEx zur Namenserkennung
+        private readonly string vornameRegex = "([A-Z]\\w*([\\s\\-]+[A-Z]\\w*)*)";
+        private readonly string nachnameRegex = "(\\w+\\s+)*[A-Z]\\w*(\\-?[A-Z]\\w*)*)";
+        private readonly string regexGruppeVorname = "Vorname";
+        private readonly string regexGruppeNachname = "Nachname";
+        private readonly string vornameNachnameRegex;
 
+        // RegEx zur Anredenerkennung
+        private readonly Regex anredeRegex = new Regex("^\\w+.?");
+
+        // RegEx zur Titelerkennung
+        private readonly Regex titelRegex = new Regex("^\\w+.?"); //Zweiter Titel fehlt noch
+
+        //Hilfslisten (erhalten aus eingelesenen Dateien)
+        private readonly List<TitelAnrede> TitelAnredeListe;
+        private readonly List<GeschlechtAnrede> GeschlechtAnredeListe;
+
+        /// <summary>
+        /// Erstellt ein neues Objekt des KontaktParsers
+        /// </summary>
+        /// <param name="pathToData">Pfad zum Data Ordner (wird für die Tests benötigt)</param>
         public KontaktParser(string pathToData = "../Data/")
         {
             using var streamReader = new StreamReader($"{pathToData}/{GeschlechtAnredeJsonName}");
             GeschlechtAnredeListe = JsonConvert.DeserializeObject<List<GeschlechtAnrede>>(streamReader.ReadToEnd());
 
             using var StreamReader = new StreamReader($"{pathToData}/{TitelAnredeJsonName}");
-            TitelAnredeListe = JsonConvert.DeserializeObject<List<TitelAnrede>>(streamReader.ReadToEnd());
+            TitelAnredeListe = JsonConvert.DeserializeObject<List<TitelAnrede>>(streamReader.ReadToEnd()); // Diese Liste ist im Test NULL, TODO: überprüfen wieso
+
+            vornameNachnameRegex = $"(^(?<{regexGruppeVorname}>{vornameRegex})\\s+(?<{regexGruppeNachname}>{nachnameRegex})|" + // Vorname Nachname
+                            $"(^(?<{regexGruppeNachname}>{nachnameRegex}),\\s+(?<{regexGruppeVorname}>{vornameRegex})"; // Nachname, Vorname
         }
 
+        /// <summary>
+        /// Parsed den NutzerInput aus einem SplitContactRequest Objekt und gibt ein SplitContactResponse Objekt zurück
+        /// </summary>
+        /// <param name="input">Vom Nutzer eingegebener Name</param>
+        /// <returns>Der geparste Kontakt als SplitContactResponse</returns>
         public SplitContactResponse ParseKontakt(SplitContactRequest input)
         {
             var splitContactResponse = new SplitContactResponse();
@@ -41,40 +68,41 @@ namespace ContactSplitter.Backend.Services
 
             SplitName(ref input, ref splitContactResponse);
 
+            //Erstelle Briefanrede
 
-
-            return null;
+            return splitContactResponse;
         }
+
 
         private void SplitAnrede(ref SplitContactRequest request, ref SplitContactResponse response)
         {
-            var firstWord = Regex.Match(request.UserInput, "^\\w+");
+            var firstWord = anredeRegex.Match(request.UserInput);
 
-            var anrede = GeschlechtAnredeListe.FirstOrDefault(an => an.Anrede.Equals(firstWord.Value));
-            if (anrede is not null)
+            var geschlechtAnrede = GeschlechtAnredeListe.FirstOrDefault(an => an.Anrede.Equals(firstWord.Value));
+            if (geschlechtAnrede is not null)
             {
-                var Sprache = GeschlechtAnredeListe.First(an => an.Anrede.Equals(firstWord.Value)).Sprache;
-                response.Sprache = Sprache.Unbekannt;
-                Regex.Replace(request.UserInput, "^\\w+\\s", string.Empty);
-
+                response.Anrede = geschlechtAnrede.Anrede;
+                response.Sprache = geschlechtAnrede.Sprache;
+                response.Geschlecht = geschlechtAnrede.Geschlecht;
+                Regex.Replace(request.UserInput, firstWord.Value, string.Empty);
+                request.UserInput = request.UserInput.Trim();
                 return;
             }
 
             response.Anrede = null;
-            response.Sprache = Model.Sprache.Unbekannt;
-
+            response.Sprache = Sprache.Unbekannt;
 
         }
 
         private void SplitTitel(ref SplitContactRequest request, ref SplitContactResponse response)
         {
-            var firstWord = Regex.Match(request.UserInput, "^\\w+.?"); // zweiter Titel fehlt noch
+            var firstWord = titelRegex.Match(request.UserInput);
 
-            var titel = TitelAnredeListe.FirstOrDefault(ti => ti.Anrede.Equals(firstWord.Value) || ti.Titel.Equals(firstWord.Value));
-            if (titel is not null)
+            var titelAnrede = TitelAnredeListe.FirstOrDefault(ti => ti.Anrede.Equals(firstWord.Value) || ti.Titel.Equals(firstWord.Value));
+            if (titelAnrede is not null)
             {
-                response.Titel = titel.Anrede;
-                Regex.Replace(request.UserInput, "^\\w+.?\\s", string.Empty);
+                response.Titel = titelAnrede.Anrede;
+                Regex.Replace(request.UserInput, firstWord.Value, string.Empty);
                 return;
             }
 
@@ -83,22 +111,16 @@ namespace ContactSplitter.Backend.Services
 
         public void SplitName(ref SplitContactRequest request, ref SplitContactResponse response)
         {
-            var vornameRegex = "([A-Z]\\w*([\\s\\-]+[A-Z]\\w*)*)";
-            var nachnameRegex = "(\\w+\\s+)*[A-Z]\\w*(\\-?[A-Z]\\w*)*)";
-            var regexGruppenNameVorname = "Vorname";
-            var regexGruppenNameNachname = "Nachname";
-            var nameRegex = $"(^(?<{regexGruppenNameVorname}>{vornameRegex})\\s+(?<{regexGruppenNameNachname}>{nachnameRegex})|" + // Vorname Nachname
-                            $"(^(?<{regexGruppenNameNachname}>{nachnameRegex}),\\s+(?<{regexGruppenNameVorname}>{vornameRegex})"; // Nachname, Vorname
+            var result = Regex.Match(request.UserInput, vornameNachnameRegex);
 
-            //var result = nameRegex.Match(request.UserInput);
-
-            var result = Regex.Match(request.UserInput, nameRegex);
-
-            if (result is not null)
+            if (result.Success)
             {
-
+                response.Vorname = result.Groups[regexGruppeVorname].Value;
+                response.Nachname = result.Groups[regexGruppeNachname].Value;
+                return;
             }
 
+            //Wie machen wir error handling?
 
         }
     }
