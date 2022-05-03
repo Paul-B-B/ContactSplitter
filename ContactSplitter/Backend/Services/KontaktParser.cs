@@ -15,18 +15,18 @@ namespace ContactSplitter.Backend.Services
     public class KontaktParser
     {
 
-        private string GeschlechtAnredeJsonPath => "Data/GeschlechtAnrede.json";
-        private string TitelAnredeJsonPath => "Data/TitelAnrede.json";
+        private string GeschlechtAnredeJsonName = "GeschlechtAnrede.json";
+        private string TitelAnredeJsonName = "TitelAnrede.json";
 
         private List<TitelAnrede> TitelAnredeListe;
         private List<GeschlechtAnrede> GeschlechtAnredeListe;
 
-        public KontaktParser()
+        public KontaktParser(string pathToData = "../Data/")
         {
-            using var streamReader = new StreamReader(GeschlechtAnredeJsonPath);
+            using var streamReader = new StreamReader($"{pathToData}/{GeschlechtAnredeJsonName}");
             GeschlechtAnredeListe = JsonConvert.DeserializeObject<List<GeschlechtAnrede>>(streamReader.ReadToEnd());
 
-            using var StreamReader = new StreamReader(TitelAnredeJsonPath);
+            using var StreamReader = new StreamReader($"{pathToData}/{TitelAnredeJsonName}");
             TitelAnredeListe = JsonConvert.DeserializeObject<List<TitelAnrede>>(streamReader.ReadToEnd());
         }
 
@@ -81,9 +81,22 @@ namespace ContactSplitter.Backend.Services
             response.Titel = null;
         }
 
-        private void SplitName(ref SplitContactRequest request, ref SplitContactResponse response)
+        public void SplitName(ref SplitContactRequest request, ref SplitContactResponse response)
         {
-            //To be done
+            var vornameRegex = "([A-Z]\\w*((\\s+|\\-)[A-Z]\\w*)*)";
+            var nachnameRegex = "(\\w+\\s+)*[A-Z]\\w*(\\-?[A-Z]\\w*)";
+            var nameRegex = new Regex("(^(?<Vorname>([A-Z]\\w*((\\s+|\\-)[A-Z]\\w*)*))\\s+(?<Nachname>(\\w+\\s+)*[A-Z]\\w*(\\-?[A-Z]\\w*)) | ^(?<Nachname>(\\w+\\s+)*[A-Z]\\w*(\\-?[A-Z]\\w*)),\\s+(?<Vorname>([A-Z]\\w*((\\s+|\\-)[A-Z]\\w*)*)))");
+
+            var result = nameRegex.Match(request.UserInput);
+
+            //var result = Regex.Match(request.UserInput, nameRegex);
+
+            if (result is not null)
+            {
+
+            }
+
+
         }
     }
 }
