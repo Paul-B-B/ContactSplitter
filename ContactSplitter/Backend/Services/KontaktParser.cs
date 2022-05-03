@@ -1,6 +1,7 @@
 ﻿using ContactSplitter.Backend.Model;
 using ContactSplitter.Backend.Model.Requests;
 using ContactSplitter.Backend.Model.Responses;
+using ContactSplitter.Shared.DataClass;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -61,7 +62,7 @@ namespace ContactSplitter.Backend.Services
             }
 
             response.Anrede = null;
-            response.Sprache = Model.Sprache.Unbekannt;
+            response.Sprache = Sprache.Unbekannt;
 
 
         }
