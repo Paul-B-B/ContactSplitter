@@ -1,20 +1,18 @@
-﻿using ContactSplitter.Frontend.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ContactSplitter.Backend.Model;
+using ContactSplitter.Frontend.Core;
 
 namespace ContactSplitter.Frontend.ViewModel
 {
     class MainViewModel : ObservableObject
     {
 
-        public RelayCommand HomeViewCommand { get; set; }
+        public RelayCommand NameSplitterViewCommand { get; set; }
 
-        public RelayCommand Page2ViewCommand { get; set; }
+        public RelayCommand PhoneNumberSplitterViewCommand { get; set; }
 
         public NameSplitterViewModel NameSplitterVM { get; set; }
+
+        public PhoneNumberSplitterViewModel PhoneNumberSplitterVM { get; set; }
 
         private object _currentView;
         public object CurrentView
@@ -30,14 +28,22 @@ namespace ContactSplitter.Frontend.ViewModel
 
         public MainViewModel()
         {
+            var phoneNumberModel = new PhoneNumberSplitterModel();
+
             NameSplitterVM = new NameSplitterViewModel();
+            PhoneNumberSplitterVM = new PhoneNumberSplitterViewModel(phoneNumberModel);
 
             CurrentView = NameSplitterVM;
 
 
-            HomeViewCommand = new RelayCommand(o =>
+            NameSplitterViewCommand = new RelayCommand(o =>
             {
                 CurrentView = NameSplitterVM;
+            });
+
+            PhoneNumberSplitterViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = PhoneNumberSplitterVM;
             });
 
 

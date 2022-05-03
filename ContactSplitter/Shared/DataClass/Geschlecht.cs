@@ -1,5 +1,6 @@
 ﻿
 namespace ContactSplitter.Shared.DataClass
+{
     public enum Geschlecht
     {
         m = 0,

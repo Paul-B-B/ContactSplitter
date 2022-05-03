@@ -19,6 +19,10 @@
                 <view:NameSplitterView/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewModel:PhoneNumberSplitterViewModel}">
+                <view:PhoneNumberSplitterView/>
+            </DataTemplate>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>
