@@ -83,13 +83,16 @@ namespace ContactSplitter.Backend.Services
 
         public void SplitName(ref SplitContactRequest request, ref SplitContactResponse response)
         {
-            var vornameRegex = "([A-Z]\\w*((\\s+|\\-)[A-Z]\\w*)*)";
-            var nachnameRegex = "(\\w+\\s+)*[A-Z]\\w*(\\-?[A-Z]\\w*)";
-            var nameRegex = new Regex("(^(?<Vorname>([A-Z]\\w*((\\s+|\\-)[A-Z]\\w*)*))\\s+(?<Nachname>(\\w+\\s+)*[A-Z]\\w*(\\-?[A-Z]\\w*)) | ^(?<Nachname>(\\w+\\s+)*[A-Z]\\w*(\\-?[A-Z]\\w*)),\\s+(?<Vorname>([A-Z]\\w*((\\s+|\\-)[A-Z]\\w*)*)))");
+            var vornameRegex = "([A-Z]\\w*([\\s\\-]+[A-Z]\\w*)*)";
+            var nachnameRegex = "(\\w+\\s+)*[A-Z]\\w*(\\-?[A-Z]\\w*)*)";
+            var regexGruppenNameVorname = "Vorname";
+            var regexGruppenNameNachname = "Nachname";
+            var nameRegex = $"(^(?<{regexGruppenNameVorname}>{vornameRegex})\\s+(?<{regexGruppenNameNachname}>{nachnameRegex})|" + // Vorname Nachname
+                            $"(^(?<{regexGruppenNameNachname}>{nachnameRegex}),\\s+(?<{regexGruppenNameVorname}>{vornameRegex})"; // Nachname, Vorname
 
-            var result = nameRegex.Match(request.UserInput);
+            //var result = nameRegex.Match(request.UserInput);
 
-            //var result = Regex.Match(request.UserInput, nameRegex);
+            var result = Regex.Match(request.UserInput, nameRegex);
 
             if (result is not null)
             {
