@@ -2,6 +2,7 @@
 using ContactSplitter.Frontend.Core;
 using ContactSplitter.Shared.DataClass;
 using System;
+using System.Windows;
 using System.Windows.Input;
 
 namespace ContactSplitter.Frontend.ViewModel
@@ -51,6 +52,13 @@ namespace ContactSplitter.Frontend.ViewModel
                 ErrorMessage = "The phone number could not be read, the following exception occured: \n" + ex.Message;
             }
             NumberInputString = string.Empty;
+        }
+
+        public ICommand CopyNumberCommand => new RelayCommand(x => this.OnCopyButtonClicked());
+
+        private void OnCopyButtonClicked()
+        {
+            Clipboard.SetText(FormattedNumber.FormattedNumber);
         }
 
     }

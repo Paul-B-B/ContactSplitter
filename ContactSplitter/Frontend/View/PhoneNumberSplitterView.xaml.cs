@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace ContactSplitter.Frontend.View
@@ -12,5 +13,6 @@ namespace ContactSplitter.Frontend.View
         {
             InitializeComponent();
         }
+
     }
 }

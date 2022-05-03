@@ -99,7 +99,7 @@
                     <materialDesign:Card Height="60"
                                          MinWidth="150"
                                          Background="#4f5353">
-                        <Grid>
+                        <StackPanel VerticalAlignment="Center">
                             <TextBlock Grid.Row="1"
                                  Text="{Binding FormattedNumber.Country.Name, UpdateSourceTrigger=PropertyChanged}"
                                  Margin="10" 
@@ -107,7 +107,7 @@
                                  FontSize="16"
                                  FontWeight="Regular" Cursor="Arrow" 
                                  x:Name="CountryTextBox"/>
-                        </Grid>
+                        </StackPanel>
                     </materialDesign:Card>
                 </StackPanel>
                 <StackPanel Orientation="Vertical"
@@ -118,7 +118,7 @@
                     <materialDesign:Card Height="60"
                                          MinWidth="150"
                                          Background="#4f5353">
-                        <Grid>
+                        <StackPanel VerticalAlignment="Center">
                             <TextBlock Grid.Row="1"
                                  Text="{Binding FormattedNumber.AreaCode, UpdateSourceTrigger=PropertyChanged}"
                                  Margin="10" 
@@ -126,7 +126,7 @@
                                  FontSize="16"
                                  FontWeight="Regular" Cursor="Arrow" 
                                  x:Name="AreaTextBox"/>
-                        </Grid>
+                        </StackPanel>
                     </materialDesign:Card>
                 </StackPanel>
                 <StackPanel Orientation="Vertical"
@@ -137,7 +137,7 @@
                     <materialDesign:Card Height="60"
                                          MinWidth="150"
                                          Background="#4f5353">
-                        <Grid>
+                        <StackPanel VerticalAlignment="Center">
                             <TextBlock Grid.Row="1"
                                  Text="{Binding FormattedNumber.MainNumber, UpdateSourceTrigger=PropertyChanged}"
                                  Margin="10" 
@@ -145,7 +145,7 @@
                                  FontSize="16"
                                  FontWeight="Regular" Cursor="Arrow" 
                                  x:Name="MainNumberTextBox"/>
-                        </Grid>
+                        </StackPanel>
                     </materialDesign:Card>
                 </StackPanel>
                 <StackPanel Orientation="Vertical"
@@ -156,7 +156,7 @@
                     <materialDesign:Card Height="60"
                                          MinWidth="150"
                                          Background="#4f5353">
-                        <Grid>
+                        <StackPanel VerticalAlignment="Center">
                             <TextBlock Grid.Row="1"
                                  Text="{Binding FormattedNumber.DirectDial, UpdateSourceTrigger=PropertyChanged}"
                                  Margin="10" 
@@ -164,7 +164,7 @@
                                  FontSize="16"
                                  FontWeight="Regular" Cursor="Arrow" 
                                  x:Name="DirectDialTextBox"/>
-                        </Grid>
+                        </StackPanel>
                     </materialDesign:Card>
                 </StackPanel>
             </StackPanel>
@@ -182,14 +182,24 @@
                         <materialDesign:Card Height="60"
                                              MinWidth="150"
                                              Background="#4f5353">
-                            <Grid>
+                            <StackPanel VerticalAlignment="Center"
+                                        Orientation="Horizontal">
                                 <TextBlock Text="{Binding FormattedNumber.FormattedNumber, UpdateSourceTrigger=PropertyChanged}"
-                                            Margin="10" 
-                                            materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
-                                            FontSize="16"
-                                            FontWeight="Regular" Cursor="Arrow" 
-                                            x:Name="FormattedNumberTextBox"/>
-                            </Grid>
+                                           Margin="10" 
+                                           MinWidth="220"
+                                           HorizontalAlignment="Left"
+                                           materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
+                                           FontSize="16"
+                                           FontWeight="Regular" Cursor="Arrow" 
+                                           x:Name="FormattedNumberTextBox"/>
+                                <Button Content="Copy"
+                                        HorizontalAlignment="Right"
+                                        Foreground="White"
+                                        FontSize="18"
+                                        Background="#791C3a" 
+                                        BorderThickness="0" Cursor="Hand"
+                                        Command="{Binding CopyNumberCommand}"/>
+                            </StackPanel>
                         </materialDesign:Card>
                     </StackPanel>
                     <StackPanel Grid.Column="1"
@@ -201,6 +211,7 @@
                                    Foreground="Red"
                                    Margin="5,0,5,0"
                                    TextWrapping="Wrap"/>
+                        
                     </StackPanel>
                 </Grid>
             </StackPanel>
