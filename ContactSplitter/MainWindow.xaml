@@ -11,7 +11,11 @@
         Height="600" Width="920"
         WindowStyle="None"
         ResizeMode="NoResize"
-        Background="Transparent"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="{materialDesign:MaterialDesignFont}"
         AllowsTransparency="True">
 
 
@@ -23,8 +27,7 @@
         <Grid.OpacityMask>
             <VisualBrush Visual="{Binding ElementName=WindowBorder}" />
         </Grid.OpacityMask>
-        <Border x:Name="WindowBorder"
-                Background="{DynamicResource MaterialDesignPaper}">
+        <Border x:Name="WindowBorder">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200"/>

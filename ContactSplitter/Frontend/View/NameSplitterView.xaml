@@ -7,11 +7,12 @@
              xmlns:local="clr-namespace:ContactSplitter.Frontend.View"
              xmlns:viewModels="clr-namespace:ContactSplitter.Frontend.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignHeight="525" d:DesignWidth="720"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             Background="Transparent"
              TextElement.FontWeight="Medium"
              TextElement.FontSize="14"
-             FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+             FontFamily="{materialDesign:RobotoFont}"
              d:DataContext="{d:DesignInstance viewModels:NameSplitterViewModel}">
 
     <Grid>
@@ -26,20 +27,18 @@
 
         <StackPanel FocusManager.FocusedElement="{Binding ElementName=TextInputString}">
             <TextBlock Text="NameSplitter"
-                   Foreground="White"
-                   FontSize="28"
                    HorizontalAlignment="Left"
-                   Margin="10,0,0,0"/>
+                   Margin="10,0,10,0"
+                   Style="{StaticResource MaterialDesignHeadline4TextBlock}"/>
             <StackPanel Orientation="Vertical"
                         Margin="20">
                 <TextBlock Text="Enter the Text: "
                                    FontWeight="Medium"
                                    FontSize="20"/>
                 <materialDesign:Card Height="80"
-                                     MinWidth="650"
+                                     MinWidth="500"
                                      Background="#4f5353"
-                                     Padding="10"
-                                     Margin="5">
+                                     Padding="10">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="500"/>
@@ -85,19 +84,18 @@
             </StackPanel>
         </StackPanel>
         <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Vertical"
+                        HorizontalAlignment="Left">
                 <StackPanel Orientation="Vertical"
-                            Margin="20,0,20,0">
+                            Margin="10,0,10,0">
                     <TextBlock Text="First Name: "
                                    FontWeight="Medium"
-                                   FontSize="20"/>
-                    <materialDesign:Card Height="60"
+                                   FontSize="16"/>
+                    <materialDesign:Card Height="45"
                                          MinWidth="200"
                                          Background="#4f5353">
                         <Grid>
@@ -124,11 +122,11 @@
                     </materialDesign:Card>
                 </StackPanel>
                 <StackPanel Orientation="Vertical"
-                            Margin="20,0,20,0">
+                            Margin="10,0,10,0">
                     <TextBlock Text="Last Name: "
                                    FontWeight="Medium"
-                                   FontSize="20"/>
-                    <materialDesign:Card Height="60"
+                                   FontSize="16"/>
+                    <materialDesign:Card Height="45"
                                          MinWidth="200"
                                          Background="#4f5353">
                         <Grid>
@@ -154,11 +152,11 @@
                     </materialDesign:Card>
                 </StackPanel>
                 <StackPanel Orientation="Vertical"
-                            Margin="20,0,20,0">
+                            Margin="10,0,10,0">
                     <TextBlock Text="Gender: "
                                    FontWeight="Medium"
-                                   FontSize="20"/>
-                    <materialDesign:Card Height="60"
+                                   FontSize="16"/>
+                    <materialDesign:Card Height="45"
                                          MinWidth="200"
                                          Background="#4f5353">
                         <Grid>
@@ -183,6 +181,46 @@
                         </Grid>
                     </materialDesign:Card>
                 </StackPanel>
+                <StackPanel Orientation="Vertical"
+                            Margin="10,0,10,0">
+                    <TextBlock Text="Title: "
+                                   FontWeight="Medium"
+                                   FontSize="16"/>
+                    <materialDesign:Card Height="45"
+                                         MinWidth="200"
+                                         Background="#4f5353">
+                        <Grid>
+                            <TextBox Grid.Row="1" 
+                                     Margin="10" 
+                                     materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
+                                     FontSize="16"
+                                     FontWeight="Regular" Cursor="Arrow" 
+                                     x:Name="TitleTextBox"/>
+                            <TextBlock IsHitTestVisible="False" Text="Title" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, ElementName=GenderTextBox}" Value="">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Grid>
+                    </materialDesign:Card>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Column="1"
+                        Margin="10,0,20,0">
+                <materialDesign:Card MinHeight="300">
+                    <Grid>
+                        <DataGrid>
+                            
+                        </DataGrid>
+                    </Grid>
+                </materialDesign:Card>
             </StackPanel>
 
         </Grid>
