@@ -4,6 +4,7 @@ using ContactSplitter.Backend.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ContactSplitter.Backend.Model;
 using System.Collections.Generic;
+using ContactSplitter.Shared.DataClass;
 
 namespace ContactSplitterTest
 {

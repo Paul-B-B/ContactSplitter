@@ -1,4 +1,6 @@
-﻿using ContactSplitter.Frontend.Core;
+﻿using ContactSplitter.Backend.Model.Requests;
+using ContactSplitter.Backend.Services;
+using ContactSplitter.Frontend.Core;
 using ContactSplitter.Shared.DataClass;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,6 +13,8 @@ namespace ContactSplitter.Frontend.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private KontaktParser _kontaktParser; 
+
         private string _textInputString;
         public string TextInputString
         {
@@ -22,11 +26,32 @@ namespace ContactSplitter.Frontend.ViewModel
             }
         }
 
-        private string _textOutputString;
-        public string TextOutputString
+        private string _vorname;
+        public string Vorname
         {
-            get { return _textOutputString; }
-            set { Update(ref _textOutputString, value); }
+            get { return _vorname; }
+            set { Update(ref _vorname, value); }
+        }
+
+        private string _nachname;
+        public string Nachname
+        {
+            get { return _nachname; }
+            set { Update(ref _nachname, value); }
+        }
+
+        private string _titel;
+        public string Titel
+        {
+            get { return _titel; }
+            set { Update(ref _titel, value); }
+        }
+
+        private Geschlecht _geschlecht;
+        public Geschlecht Geschlecht
+        {
+            get { return _geschlecht; }
+            set { Update(ref _geschlecht, value); }
         }
 
         public ObservableCollection<Person> Persons { get; private set; }
@@ -34,18 +59,32 @@ namespace ContactSplitter.Frontend.ViewModel
         public NameSplitterViewModel()
         {
             Persons = CreateData();
+            _kontaktParser = new KontaktParser(@"Backend\Data\");
         }
 
         public ICommand SubmitTextCommand => new RelayCommand(x => this.OnSplitButtonClicked());
 
         private void OnSplitButtonClicked()
         {
-            TextOutputString = this.TextInputString;
+            var output = _kontaktParser.ParseKontakt(new SplitContactRequest(this.TextInputString));
+            Person person = new Person();
+            person.Title = this.Titel;
+            person.LastName = this.Nachname;
+            person.FirstName = this.Vorname;
+            person.Gender = this.Geschlecht;
+            person.Salutation = output.Anrede;
+            Persons.Add(person);
+            this.TextInputString = "";
         }
 
         private void OnTextInputChanged()
         {
-            TextOutputString = this.TextInputString;
+            var input = new SplitContactRequest(this.TextInputString);
+            var output = _kontaktParser.ParseKontakt(input);
+            this.Vorname = output.Vorname;
+            this.Nachname = output.Nachname;
+            this.Geschlecht = output.Geschlecht;
+            this.Titel = output.Titel;
         }
 
         private static ObservableCollection<Person> CreateData()
@@ -55,7 +94,7 @@ namespace ContactSplitter.Frontend.ViewModel
                 new Person
                 {
                     Salutation = "Herr",
-                    Title = new List<string>(){"Prof.", "Dr."},
+                    Title = "Prof. Dr.",
                     FirstName = "Kevin",
                     LastName = "Kudlik",
                     Gender = Geschlecht.m
@@ -63,7 +102,7 @@ namespace ContactSplitter.Frontend.ViewModel
                 new Person
                 {
                     Salutation = "Frau",
-                    Title = new List<string>(){"Dr."},
+                    Title = "Dr.",
                     FirstName = "Charlotte",
                     LastName = "Stöffler",
                     Gender = Geschlecht.w
@@ -71,7 +110,7 @@ namespace ContactSplitter.Frontend.ViewModel
                 new Person
                 {
                     Salutation = "Herr",
-                    Title = new List<string>(){"Dr.", "Dr."},
+                    Title = "Dr. Dr.",
                     FirstName = "Paul-Benedict",
                     LastName = "Burkard",
                     Gender = Geschlecht.m

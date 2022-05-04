@@ -10,7 +10,7 @@ namespace ContactSplitter.Shared.DataClass
     {
         public string Salutation { get; set; }
 
-        public List<string> Title { get; set; }
+        public string Title { get; set; }
 
         public string FirstName { get; set; }
 

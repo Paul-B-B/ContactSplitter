@@ -100,7 +100,7 @@
                                          Background="#4f5353">
                         <Grid>
                             <TextBox Grid.Row="1"
-                                 Text="{Binding TextOutputString, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding Vorname, UpdateSourceTrigger=PropertyChanged}"
                                  Margin="10" 
                                  materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
                                  FontSize="16"
@@ -131,6 +131,7 @@
                                          Background="#4f5353">
                         <Grid>
                             <TextBox Grid.Row="1" 
+                                 Text="{Binding Nachname, UpdateSourceTrigger=PropertyChanged}"                                     
                                      Margin="10" 
                                      materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
                                      FontSize="16"
@@ -161,6 +162,8 @@
                                          Background="#4f5353">
                         <Grid>
                             <TextBox Grid.Row="1" 
+                                 Text="{Binding Geschlecht, UpdateSourceTrigger=PropertyChanged}"
+                                     
                                      Margin="10" 
                                      materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
                                      FontSize="16"
@@ -191,6 +194,7 @@
                                          Background="#4f5353">
                         <Grid>
                             <TextBox Grid.Row="1" 
+                                 Text="{Binding Titel, UpdateSourceTrigger=PropertyChanged}"                                     
                                      Margin="10" 
                                      materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
                                      FontSize="16"
