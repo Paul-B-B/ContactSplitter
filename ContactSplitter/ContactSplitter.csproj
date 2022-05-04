@@ -34,4 +34,16 @@
     <Resource Include="Frontend\Assets\Images\Splitter.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Backend\Data\CountryCodes.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Backend\Data\GeschlechtAnrede.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Backend\Data\TitelAnrede.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,4 @@
-﻿using ContactSplitter.Backend.Model;
+﻿using ContactSplitter.Shared.DataClass;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
