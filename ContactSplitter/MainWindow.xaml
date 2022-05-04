@@ -149,6 +149,9 @@
                     Grid.ColumnSpan="2"
                     Background="#212325"
                     Orientation="Horizontal">
+                    <Image Width="57"
+                           Margin="10"
+                           Source="./Frontend/Assets/Images/Splitter-57x57.png" />
 
                     <TextBlock Text="Splitter"
                            VerticalAlignment="Center"

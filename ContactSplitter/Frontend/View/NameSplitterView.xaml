@@ -21,7 +21,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="180"/>
+            <RowDefinition Height="160"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
@@ -29,11 +29,11 @@
             <TextBlock Text="NameSplitter"
                    HorizontalAlignment="Left"
                    Margin="10,0,10,0"
-                   Style="{StaticResource MaterialDesignHeadline4TextBlock}"/>
+                   Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
             <StackPanel Orientation="Vertical"
-                        Margin="20">
+                        Margin="10,10,10,0">
                 <TextBlock Text="Enter the Text: "
-                                   FontWeight="Medium"
+                                   FontWeight="Regular"
                                    FontSize="20"/>
                 <materialDesign:Card Height="80"
                                      MinWidth="500"
@@ -216,7 +216,10 @@
                         Margin="10,0,20,0">
                 <materialDesign:Card MinHeight="300">
                     <Grid>
-                        <DataGrid>
+                        <DataGrid ItemsSource="{Binding Persons}"
+                                  CanUserAddRows="False"
+                                  SelectionUnit="Cell"
+                                  SelectionMode="Extended">
                             
                         </DataGrid>
                     </Grid>

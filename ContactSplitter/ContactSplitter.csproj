@@ -6,7 +6,17 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>False</UseWindowsForms>
+    <ApplicationIcon>favicon-96x96.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Frontend\Assets\Images\Splitter-57x57.png" />
+    <None Remove="Frontend\Assets\Images\Splitter.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="favicon-96x96.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MaterialDesignColors" Version="2.0.6" />
@@ -17,7 +27,11 @@
 
   <ItemGroup>
     <Folder Include="Frontend\Assets\Fonts\" />
-    <Folder Include="Frontend\Assets\Images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Frontend\Assets\Images\Splitter-57x57.png" />
+    <Resource Include="Frontend\Assets\Images\Splitter.png" />
   </ItemGroup>
 
 </Project>
