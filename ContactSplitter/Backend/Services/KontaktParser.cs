@@ -28,10 +28,10 @@ namespace ContactSplitter.Backend.Services
         private readonly string vornameNachnameRegex;
 
         // RegEx zur Anredenerkennung
-        private readonly Regex anredeRegex = new Regex("^\\w+.?");
+        private readonly Regex anredeRegex = new Regex("^\\w+\\.?");
 
         // RegEx zur Titelerkennung
-        private readonly Regex titelRegex = new Regex("^\\w+.?"); //Zweiter Titel fehlt noch
+        private readonly Regex titelRegex = new Regex("^\\w+\\.?"); //Zweiter Titel fehlt noch
 
         //Hilfslisten (erhalten aus eingelesenen Dateien)
         private readonly List<TitelAnrede> TitelAnredeListe;
@@ -43,11 +43,15 @@ namespace ContactSplitter.Backend.Services
         /// <param name="pathToData">Pfad zum Data Ordner (wird für die Tests benötigt)</param>
         public KontaktParser(string pathToData = "../Data/")
         {
-            using var streamReader = new StreamReader($"{pathToData}/{GeschlechtAnredeJsonName}");
-            GeschlechtAnredeListe = JsonConvert.DeserializeObject<List<GeschlechtAnrede>>(streamReader.ReadToEnd());
+            using (var streamReader = new StreamReader($"{pathToData}/{GeschlechtAnredeJsonName}"))
+            {
+                GeschlechtAnredeListe = JsonConvert.DeserializeObject<List<GeschlechtAnrede>>(streamReader.ReadToEnd());
+            };
 
-            using var StreamReader = new StreamReader($"{pathToData}/{TitelAnredeJsonName}");
-            TitelAnredeListe = JsonConvert.DeserializeObject<List<TitelAnrede>>(streamReader.ReadToEnd()); // Diese Liste ist im Test NULL, TODO: überprüfen wieso
+            using (var streamReader = new StreamReader($"{pathToData}/{TitelAnredeJsonName}"))
+            {
+                TitelAnredeListe = JsonConvert.DeserializeObject<List<TitelAnrede>>(streamReader.ReadToEnd()); // Diese Liste ist im Test NULL, TODO: überprüfen wieso
+            };
 
             vornameNachnameRegex = $"(^(?<{regexGruppeVorname}>{vornameRegex})\\s+(?<{regexGruppeNachname}>{nachnameRegex})|" + // Vorname Nachname
                             $"(^(?<{regexGruppeNachname}>{nachnameRegex}),\\s+(?<{regexGruppeVorname}>{vornameRegex})"; // Nachname, Vorname
@@ -85,12 +89,11 @@ namespace ContactSplitter.Backend.Services
                 response.Anrede = geschlechtAnrede.Anrede;
                 response.Sprache = geschlechtAnrede.Sprache;
                 response.Geschlecht = geschlechtAnrede.Geschlecht;
-                Regex.Replace(request.UserInput, firstWord.Value, string.Empty);
-                request.UserInput = request.UserInput.Trim();
+                request.UserInput = Regex.Replace(request.UserInput, $"^\\s*{firstWord.Value}\\s*", string.Empty);
                 return;
             }
-
             response.Anrede = null;
+            response.Geschlecht = Geschlecht.unbekannt; 
             response.Sprache = Sprache.Unbekannt;
 
         }
@@ -103,7 +106,7 @@ namespace ContactSplitter.Backend.Services
             if (titelAnrede is not null)
             {
                 response.Titel = titelAnrede.Anrede;
-                Regex.Replace(request.UserInput, firstWord.Value, string.Empty);
+                request.UserInput = Regex.Replace(request.UserInput, $"^\\s*{firstWord.Value}\\s*", string.Empty);
                 return;
             }
 

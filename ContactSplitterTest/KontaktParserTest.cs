@@ -24,11 +24,11 @@ namespace ContactSplitterTest
                 UserInput = userInput
             };
 
-            // Zu testende Methode ausführen
+            // Zu testende Methode ausfï¿½hren
 
             var parsedContact = _Parser.ParseKontakt(req);
 
-            // Ergebnisse überprüfen 
+            // Ergebnisse ï¿½berprï¿½fen 
             Assert.IsNotNull(parsedContact);
         }
     }
