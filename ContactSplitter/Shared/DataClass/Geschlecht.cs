@@ -1,5 +1,5 @@
 ﻿
-namespace ContactSplitter.Backend.Model
+namespace ContactSplitter.Shared.DataClass
 {
     public enum Geschlecht
     {
