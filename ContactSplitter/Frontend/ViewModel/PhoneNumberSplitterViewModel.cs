@@ -32,9 +32,9 @@ namespace ContactSplitter.Frontend.ViewModel
         }
 
 
-        private readonly IPhoneNumberSplitterModel _phoneNumberModel;
+        private readonly IPhoneNumberSplitter _phoneNumberModel;
 
-        public PhoneNumberSplitterViewModel(IPhoneNumberSplitterModel numberModel)
+        public PhoneNumberSplitterViewModel(IPhoneNumberSplitter numberModel)
         {
             this._phoneNumberModel = numberModel;
         }

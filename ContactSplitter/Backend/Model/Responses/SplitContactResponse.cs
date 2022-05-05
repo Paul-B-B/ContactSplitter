@@ -7,24 +7,57 @@ using System.Threading.Tasks;
 
 namespace ContactSplitter.Backend.Model.Responses
 {
+    /// <summary>
+    /// Response zur Aufteilung eines Kontakts
+    /// </summary>
     public class SplitContactResponse
     {
-        public string? Anrede { get; set; } //Herr / Frau
+        /// <summary>
+        /// Gefundene Anrede des Kontakts, Bsp: Herr oder Frau
+        /// </summary>
+        public string? Anrede { get; set; }
 
+        /// <summary>
+        /// Zusammengestellt Briefanrede des Kontakts, Bsp: "Sehr geehrter Herr Dr. Peter Lustig
+        /// Ist nie null
+        /// </summary>
         public string? Briefanrede { get; set; }
 
+        /// <summary>
+        /// Aus der Anrede gefundenes Geschlecht des Kontakts, Möglichkeiten siehe Enum "Geschlecht"
+        /// Default: Unbekannt
+        /// </summary>
         public Geschlecht Geschlecht { get; set; }
 
+        /// <summary>
+        /// Gefundener Vorname des Kontakts
+        /// </summary>
         public string? Vorname { get; set; }
 
+        /// <summary>
+        /// Gefundener Nachname des Kontakts
+        /// </summary>
         public string? Nachname { get; set; }
 
-        public string? RawInput { get; set; } //was der Nutzer eingegeben hatte
+        /// <summary>
+        /// Ursprüngliche Nutzereingabe
+        /// </summary>
+        public string? RawInput { get; set; } 
 
+        /// <summary>
+        /// Aus der Anrede gefundene Sprache des Kontakts, Möglichkeiten siehe Enum "Sprache"
+        /// Default: Unbekannt
+        /// </summary>
         public Sprache Sprache { get; set; }
 
+        /// <summary>
+        /// Liste aller einzelnen Titel
+        /// </summary>
         public List<TitelAnrede>? ListeAllerTitel { get; set; }
 
+        /// <summary>
+        /// String aller Titel des Kontakts
+        /// </summary>
         public string? AlleTitel
         {
             get
@@ -35,6 +68,9 @@ namespace ContactSplitter.Backend.Model.Responses
             }
         }
 
+        /// <summary>
+        /// String der ersten drei Titel des Kontakts
+        /// </summary>
         public string? BriefTitel
         {
             get

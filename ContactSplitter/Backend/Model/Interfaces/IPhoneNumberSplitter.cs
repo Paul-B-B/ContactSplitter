@@ -2,7 +2,7 @@
 
 namespace ContactSplitter.Backend.Model.Interfaces
 {
-    internal interface IPhoneNumberSplitterModel
+    internal interface IPhoneNumberSplitter
     {
         PhoneNumber GetFormattedNumber(string userInput);
 

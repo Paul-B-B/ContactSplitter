@@ -66,7 +66,7 @@ namespace ContactSplitter.Frontend.ViewModel
 
         private void OnSplitButtonClicked()
         {
-            var input = new SplitContactRequest(this.TextInputString);
+            var input = new SplitContactRequest() { UserInput = TextInputString };
             var output = _kontaktParser.ParseKontakt(input);
             Person person = new Person();
             person.Title = this.Titel;
@@ -80,7 +80,7 @@ namespace ContactSplitter.Frontend.ViewModel
 
         private void OnTextInputChanged()
         {
-            var input = new SplitContactRequest(this.TextInputString);
+            var input = new SplitContactRequest() { UserInput = TextInputString };
             var output = _kontaktParser.ParseKontakt(input);
             this.Vorname = output.Vorname;
             this.Nachname = output.Nachname;

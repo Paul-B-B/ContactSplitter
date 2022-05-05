@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ContactSplitter.Shared.DataClass
 {
+    /// <summary>
+    /// Enumerierung der möglichen Sprachen eines Kontakts
+    /// </summary>
     public enum Sprache
     {
         Unbekannt = 0,
