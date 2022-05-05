@@ -64,7 +64,11 @@ namespace ContactSplitter.Backend.Services
         /// <returns>Der geparste Kontakt als SplitContactResponse</returns>
         public SplitContactResponse ParseKontakt(SplitContactRequest input)
         {
-            var splitContactResponse = new SplitContactResponse();
+            var splitContactResponse = new SplitContactResponse()
+            {
+                ListeAllerTitel = new List<TitelAnrede>(),
+                //Maybe hier direkt Sprache auf unbekannt setzen!
+            };
             splitContactResponse.RawInput = input.UserInput;
 
             SplitAnrede(ref input, ref splitContactResponse);
@@ -78,7 +82,7 @@ namespace ContactSplitter.Backend.Services
             return splitContactResponse;
         }
 
-
+        
         private void SplitAnrede(ref SplitContactRequest request, ref SplitContactResponse response)
         {
             var firstWord = anredeRegex.Match(request.UserInput);
@@ -93,26 +97,45 @@ namespace ContactSplitter.Backend.Services
                 return;
             }
             response.Anrede = null;
-            response.Geschlecht = Geschlecht.unbekannt; 
+            response.Geschlecht = Geschlecht.unbekannt;
             response.Sprache = Sprache.Unbekannt;
 
         }
 
+        /// <summary>
+        /// Unteruscht den UserInput der Request auf möglicht Titel, erhalten aus der TitelAnrede.json und fügt diesem den response Objekt hinzu.
+        /// Gefundene Titel werden aus dem String der Request entfernt
+        /// </summary>
+        /// <param name="request">Der zu parsende input, ohne Anrede</param>
+        /// <param name="response">Das ResponseObjekt inklusive aller gefundenen Titel</param>
         private void SplitTitel(ref SplitContactRequest request, ref SplitContactResponse response)
         {
-            var firstWord = titelRegex.Match(request.UserInput);
+            var moreTitlesPossible = true;
+            string possibleTitle;
+            TitelAnrede? titelAnrede;
 
-            var titelAnrede = TitelAnredeListe.FirstOrDefault(ti => ti.Anrede.Equals(firstWord.Value) || ti.Titel.Equals(firstWord.Value));
-            if (titelAnrede is not null)
+            do
             {
-                response.Titel = titelAnrede.Anrede;
-                request.UserInput = Regex.Replace(request.UserInput, $"^\\s*{firstWord.Value}\\s*", string.Empty);
-                return;
-            }
+                possibleTitle = titelRegex.Match(request.UserInput).Value;
+                titelAnrede = TitelAnredeListe.FirstOrDefault(ti => ti.Anrede.Equals(possibleTitle) || ti.Titel.Equals(possibleTitle));
 
-            response.Titel = null;
+                if (titelAnrede is not null)
+                {
+                    response.ListeAllerTitel.Add(titelAnrede);
+                    request.UserInput = Regex.Replace(request.UserInput, $"^\\s*{possibleTitle}\\s*", string.Empty);
+                }
+
+                else { moreTitlesPossible = false; }
+
+
+            } while (moreTitlesPossible);
         }
 
+        /// <summary>
+        /// TODO
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="response"></param>
         public void SplitName(ref SplitContactRequest request, ref SplitContactResponse response)
         {
             var result = Regex.Match(request.UserInput, vornameNachnameRegex);
