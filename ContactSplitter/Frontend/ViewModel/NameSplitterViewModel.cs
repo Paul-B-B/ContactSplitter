@@ -66,7 +66,8 @@ namespace ContactSplitter.Frontend.ViewModel
 
         private void OnSplitButtonClicked()
         {
-            var output = _kontaktParser.ParseKontakt(new SplitContactRequest(this.TextInputString));
+            var input = new SplitContactRequest(this.TextInputString);
+            var output = _kontaktParser.ParseKontakt(input);
             Person person = new Person();
             person.Title = this.Titel;
             person.LastName = this.Nachname;
@@ -84,7 +85,7 @@ namespace ContactSplitter.Frontend.ViewModel
             this.Vorname = output.Vorname;
             this.Nachname = output.Nachname;
             this.Geschlecht = output.Geschlecht;
-            this.Titel = output.Titel;
+            this.Titel = output.AlleTitel;
         }
 
         private static ObservableCollection<Person> CreateData()
