@@ -84,7 +84,7 @@ namespace ContactSplitter.Backend.Services
 
             SplitName(ref input, ref splitContactResponse);
 
-            //Erstelle Briefanrede
+            CreateBriefanrede(ref splitContactResponse);
 
             return splitContactResponse;
         }
@@ -142,7 +142,7 @@ namespace ContactSplitter.Backend.Services
         /// </summary>
         /// <param name="request">Der zu parsende input, ohne Anrede oder Titel</param>
         /// <param name="response">Das ResponseObjekt inklusive des Namens</param>
-        public void SplitName(ref SplitContactRequest request, ref SplitContactResponse response)
+        private void SplitName(ref SplitContactRequest request, ref SplitContactResponse response)
         {
             var result = Regex.Match(request.UserInput, vornameNachnameRegex);
 
@@ -155,6 +155,46 @@ namespace ContactSplitter.Backend.Services
 
             //Wie machen wir error handling?
 
+        }
+
+        /// <summary>
+        /// Erstellt aus den Elementen einer Response die Briefanrede und fügt diese der Response hinzu 
+        /// </summary>
+        /// <param name="response">Das Response Objekt, für das die Briefanrede erstellt werden soll</param>
+        public void CreateBriefanrede(ref SplitContactResponse response)
+        {
+            switch (response.Sprache)
+            {
+                case Sprache.Unbekannt:
+                case Sprache.Deutsch:
+                    switch (response.Geschlecht)
+                    {
+                        case Geschlecht.m:
+                            response.Briefanrede = $"Sehr geehrter Herr {response.BriefTitel}{response.Vorname} {response.Nachname}";
+                            break;
+                        case Geschlecht.w:
+                            response.Briefanrede = $"Sehr geehrte Frau {response.BriefTitel}{response.Vorname} {response.Nachname}";
+                            break;
+                        default: 
+                            response.Briefanrede = $"Guten Tag {response.BriefTitel}{response.Vorname} {response.Nachname}";
+                            break;
+                    }
+                    break;
+                case Sprache.Englisch:
+                    switch (response.Geschlecht)
+                    {
+                        case Geschlecht.m:
+                            response.Briefanrede = $"Dear Mr. {response.BriefTitel}{response.Vorname} {response.Nachname}";
+                            break;
+                        case Geschlecht.w:
+                            response.Briefanrede = $"Dear {response.Anrede} {response.BriefTitel}{response.Vorname} {response.Nachname}";
+                            break;
+                        default:
+                            response.Briefanrede = $"Dear {response.BriefTitel}{response.Vorname} {response.Nachname}";
+                            break;
+                    }
+                    break;
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using ContactSplitter.Backend.Model;
+﻿using ContactSplitter.Backend.Services;
 using ContactSplitter.Frontend.Core;
 
 namespace ContactSplitter.Frontend.ViewModel

@@ -19,6 +19,10 @@ namespace ContactSplitter.Backend.Services
         private readonly Country _DefaultCountry = new Country() { PhoneCode = "+49", Abbrevation = "DE", Name = "Germany" };
         private readonly PhoneNumberUtil _PhoneNumberUtil;
 
+        /// <summary>
+        /// Parsed und trennt Telefonnummern auf
+        /// </summary>
+        /// <param name="CountryCodesFilePath">Nur relevant für Tests</param>
         public PhoneNumberParser(string CountryCodesFilePath = "..//..//..//Backend//Data//CountryCodes.json")
         {
             using (StreamReader reader = new StreamReader(CountryCodesFilePath))
@@ -27,8 +31,19 @@ namespace ContactSplitter.Backend.Services
                 _CountryList = JsonConvert.DeserializeObject<List<Country>>(readFile);
             }
             _PhoneNumberUtil = PhoneNumberUtil.GetInstance();
+
+            if(_CountryList is null)
+            {
+                throw new FileNotFoundException("Die einzulesende Country JSON Datei konnte nicht gefunden werden. Das Programm ist somit nicht lauffähig. \n " +
+                    "Bitte starten Sie das Programm neu.");
+            }
         }
 
+        /// <summary>
+        /// Nimmt eine Nummer entgegen, parsed ihre Elemente und liefert die aufgeteilte Nummer als PhoneNumber Objekt zurück
+        /// </summary>
+        /// <param name="userInput"></param>
+        /// <returns></returns>
         public PhoneNumber ParseNumber(string userInput)
         {
             var resultNumber = new PhoneNumber() { RawNumberInput = userInput };
@@ -49,9 +64,13 @@ namespace ContactSplitter.Backend.Services
 
         }
 
+        /// <summary>
+        /// Untersucht die gegebene PhoneNumber auf eine Ländervorwahl, fügt diese dem entsprechenden Attribut hinzu und entfernt sie von der MainNumber
+        /// Wird keine Vorwahl erkannt, wird Deutschland als Standard gewählt
+        /// </summary>
+        /// <param name="resultNumber">Ein PhoneNumber Objekt mit einer MainNumber</param>
         private void AddCountry(ref PhoneNumber resultNumber)
         {
-
             try
             {
                 var originCountryCode = Regex.Match(resultNumber.RawNumberInput, "^[([]?(00|0|\\+)[)\\]]?\\d{2}").Value;
@@ -65,6 +84,10 @@ namespace ContactSplitter.Backend.Services
             }
         }
 
+        /// <summary>
+        /// Untersucht die gegebene PhoneNumber auf eine Durchwahl, fügt diese dem entsprechenden Attribut hinzu und entfernt sie von der MainNumber
+        /// </summary>
+        /// <param name="resultNumber">Ein PhoneNumber Objekt mit MainNumber ohne Vorwahl</param>
         private void FindAreaCode(ref PhoneNumber resultNumber)
         {
             if (Regex.IsMatch(resultNumber.MainNumber, "^\\(\\d+\\)\\s?"))
@@ -77,6 +100,11 @@ namespace ContactSplitter.Backend.Services
             resultNumber.MainNumber = Regex.Replace(resultNumber.MainNumber, "^\\(?0?\\d{3}\\)?[\\s/]?", "").Trim();
         }
 
+        /// <summary>
+        /// Untersucht die gegebene PhoneNumber auf die Hauptnummer und Durchwahl und fügt diese Elemente dem entsprechenden Attribut hinzu
+        /// Falls diese Untersuchung aufgrund einer ungewöhnlichen Eingabe fehlschlägt, wird auf das Google-Framework zur Telefonnummererkennung zurückgegriffen
+        /// </summary>
+        /// <param name="resultNumber">Ein PhoneNumber Objekt mit MainNumber ohne Vorwahl und Durchwahl </param>
         private void FindMainNumberAndDirectDial(ref PhoneNumber resultNumber)
         {
             if (Regex.IsMatch(resultNumber.MainNumber, "^\\[.+\\]"))
@@ -95,6 +123,12 @@ namespace ContactSplitter.Backend.Services
             }
         }
 
+        /// <summary>
+        /// Fallback Methode, sollte die Hauptnummer nicht erkannt werden können
+        /// </summary>
+        /// <param name="userInput">Falls auch das Google Framework die Nummer nicht erkennen kann</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
         private PhoneNumber ParseNumberWithFramework(string userInput)
         {
             var resultNumber = new PhoneNumber() { RawNumberInput = userInput };
@@ -119,6 +153,10 @@ namespace ContactSplitter.Backend.Services
             return resultNumber;
         }
 
+        /// <summary>
+        /// Formatiert die einzelnen Bestandteile eines PhoneNumber Objekts und fügt die formatierte, vollständige Nummer dem entsprechenden Attribut hinzu 
+        /// </summary>
+        /// <param name="phoneNumber"></param>
         private void FormatPhoneNumber(ref PhoneNumber phoneNumber)
         {
             phoneNumber.FormattedNumber =
