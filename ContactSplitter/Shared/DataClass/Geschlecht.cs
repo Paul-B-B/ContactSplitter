@@ -7,5 +7,5 @@ namespace ContactSplitter.Shared.DataClass
         w = 1,
         d = 2,
         unbekannt = 3,
-    }
+    }   
 }

@@ -13,9 +13,7 @@ namespace ContactSplitter.Backend.Model.Responses
 
         public string? Briefanrede { get; set; }
 
-        public string? Titel { get; set; } //Prof. / Dr.
-
-        public Geschlecht Geschlecht { get; set; } 
+        public Geschlecht Geschlecht { get; set; }
 
         public string? Vorname { get; set; }
 
@@ -24,5 +22,30 @@ namespace ContactSplitter.Backend.Model.Responses
         public string? RawInput { get; set; } //was der Nutzer eingegeben hatte
 
         public Sprache Sprache { get; set; }
+
+        public List<TitelAnrede>? ListeAllerTitel { get; set; }
+
+        public string? AlleTitel
+        {
+            get
+            {
+                var _AlleTitel = string.Empty;
+                ListeAllerTitel.ForEach(titel => _AlleTitel += $"{titel.Anrede} ");
+                return _AlleTitel;
+            }
+        }
+
+        public string? BriefTitel
+        {
+            get
+            {
+                var _BriefTitel = string.Empty;
+                for (int i = 0; i < (ListeAllerTitel.Count >= 3 ? 3 : ListeAllerTitel.Count); i++)
+                {
+                    _BriefTitel += $"{ListeAllerTitel[i].Anrede} ";
+                }
+                return _BriefTitel;
+            }
+        }
     }
 }

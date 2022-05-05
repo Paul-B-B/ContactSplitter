@@ -16,7 +16,10 @@ namespace ContactSplitterTest
         [DataRow("Herr Peter Lustig")]
         [DataRow("Herr Dr. Peter Lustig")]
         [DataRow("Frau Professorin Peter Lustig")]
-        public void TestMethod1(string userInput)
+        [DataRow("Frau Prof. Dr. Dr. Peter Lustig")]
+        [DataRow("Professor Doktor Dr. Peter Lustig")]
+        [DataRow("Mr. Doktor Dr. Peter Lustig")]
+        public void ParseKontaktTest(string userInput)
         {
             // Daten vorbereiten
             var req = new SplitContactRequest()
@@ -24,12 +27,14 @@ namespace ContactSplitterTest
                 UserInput = userInput
             };
 
-            // Zu testende Methode ausführen
+            // Zu testende Methode ausfï¿½hren
 
             var parsedContact = _Parser.ParseKontakt(req);
 
-            // Ergebnisse überprüfen 
+            // Ergebnisse ueberpruefen
             Assert.IsNotNull(parsedContact);
+            // sollte noch etwas ausfÃ¼hrlicher getestet werden xD
+
         }
     }
 }

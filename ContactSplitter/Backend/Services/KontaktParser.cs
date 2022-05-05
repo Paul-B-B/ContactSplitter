@@ -28,10 +28,10 @@ namespace ContactSplitter.Backend.Services
         private readonly string vornameNachnameRegex;
 
         // RegEx zur Anredenerkennung
-        private readonly Regex anredeRegex = new Regex("^\\w+\\.?");
+        private readonly Regex anredeRegex = new("^\\w+\\.?");
 
         // RegEx zur Titelerkennung
-        private readonly Regex titelRegex = new Regex("^\\w+\\.?"); //Zweiter Titel fehlt noch
+        private readonly Regex titelRegex = new("^\\w+\\.?");
 
         //Hilfslisten (erhalten aus eingelesenen Dateien)
         private readonly List<TitelAnrede> TitelAnredeListe;
@@ -47,11 +47,17 @@ namespace ContactSplitter.Backend.Services
             {
                 GeschlechtAnredeListe = JsonConvert.DeserializeObject<List<GeschlechtAnrede>>(streamReader.ReadToEnd());
             };
-
+          
             using (var streamReader = new StreamReader($"{pathToData}/{TitelAnredeJsonName}"))
             {
-                TitelAnredeListe = JsonConvert.DeserializeObject<List<TitelAnrede>>(streamReader.ReadToEnd()); // Diese Liste ist im Test NULL, TODO: überprüfen wieso
+                TitelAnredeListe = JsonConvert.DeserializeObject<List<TitelAnrede>>(streamReader.ReadToEnd());
             };
+
+            if (GeschlechtAnredeListe is null || TitelAnredeListe is null)
+            {
+                throw new DirectoryNotFoundException("Eine oder beide der einzulesenden JSON Dateien konnten nicht gefunden werden. Das Programm ist somit nicht lauffähig. \n " +
+                    "Bitte starten Sie das Programm neu.");
+            }
 
             vornameNachnameRegex = $"(^(?<{regexGruppeVorname}>{vornameRegex})\\s+(?<{regexGruppeNachname}>{nachnameRegex})|" + // Vorname Nachname
                             $"(^(?<{regexGruppeNachname}>{nachnameRegex}),\\s+(?<{regexGruppeVorname}>{vornameRegex})"; // Nachname, Vorname
@@ -64,7 +70,12 @@ namespace ContactSplitter.Backend.Services
         /// <returns>Der geparste Kontakt als SplitContactResponse</returns>
         public SplitContactResponse ParseKontakt(SplitContactRequest input)
         {
-            var splitContactResponse = new SplitContactResponse();
+            var splitContactResponse = new SplitContactResponse()
+            {
+                ListeAllerTitel = new List<TitelAnrede>(),
+                Sprache = Sprache.Unbekannt,
+                Geschlecht = Geschlecht.unbekannt
+            };
             splitContactResponse.RawInput = input.UserInput;
 
             SplitAnrede(ref input, ref splitContactResponse);
@@ -78,7 +89,12 @@ namespace ContactSplitter.Backend.Services
             return splitContactResponse;
         }
 
-
+        /// <summary>
+        /// Untersucht den UserInput der Request auf mögliche Anreden, erhalten aus der GeschlechtAnrede.json und fügt diese dem response Objekt hinzu
+        /// Eine gefundene Anrede wird aus dem String der Request entfernt und bestimmt die Sprache und das Geschlecht des Kontakt
+        /// </summary>
+        /// <param name="request">Der zu parsende input</param>
+        /// <param name="response">Das ResponseObjekt inklusive Anrede, Geschlecht und Sprache</param>
         private void SplitAnrede(ref SplitContactRequest request, ref SplitContactResponse response)
         {
             var firstWord = anredeRegex.Match(request.UserInput);
@@ -93,26 +109,39 @@ namespace ContactSplitter.Backend.Services
                 return;
             }
             response.Anrede = null;
-            response.Geschlecht = Geschlecht.unbekannt; 
-            response.Sprache = Sprache.Unbekannt;
-
         }
 
+        /// <summary>
+        /// Untersucht den UserInput der Request auf mögliche Titel, erhalten aus der TitelAnrede.json und fügt diese dem response Objekt hinzu.
+        /// Gefundene Titel werden aus dem String der Request entfernt
+        /// </summary>
+        /// <param name="request">Der zu parsende input, ohne Anrede</param>
+        /// <param name="response">Das ResponseObjekt inklusive aller gefundenen Titel</param>
         private void SplitTitel(ref SplitContactRequest request, ref SplitContactResponse response)
         {
-            var firstWord = titelRegex.Match(request.UserInput);
+            var moreTitlesPossible = true;
+            string possibleTitle;
+            TitelAnrede? titelAnrede;
 
-            var titelAnrede = TitelAnredeListe.FirstOrDefault(ti => ti.Anrede.Equals(firstWord.Value) || ti.Titel.Equals(firstWord.Value));
-            if (titelAnrede is not null)
+            do
             {
-                response.Titel = titelAnrede.Anrede;
-                request.UserInput = Regex.Replace(request.UserInput, $"^\\s*{firstWord.Value}\\s*", string.Empty);
-                return;
-            }
+                possibleTitle = titelRegex.Match(request.UserInput).Value;
+                titelAnrede = TitelAnredeListe.FirstOrDefault(ti => ti.Anrede.Equals(possibleTitle) || ti.Titel.Equals(possibleTitle));
 
-            response.Titel = null;
+                if (titelAnrede is not null)
+                {
+                    response.ListeAllerTitel.Add(titelAnrede);
+                    request.UserInput = Regex.Replace(request.UserInput, $"^\\s*{possibleTitle}\\s*", string.Empty);
+                }
+                else { moreTitlesPossible = false; }
+            } while (moreTitlesPossible);
         }
 
+        /// <summary>
+        /// Untersucht den UserInput der Request auf Vorname und Nachname und fügt diese dem Response Objekt hinzu
+        /// </summary>
+        /// <param name="request">Der zu parsende input, ohne Anrede oder Titel</param>
+        /// <param name="response">Das ResponseObjekt inklusive des Namens</param>
         public void SplitName(ref SplitContactRequest request, ref SplitContactResponse response)
         {
             var result = Regex.Match(request.UserInput, vornameNachnameRegex);
