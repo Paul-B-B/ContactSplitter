@@ -9,5 +9,10 @@ namespace ContactSplitter.Backend.Model.Requests
     public class SplitContactRequest
     {
         public string UserInput { get; set; }
+
+        public SplitContactRequest(string userInput)
+        {
+            this.UserInput = userInput;
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace ContactSplitter.Backend.Services
         private readonly Country _DefaultCountry = new Country() { PhoneCode = "+49", Abbrevation = "DE", Name = "Germany" };
         private readonly PhoneNumberUtil _PhoneNumberUtil;
 
-        public PhoneNumberParser(string CountryCodesFilePath = "..//..//..//PhoneNumberOptimization//Data//CountryCodes.json")
+        public PhoneNumberParser(string CountryCodesFilePath = "..//..//..//Backend//Data//CountryCodes.json")
         {
             using (StreamReader reader = new StreamReader(CountryCodesFilePath))
             {
