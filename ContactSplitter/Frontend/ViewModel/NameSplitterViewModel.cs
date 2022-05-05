@@ -130,7 +130,6 @@ namespace ContactSplitter.Frontend.ViewModel
 
         private void OnSplitButtonClicked()
         {
-            this.ClearBoxes();
             var output = this._nameSplitterModel.GetSplitContact(this.TextInputString);
             this.FirstName = output.Vorname;
             this.LastName = output.Nachname;

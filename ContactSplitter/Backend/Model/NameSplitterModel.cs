@@ -23,7 +23,7 @@ namespace ContactSplitter.Backend.Model
         {
             if (string.IsNullOrEmpty(input)) return null;
 
-            var output = _kontaktParser.ParseKontakt(new SplitContactRequest(input));
+            var output = _kontaktParser.ParseKontakt(new SplitContactRequest() { UserInput = input});
             return output;
         }
     }
