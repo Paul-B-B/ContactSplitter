@@ -1,0 +1,238 @@
+﻿<UserControl x:Class="ContactSplitter.Frontend.View.NameSplitterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:ContactSplitter.Frontend.View"
+             xmlns:viewModels="clr-namespace:ContactSplitter.Frontend.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="525" d:DesignWidth="720"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             Background="Transparent"
+             TextElement.FontWeight="Medium"
+             TextElement.FontSize="14"
+             FontFamily="{materialDesign:RobotoFont}"
+             d:DataContext="{d:DesignInstance viewModels:NameSplitterViewModel}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="160"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel FocusManager.FocusedElement="{Binding ElementName=TextInputString}">
+            <TextBlock Text="NameSplitter"
+                   HorizontalAlignment="Left"
+                   Margin="10,0,10,0"
+                   Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
+            <StackPanel Orientation="Vertical"
+                        Margin="10,10,10,0">
+                <TextBlock Text="Enter the Text: "
+                                   FontWeight="Regular"
+                                   FontSize="20"/>
+                <materialDesign:Card Height="80"
+                                     MinWidth="500"
+                                     Background="#4f5353"
+                                     Padding="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="500"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+
+                        <TextBox Grid.Row="1" 
+                                 Margin="10" 
+                                 materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
+                                 FontSize="16"
+                                 FontWeight="Regular" Cursor="Arrow" 
+                                 Text="{Binding TextInputString, UpdateSourceTrigger=PropertyChanged}"
+                                 x:Name="SplitTermTextBox"/>
+                        <TextBlock IsHitTestVisible="False" Text="Enter Text Here" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Text, ElementName=SplitTermTextBox}" Value="">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                        <Button Grid.RowSpan="2" 
+                                Grid.Column="1" 
+                                Content="Split"
+                                Foreground="White"
+                                FontSize="18"
+                                Background="#791C3a" 
+                                BorderThickness="0" Cursor="Hand"
+                                Command="{Binding SubmitTextCommand}"/>
+                    </Grid>
+
+                </materialDesign:Card>
+
+            </StackPanel>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Vertical"
+                        HorizontalAlignment="Left">
+                <StackPanel Orientation="Vertical"
+                            Margin="10,0,10,0">
+                    <TextBlock Text="First Name: "
+                                   FontWeight="Medium"
+                                   FontSize="16"/>
+                    <materialDesign:Card Height="45"
+                                         MinWidth="200"
+                                         Background="#4f5353">
+                        <Grid>
+                            <TextBox Grid.Row="1"
+                                 Text="{Binding Vorname, UpdateSourceTrigger=PropertyChanged}"
+                                 Margin="10" 
+                                 materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
+                                 FontSize="16"
+                                 FontWeight="Regular" Cursor="Arrow" 
+                                 x:Name="FirstNameTextBox"/>
+                            <TextBlock IsHitTestVisible="False" Text="Max" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, ElementName=FirstNameTextBox}" Value="">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Grid>
+                    </materialDesign:Card>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+                            Margin="10,0,10,0">
+                    <TextBlock Text="Last Name: "
+                                   FontWeight="Medium"
+                                   FontSize="16"/>
+                    <materialDesign:Card Height="45"
+                                         MinWidth="200"
+                                         Background="#4f5353">
+                        <Grid>
+                            <TextBox Grid.Row="1" 
+                                 Text="{Binding Nachname, UpdateSourceTrigger=PropertyChanged}"                                     
+                                     Margin="10" 
+                                     materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
+                                     FontSize="16"
+                                     FontWeight="Regular" Cursor="Arrow" 
+                                     x:Name="LastNameTextBox"/>
+                            <TextBlock IsHitTestVisible="False" Text="Mustermann" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, ElementName=LastNameTextBox}" Value="">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Grid>
+                    </materialDesign:Card>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+                            Margin="10,0,10,0">
+                    <TextBlock Text="Gender: "
+                                   FontWeight="Medium"
+                                   FontSize="16"/>
+                    <materialDesign:Card Height="45"
+                                         MinWidth="200"
+                                         Background="#4f5353">
+                        <Grid>
+                            <TextBox Grid.Row="1" 
+                                 Text="{Binding Geschlecht, UpdateSourceTrigger=PropertyChanged}"
+                                     
+                                     Margin="10" 
+                                     materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
+                                     FontSize="16"
+                                     FontWeight="Regular" Cursor="Arrow" 
+                                     x:Name="GenderTextBox"/>
+                            <TextBlock IsHitTestVisible="False" Text="Male" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, ElementName=GenderTextBox}" Value="">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Grid>
+                    </materialDesign:Card>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+                            Margin="10,0,10,0">
+                    <TextBlock Text="Title: "
+                                   FontWeight="Medium"
+                                   FontSize="16"/>
+                    <materialDesign:Card Height="45"
+                                         MinWidth="200"
+                                         Background="#4f5353">
+                        <Grid>
+                            <TextBox Grid.Row="1" 
+                                 Text="{Binding Titel, UpdateSourceTrigger=PropertyChanged}"                                     
+                                     Margin="10" 
+                                     materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
+                                     FontSize="16"
+                                     FontWeight="Regular" Cursor="Arrow" 
+                                     x:Name="TitleTextBox"/>
+                            <TextBlock IsHitTestVisible="False" Text="Title" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, ElementName=GenderTextBox}" Value="">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Grid>
+                    </materialDesign:Card>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Column="1"
+                        Margin="10,0,20,0">
+                <materialDesign:Card MinHeight="300">
+                    <Grid>
+                        <DataGrid ItemsSource="{Binding Persons}"
+                                  CanUserAddRows="False"
+                                  SelectionUnit="Cell"
+                                  SelectionMode="Extended">
+                            
+                        </DataGrid>
+                    </Grid>
+                </materialDesign:Card>
+            </StackPanel>
+
+        </Grid>
+        
+    </Grid>
+
+
+</UserControl>

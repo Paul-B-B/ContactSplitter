@@ -47,10 +47,10 @@ namespace ContactSplitter.Backend.Services
             {
                 GeschlechtAnredeListe = JsonConvert.DeserializeObject<List<GeschlechtAnrede>>(streamReader.ReadToEnd());
             };
-
+          
             using (var streamReader = new StreamReader($"{pathToData}/{TitelAnredeJsonName}"))
             {
-                TitelAnredeListe = JsonConvert.DeserializeObject<List<TitelAnrede>>(streamReader.ReadToEnd()); // Diese Liste ist im Test NULL, TODO: überprüfen wieso
+                TitelAnredeListe = JsonConvert.DeserializeObject<List<TitelAnrede>>(streamReader.ReadToEnd());
             };
 
             if (GeschlechtAnredeListe is null || TitelAnredeListe is null)
@@ -109,7 +109,6 @@ namespace ContactSplitter.Backend.Services
                 return;
             }
             response.Anrede = null;
-
         }
 
         /// <summary>
@@ -134,10 +133,7 @@ namespace ContactSplitter.Backend.Services
                     response.ListeAllerTitel.Add(titelAnrede);
                     request.UserInput = Regex.Replace(request.UserInput, $"^\\s*{possibleTitle}\\s*", string.Empty);
                 }
-
                 else { moreTitlesPossible = false; }
-
-
             } while (moreTitlesPossible);
         }
 
