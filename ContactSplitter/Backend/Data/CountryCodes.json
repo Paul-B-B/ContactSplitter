@@ -1,0 +1,1212 @@
+[
+{
+"Name": "Afghanistan",
+"PhoneCode": "+93",
+"Abbrevation": "AF"
+},
+{
+"Name": "Aland Islands",
+"PhoneCode": "+358",
+"Abbrevation": "AX"
+},
+{
+"Name": "Albania",
+"PhoneCode": "+355",
+"Abbrevation": "AL"
+},
+{
+"Name": "Algeria",
+"PhoneCode": "+213",
+"Abbrevation": "DZ"
+},
+{
+"Name": "AmericanSamoa",
+"PhoneCode": "+1684",
+"Abbrevation": "AS"
+},
+{
+"Name": "Andorra",
+"PhoneCode": "+376",
+"Abbrevation": "AD"
+},
+{
+"Name": "Angola",
+"PhoneCode": "+244",
+"Abbrevation": "AO"
+},
+{
+"Name": "Anguilla",
+"PhoneCode": "+1264",
+"Abbrevation": "AI"
+},
+{
+"Name": "Antarctica",
+"PhoneCode": "+672",
+"Abbrevation": "AQ"
+},
+{
+"Name": "Antigua and Barbuda",
+"PhoneCode": "+1268",
+"Abbrevation": "AG"
+},
+{
+"Name": "Argentina",
+"PhoneCode": "+54",
+"Abbrevation": "AR"
+},
+{
+"Name": "Armenia",
+"PhoneCode": "+374",
+"Abbrevation": "AM"
+},
+{
+"Name": "Aruba",
+"PhoneCode": "+297",
+"Abbrevation": "AW"
+},
+{
+"Name": "Australia",
+"PhoneCode": "+61",
+"Abbrevation": "AU"
+},
+{
+"Name": "Austria",
+"PhoneCode": "+43",
+"Abbrevation": "AT"
+},
+{
+"Name": "Azerbaijan",
+"PhoneCode": "+994",
+"Abbrevation": "AZ"
+},
+{
+"Name": "Bahamas",
+"PhoneCode": "+1242",
+"Abbrevation": "BS"
+},
+{
+"Name": "Bahrain",
+"PhoneCode": "+973",
+"Abbrevation": "BH"
+},
+{
+"Name": "Bangladesh",
+"PhoneCode": "++880",
+"Abbrevation": "BD"
+},
+{
+"Name": "Barbados",
+"PhoneCode": "+1246",
+"Abbrevation": "BB"
+},
+{
+"Name": "Belarus",
+"PhoneCode": "+375",
+"Abbrevation": "BY"
+},
+{
+"Name": "Belgium",
+"PhoneCode": "+32",
+"Abbrevation": "BE"
+},
+{
+"Name": "Belize",
+"PhoneCode": "+501",
+"Abbrevation": "BZ"
+},
+{
+"Name": "Benin",
+"PhoneCode": "+229",
+"Abbrevation": "BJ"
+},
+{
+"Name": "Bermuda",
+"PhoneCode": "+1441",
+"Abbrevation": "BM"
+},
+{
+"Name": "Bhutan",
+"PhoneCode": "+975",
+"Abbrevation": "BT"
+},
+{
+"Name": "Bolivia, Plurinational State of",
+"PhoneCode": "+591",
+"Abbrevation": "BO"
+},
+{
+"Name": "Bosnia and Herzegovina",
+"PhoneCode": "+387",
+"Abbrevation": "BA"
+},
+{
+"Name": "Botswana",
+"PhoneCode": "+267",
+"Abbrevation": "BW"
+},
+{
+"Name": "Brazil",
+"PhoneCode": "+55",
+"Abbrevation": "BR"
+},
+{
+"Name": "British Indian Ocean Territory",
+"PhoneCode": "+246",
+"Abbrevation": "IO"
+},
+{
+"Name": "Brunei Darussalam",
+"PhoneCode": "+673",
+"Abbrevation": "BN"
+},
+{
+"Name": "Bulgaria",
+"PhoneCode": "+359",
+"Abbrevation": "BG"
+},
+{
+"Name": "Burkina Faso",
+"PhoneCode": "+226",
+"Abbrevation": "BF"
+},
+{
+"Name": "Burundi",
+"PhoneCode": "+257",
+"Abbrevation": "BI"
+},
+{
+"Name": "Cambodia",
+"PhoneCode": "+855",
+"Abbrevation": "KH"
+},
+{
+"Name": "Cameroon",
+"PhoneCode": "+237",
+"Abbrevation": "CM"
+},
+{
+"Name": "Canada",
+"PhoneCode": "+1",
+"Abbrevation": "CA"
+},
+{
+"Name": "Cape Verde",
+"PhoneCode": "+238",
+"Abbrevation": "CV"
+},
+{
+"Name": "Cayman Islands",
+"PhoneCode": "+ 345",
+"Abbrevation": "KY"
+},
+{
+"Name": "Central African Republic",
+"PhoneCode": "+236",
+"Abbrevation": "CF"
+},
+{
+"Name": "Chad",
+"PhoneCode": "+235",
+"Abbrevation": "TD"
+},
+{
+"Name": "Chile",
+"PhoneCode": "+56",
+"Abbrevation": "CL"
+},
+{
+"Name": "China",
+"PhoneCode": "+86",
+"Abbrevation": "CN"
+},
+{
+"Name": "Christmas Island",
+"PhoneCode": "+61",
+"Abbrevation": "CX"
+},
+{
+"Name": "Cocos (Keeling) Islands",
+"PhoneCode": "+61",
+"Abbrevation": "CC"
+},
+{
+"Name": "Colombia",
+"PhoneCode": "+57",
+"Abbrevation": "CO"
+},
+{
+"Name": "Comoros",
+"PhoneCode": "+269",
+"Abbrevation": "KM"
+},
+{
+"Name": "Congo",
+"PhoneCode": "+242",
+"Abbrevation": "CG"
+},
+{
+"Name": "Congo, The Democratic Republic of the Congo",
+"PhoneCode": "+243",
+"Abbrevation": "CD"
+},
+{
+"Name": "Cook Islands",
+"PhoneCode": "+682",
+"Abbrevation": "CK"
+},
+{
+"Name": "Costa Rica",
+"PhoneCode": "+506",
+"Abbrevation": "CR"
+},
+{
+"Name": "Cote d'Ivoire",
+"PhoneCode": "+225",
+"Abbrevation": "CI"
+},
+{
+"Name": "Croatia",
+"PhoneCode": "+385",
+"Abbrevation": "HR"
+},
+{
+"Name": "Cuba",
+"PhoneCode": "+53",
+"Abbrevation": "CU"
+},
+{
+"Name": "Cyprus",
+"PhoneCode": "+357",
+"Abbrevation": "CY"
+},
+{
+"Name": "Czech Republic",
+"PhoneCode": "+420",
+"Abbrevation": "CZ"
+},
+{
+"Name": "Denmark",
+"PhoneCode": "+45",
+"Abbrevation": "DK"
+},
+{
+"Name": "Djibouti",
+"PhoneCode": "+253",
+"Abbrevation": "DJ"
+},
+{
+"Name": "Dominica",
+"PhoneCode": "+1767",
+"Abbrevation": "DM"
+},
+{
+"Name": "Dominican Republic",
+"PhoneCode": "+1849",
+"Abbrevation": "DO"
+},
+{
+"Name": "Ecuador",
+"PhoneCode": "+593",
+"Abbrevation": "EC"
+},
+{
+"Name": "Egypt",
+"PhoneCode": "+20",
+"Abbrevation": "EG"
+},
+{
+"Name": "El Salvador",
+"PhoneCode": "+503",
+"Abbrevation": "SV"
+},
+{
+"Name": "Equatorial Guinea",
+"PhoneCode": "+240",
+"Abbrevation": "GQ"
+},
+{
+"Name": "Eritrea",
+"PhoneCode": "+291",
+"Abbrevation": "ER"
+},
+{
+"Name": "Estonia",
+"PhoneCode": "+372",
+"Abbrevation": "EE"
+},
+{
+"Name": "Ethiopia",
+"PhoneCode": "+251",
+"Abbrevation": "ET"
+},
+{
+"Name": "Falkland Islands (Malvinas)",
+"PhoneCode": "+500",
+"Abbrevation": "FK"
+},
+{
+"Name": "Faroe Islands",
+"PhoneCode": "+298",
+"Abbrevation": "FO"
+},
+{
+"Name": "Fiji",
+"PhoneCode": "+679",
+"Abbrevation": "FJ"
+},
+{
+"Name": "Finland",
+"PhoneCode": "+358",
+"Abbrevation": "FI"
+},
+{
+"Name": "France",
+"PhoneCode": "+33",
+"Abbrevation": "FR"
+},
+{
+"Name": "French Guiana",
+"PhoneCode": "+594",
+"Abbrevation": "GF"
+},
+{
+"Name": "French Polynesia",
+"PhoneCode": "+689",
+"Abbrevation": "PF"
+},
+{
+"Name": "Gabon",
+"PhoneCode": "+241",
+"Abbrevation": "GA"
+},
+{
+"Name": "Gambia",
+"PhoneCode": "+220",
+"Abbrevation": "GM"
+},
+{
+"Name": "Georgia",
+"PhoneCode": "+995",
+"Abbrevation": "GE"
+},
+{
+"Name": "Germany",
+"PhoneCode": "+49",
+"Abbrevation": "DE"
+},
+{
+"Name": "Ghana",
+"PhoneCode": "+233",
+"Abbrevation": "GH"
+},
+{
+"Name": "Gibraltar",
+"PhoneCode": "+350",
+"Abbrevation": "GI"
+},
+{
+"Name": "Greece",
+"PhoneCode": "+30",
+"Abbrevation": "GR"
+},
+{
+"Name": "Greenland",
+"PhoneCode": "+299",
+"Abbrevation": "GL"
+},
+{
+"Name": "Grenada",
+"PhoneCode": "+1473",
+"Abbrevation": "GD"
+},
+{
+"Name": "Guadeloupe",
+"PhoneCode": "+590",
+"Abbrevation": "GP"
+},
+{
+"Name": "Guam",
+"PhoneCode": "+1671",
+"Abbrevation": "GU"
+},
+{
+"Name": "Guatemala",
+"PhoneCode": "+502",
+"Abbrevation": "GT"
+},
+{
+"Name": "Guernsey",
+"PhoneCode": "+44",
+"Abbrevation": "GG"
+},
+{
+"Name": "Guinea",
+"PhoneCode": "+224",
+"Abbrevation": "GN"
+},
+{
+"Name": "Guinea-Bissau",
+"PhoneCode": "+245",
+"Abbrevation": "GW"
+},
+{
+"Name": "Guyana",
+"PhoneCode": "+595",
+"Abbrevation": "GY"
+},
+{
+"Name": "Haiti",
+"PhoneCode": "+509",
+"Abbrevation": "HT"
+},
+{
+"Name": "Holy See (Vatican City State)",
+"PhoneCode": "+379",
+"Abbrevation": "VA"
+},
+{
+"Name": "Honduras",
+"PhoneCode": "+504",
+"Abbrevation": "HN"
+},
+{
+"Name": "Hong Kong",
+"PhoneCode": "+852",
+"Abbrevation": "HK"
+},
+{
+"Name": "Hungary",
+"PhoneCode": "+36",
+"Abbrevation": "HU"
+},
+{
+"Name": "Iceland",
+"PhoneCode": "+354",
+"Abbrevation": "IS"
+},
+{
+"Name": "India",
+"PhoneCode": "+91",
+"Abbrevation": "IN"
+},
+{
+"Name": "Indonesia",
+"PhoneCode": "+62",
+"Abbrevation": "ID"
+},
+{
+"Name": "Iran, Islamic Republic of Persian Gulf",
+"PhoneCode": "+98",
+"Abbrevation": "IR"
+},
+{
+"Name": "Iraq",
+"PhoneCode": "+964",
+"Abbrevation": "IQ"
+},
+{
+"Name": "Ireland",
+"PhoneCode": "+353",
+"Abbrevation": "IE"
+},
+{
+"Name": "Isle of Man",
+"PhoneCode": "+44",
+"Abbrevation": "IM"
+},
+{
+"Name": "Israel",
+"PhoneCode": "+972",
+"Abbrevation": "IL"
+},
+{
+"Name": "Italy",
+"PhoneCode": "+39",
+"Abbrevation": "IT"
+},
+{
+"Name": "Jamaica",
+"PhoneCode": "+1876",
+"Abbrevation": "JM"
+},
+{
+"Name": "Japan",
+"PhoneCode": "+81",
+"Abbrevation": "JP"
+},
+{
+"Name": "Jersey",
+"PhoneCode": "+44",
+"Abbrevation": "JE"
+},
+{
+"Name": "Jordan",
+"PhoneCode": "+962",
+"Abbrevation": "JO"
+},
+{
+"Name": "Kazakhstan",
+"PhoneCode": "+77",
+"Abbrevation": "KZ"
+},
+{
+"Name": "Kenya",
+"PhoneCode": "+254",
+"Abbrevation": "KE"
+},
+{
+"Name": "Kiribati",
+"PhoneCode": "+686",
+"Abbrevation": "KI"
+},
+{
+"Name": "Korea, Democratic People's Republic of Korea",
+"PhoneCode": "+850",
+"Abbrevation": "KP"
+},
+{
+"Name": "Korea, Republic of South Korea",
+"PhoneCode": "+82",
+"Abbrevation": "KR"
+},
+{
+"Name": "Kuwait",
+"PhoneCode": "+965",
+"Abbrevation": "KW"
+},
+{
+"Name": "Kyrgyzstan",
+"PhoneCode": "+996",
+"Abbrevation": "KG"
+},
+{
+"Name": "Laos",
+"PhoneCode": "+856",
+"Abbrevation": "LA"
+},
+{
+"Name": "Latvia",
+"PhoneCode": "+371",
+"Abbrevation": "LV"
+},
+{
+"Name": "Lebanon",
+"PhoneCode": "+961",
+"Abbrevation": "LB"
+},
+{
+"Name": "Lesotho",
+"PhoneCode": "+266",
+"Abbrevation": "LS"
+},
+{
+"Name": "Liberia",
+"PhoneCode": "+231",
+"Abbrevation": "LR"
+},
+{
+"Name": "Libyan Arab Jamahiriya",
+"PhoneCode": "+218",
+"Abbrevation": "LY"
+},
+{
+"Name": "Liechtenstein",
+"PhoneCode": "+423",
+"Abbrevation": "LI"
+},
+{
+"Name": "Lithuania",
+"PhoneCode": "+370",
+"Abbrevation": "LT"
+},
+{
+"Name": "Luxembourg",
+"PhoneCode": "+352",
+"Abbrevation": "LU"
+},
+{
+"Name": "Macao",
+"PhoneCode": "+853",
+"Abbrevation": "MO"
+},
+{
+"Name": "Macedonia",
+"PhoneCode": "+389",
+"Abbrevation": "MK"
+},
+{
+"Name": "Madagascar",
+"PhoneCode": "+261",
+"Abbrevation": "MG"
+},
+{
+"Name": "Malawi",
+"PhoneCode": "+265",
+"Abbrevation": "MW"
+},
+{
+"Name": "Malaysia",
+"PhoneCode": "+60",
+"Abbrevation": "MY"
+},
+{
+"Name": "Maldives",
+"PhoneCode": "+960",
+"Abbrevation": "MV"
+},
+{
+"Name": "Mali",
+"PhoneCode": "+223",
+"Abbrevation": "ML"
+},
+{
+"Name": "Malta",
+"PhoneCode": "+356",
+"Abbrevation": "MT"
+},
+{
+"Name": "Marshall Islands",
+"PhoneCode": "+692",
+"Abbrevation": "MH"
+},
+{
+"Name": "Martinique",
+"PhoneCode": "+596",
+"Abbrevation": "MQ"
+},
+{
+"Name": "Mauritania",
+"PhoneCode": "+222",
+"Abbrevation": "MR"
+},
+{
+"Name": "Mauritius",
+"PhoneCode": "+230",
+"Abbrevation": "MU"
+},
+{
+"Name": "Mayotte",
+"PhoneCode": "+262",
+"Abbrevation": "YT"
+},
+{
+"Name": "Mexico",
+"PhoneCode": "+52",
+"Abbrevation": "MX"
+},
+{
+"Name": "Micronesia, Federated States of Micronesia",
+"PhoneCode": "+691",
+"Abbrevation": "FM"
+},
+{
+"Name": "Moldova",
+"PhoneCode": "+373",
+"Abbrevation": "MD"
+},
+{
+"Name": "Monaco",
+"PhoneCode": "+377",
+"Abbrevation": "MC"
+},
+{
+"Name": "Mongolia",
+"PhoneCode": "+976",
+"Abbrevation": "MN"
+},
+{
+"Name": "Montenegro",
+"PhoneCode": "+382",
+"Abbrevation": "ME"
+},
+{
+"Name": "Montserrat",
+"PhoneCode": "+1664",
+"Abbrevation": "MS"
+},
+{
+"Name": "Morocco",
+"PhoneCode": "+212",
+"Abbrevation": "MA"
+},
+{
+"Name": "Mozambique",
+"PhoneCode": "+258",
+"Abbrevation": "MZ"
+},
+{
+"Name": "Myanmar",
+"PhoneCode": "+95",
+"Abbrevation": "MM"
+},
+{
+"Name": "Namibia",
+"PhoneCode": "+264",
+"Abbrevation": "NA"
+},
+{
+"Name": "Nauru",
+"PhoneCode": "+674",
+"Abbrevation": "NR"
+},
+{
+"Name": "Nepal",
+"PhoneCode": "+977",
+"Abbrevation": "NP"
+},
+{
+"Name": "Netherlands",
+"PhoneCode": "+31",
+"Abbrevation": "NL"
+},
+{
+"Name": "Netherlands Antilles",
+"PhoneCode": "+599",
+"Abbrevation": "AN"
+},
+{
+"Name": "New Caledonia",
+"PhoneCode": "+687",
+"Abbrevation": "NC"
+},
+{
+"Name": "New Zealand",
+"PhoneCode": "+64",
+"Abbrevation": "NZ"
+},
+{
+"Name": "Nicaragua",
+"PhoneCode": "+505",
+"Abbrevation": "NI"
+},
+{
+"Name": "Niger",
+"PhoneCode": "+227",
+"Abbrevation": "NE"
+},
+{
+"Name": "Nigeria",
+"PhoneCode": "+234",
+"Abbrevation": "NG"
+},
+{
+"Name": "Niue",
+"PhoneCode": "+683",
+"Abbrevation": "NU"
+},
+{
+"Name": "Norfolk Island",
+"PhoneCode": "+672",
+"Abbrevation": "NF"
+},
+{
+"Name": "Northern Mariana Islands",
+"PhoneCode": "+1670",
+"Abbrevation": "MP"
+},
+{
+"Name": "Norway",
+"PhoneCode": "+47",
+"Abbrevation": "NO"
+},
+{
+"Name": "Oman",
+"PhoneCode": "+968",
+"Abbrevation": "OM"
+},
+{
+"Name": "Pakistan",
+"PhoneCode": "+92",
+"Abbrevation": "PK"
+},
+{
+"Name": "Palau",
+"PhoneCode": "+680",
+"Abbrevation": "PW"
+},
+{
+"Name": "Palestinian Territory, Occupied",
+"PhoneCode": "+970",
+"Abbrevation": "PS"
+},
+{
+"Name": "Panama",
+"PhoneCode": "+507",
+"Abbrevation": "PA"
+},
+{
+"Name": "Papua New Guinea",
+"PhoneCode": "+675",
+"Abbrevation": "PG"
+},
+{
+"Name": "Paraguay",
+"PhoneCode": "+595",
+"Abbrevation": "PY"
+},
+{
+"Name": "Peru",
+"PhoneCode": "+51",
+"Abbrevation": "PE"
+},
+{
+"Name": "Philippines",
+"PhoneCode": "+63",
+"Abbrevation": "PH"
+},
+{
+"Name": "Pitcairn",
+"PhoneCode": "+872",
+"Abbrevation": "PN"
+},
+{
+"Name": "Poland",
+"PhoneCode": "+48",
+"Abbrevation": "PL"
+},
+{
+"Name": "Portugal",
+"PhoneCode": "+351",
+"Abbrevation": "PT"
+},
+{
+"Name": "Puerto Rico",
+"PhoneCode": "+1939",
+"Abbrevation": "PR"
+},
+{
+"Name": "Qatar",
+"PhoneCode": "+974",
+"Abbrevation": "QA"
+},
+{
+"Name": "Romania",
+"PhoneCode": "+40",
+"Abbrevation": "RO"
+},
+{
+"Name": "Russia",
+"PhoneCode": "+7",
+"Abbrevation": "RU"
+},
+{
+"Name": "Rwanda",
+"PhoneCode": "+250",
+"Abbrevation": "RW"
+},
+{
+"Name": "Reunion",
+"PhoneCode": "+262",
+"Abbrevation": "RE"
+},
+{
+"Name": "Saint Barthelemy",
+"PhoneCode": "+590",
+"Abbrevation": "BL"
+},
+{
+"Name": "Saint Helena, Ascension and Tristan Da Cunha",
+"PhoneCode": "+290",
+"Abbrevation": "SH"
+},
+{
+"Name": "Saint Kitts and Nevis",
+"PhoneCode": "+1869",
+"Abbrevation": "KN"
+},
+{
+"Name": "Saint Lucia",
+"PhoneCode": "+1758",
+"Abbrevation": "LC"
+},
+{
+"Name": "Saint Martin",
+"PhoneCode": "+590",
+"Abbrevation": "MF"
+},
+{
+"Name": "Saint Pierre and Miquelon",
+"PhoneCode": "+508",
+"Abbrevation": "PM"
+},
+{
+"Name": "Saint Vincent and the Grenadines",
+"PhoneCode": "+1784",
+"Abbrevation": "VC"
+},
+{
+"Name": "Samoa",
+"PhoneCode": "+685",
+"Abbrevation": "WS"
+},
+{
+"Name": "San Marino",
+"PhoneCode": "+378",
+"Abbrevation": "SM"
+},
+{
+"Name": "Sao Tome and Principe",
+"PhoneCode": "+239",
+"Abbrevation": "ST"
+},
+{
+"Name": "Saudi Arabia",
+"PhoneCode": "+966",
+"Abbrevation": "SA"
+},
+{
+"Name": "Senegal",
+"PhoneCode": "+221",
+"Abbrevation": "SN"
+},
+{
+"Name": "Serbia",
+"PhoneCode": "+381",
+"Abbrevation": "RS"
+},
+{
+"Name": "Seychelles",
+"PhoneCode": "+248",
+"Abbrevation": "SC"
+},
+{
+"Name": "Sierra Leone",
+"PhoneCode": "+232",
+"Abbrevation": "SL"
+},
+{
+"Name": "Singapore",
+"PhoneCode": "+65",
+"Abbrevation": "SG"
+},
+{
+"Name": "Slovakia",
+"PhoneCode": "+421",
+"Abbrevation": "SK"
+},
+{
+"Name": "Slovenia",
+"PhoneCode": "+386",
+"Abbrevation": "SI"
+},
+{
+"Name": "Solomon Islands",
+"PhoneCode": "+677",
+"Abbrevation": "SB"
+},
+{
+"Name": "Somalia",
+"PhoneCode": "+252",
+"Abbrevation": "SO"
+},
+{
+"Name": "South Africa",
+"PhoneCode": "+27",
+"Abbrevation": "ZA"
+},
+{
+"Name": "South Sudan",
+"PhoneCode": "+211",
+"Abbrevation": "SS"
+},
+{
+"Name": "South Georgia and the South Sandwich Islands",
+"PhoneCode": "+500",
+"Abbrevation": "GS"
+},
+{
+"Name": "Spain",
+"PhoneCode": "+34",
+"Abbrevation": "ES"
+},
+{
+"Name": "Sri Lanka",
+"PhoneCode": "+94",
+"Abbrevation": "LK"
+},
+{
+"Name": "Sudan",
+"PhoneCode": "+249",
+"Abbrevation": "SD"
+},
+{
+"Name": "SuriName",
+"PhoneCode": "+597",
+"Abbrevation": "SR"
+},
+{
+"Name": "Svalbard and Jan Mayen",
+"PhoneCode": "+47",
+"Abbrevation": "SJ"
+},
+{
+"Name": "Swaziland",
+"PhoneCode": "+268",
+"Abbrevation": "SZ"
+},
+{
+"Name": "Sweden",
+"PhoneCode": "+46",
+"Abbrevation": "SE"
+},
+{
+"Name": "Switzerland",
+"PhoneCode": "+41",
+"Abbrevation": "CH"
+},
+{
+"Name": "Syrian Arab Republic",
+"PhoneCode": "+963",
+"Abbrevation": "SY"
+},
+{
+"Name": "Taiwan",
+"PhoneCode": "+886",
+"Abbrevation": "TW"
+},
+{
+"Name": "Tajikistan",
+"PhoneCode": "+992",
+"Abbrevation": "TJ"
+},
+{
+"Name": "Tanzania, United Republic of Tanzania",
+"PhoneCode": "+255",
+"Abbrevation": "TZ"
+},
+{
+"Name": "Thailand",
+"PhoneCode": "+66",
+"Abbrevation": "TH"
+},
+{
+"Name": "Timor-Leste",
+"PhoneCode": "+670",
+"Abbrevation": "TL"
+},
+{
+"Name": "Togo",
+"PhoneCode": "+228",
+"Abbrevation": "TG"
+},
+{
+"Name": "Tokelau",
+"PhoneCode": "+690",
+"Abbrevation": "TK"
+},
+{
+"Name": "Tonga",
+"PhoneCode": "+676",
+"Abbrevation": "TO"
+},
+{
+"Name": "Trinidad and Tobago",
+"PhoneCode": "+1868",
+"Abbrevation": "TT"
+},
+{
+"Name": "Tunisia",
+"PhoneCode": "+216",
+"Abbrevation": "TN"
+},
+{
+"Name": "Turkey",
+"PhoneCode": "+90",
+"Abbrevation": "TR"
+},
+{
+"Name": "Turkmenistan",
+"PhoneCode": "+993",
+"Abbrevation": "TM"
+},
+{
+"Name": "Turks and Caicos Islands",
+"PhoneCode": "+1649",
+"Abbrevation": "TC"
+},
+{
+"Name": "Tuvalu",
+"PhoneCode": "+688",
+"Abbrevation": "TV"
+},
+{
+"Name": "Uganda",
+"PhoneCode": "+256",
+"Abbrevation": "UG"
+},
+{
+"Name": "Ukraine",
+"PhoneCode": "+380",
+"Abbrevation": "UA"
+},
+{
+"Name": "United Arab Emirates",
+"PhoneCode": "+971",
+"Abbrevation": "AE"
+},
+{
+"Name": "United Kingdom",
+"PhoneCode": "+44",
+"Abbrevation": "GB"
+},
+{
+"Name": "United States",
+"PhoneCode": "+1",
+"Abbrevation": "US"
+},
+{
+"Name": "Uruguay",
+"PhoneCode": "+598",
+"Abbrevation": "UY"
+},
+{
+"Name": "Uzbekistan",
+"PhoneCode": "+998",
+"Abbrevation": "UZ"
+},
+{
+"Name": "Vanuatu",
+"PhoneCode": "+678",
+"Abbrevation": "VU"
+},
+{
+"Name": "Venezuela, Bolivarian Republic of Venezuela",
+"PhoneCode": "+58",
+"Abbrevation": "VE"
+},
+{
+"Name": "Vietnam",
+"PhoneCode": "+84",
+"Abbrevation": "VN"
+},
+{
+"Name": "Virgin Islands, British",
+"PhoneCode": "+1284",
+"Abbrevation": "VG"
+},
+{
+"Name": "Virgin Islands, U.S.",
+"PhoneCode": "+1340",
+"Abbrevation": "VI"
+},
+{
+"Name": "Wallis and Futuna",
+"PhoneCode": "+681",
+"Abbrevation": "WF"
+},
+{
+"Name": "Yemen",
+"PhoneCode": "+967",
+"Abbrevation": "YE"
+},
+{
+"Name": "Zambia",
+"PhoneCode": "+260",
+"Abbrevation": "ZM"
+},
+{
+"Name": "Zimbabwe",
+"PhoneCode": "+263",
+"Abbrevation": "ZW"
+}
+]

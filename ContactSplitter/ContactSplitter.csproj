@@ -5,6 +5,45 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <UseWindowsForms>False</UseWindowsForms>
+    <ApplicationIcon>favicon-96x96.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Frontend\Assets\Images\Splitter-57x57.png" />
+    <None Remove="Frontend\Assets\Images\Splitter.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="favicon-96x96.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignColors" Version="2.0.6" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.5.0" />
+    <PackageReference Include="libphonenumber-csharp" Version="8.12.46" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Frontend\Assets\Fonts\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Frontend\Assets\Images\Splitter-57x57.png" />
+    <Resource Include="Frontend\Assets\Images\Splitter.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Backend\Data\CountryCodes.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Backend\Data\GeschlechtAnrede.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Backend\Data\TitelAnrede.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
 </Project>
