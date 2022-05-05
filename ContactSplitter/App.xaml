@@ -1,6 +1,7 @@
 ﻿<Application x:Class="ContactSplitter.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:local="clr-namespace:ContactSplitter"
              xmlns:view="clr-namespace:ContactSplitter.Frontend.View"
              xmlns:viewModel="clr-namespace:ContactSplitter.Frontend.ViewModel"
@@ -9,7 +10,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <materialDesign:BundledTheme BaseTheme="Dark" PrimaryColor="BlueGrey" SecondaryColor="Lime" />
+                <!--<materialDesign:BundledTheme BaseTheme="Dark" PrimaryColor="BlueGrey" SecondaryColor="Red" />-->
+                <materialDesign:CustomColorTheme BaseTheme="Dark" PrimaryColor="#791C3a" SecondaryColor="Gray"/>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="Frontend/Assets/Theme/MenuButtonTheme.xaml"/>
                 <ResourceDictionary Source="Frontend/Assets/Theme/TextBoxTheme.xaml"/>

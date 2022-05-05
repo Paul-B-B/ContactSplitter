@@ -29,8 +29,9 @@ namespace ContactSplitter.Frontend.ViewModel
         public MainViewModel()
         {
             var phoneNumberModel = new PhoneNumberSplitterModel();
+            var nameSplitterModel = new NameSplitterModel();
 
-            NameSplitterVM = new NameSplitterViewModel();
+            NameSplitterVM = new NameSplitterViewModel(nameSplitterModel);
             PhoneNumberSplitterVM = new PhoneNumberSplitterViewModel(phoneNumberModel);
 
             CurrentView = NameSplitterVM;

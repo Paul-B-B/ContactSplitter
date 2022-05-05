@@ -20,16 +20,11 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="180"/>
+            <RowDefinition Height="140"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
         <StackPanel FocusManager.FocusedElement="{Binding ElementName=NumberInputString}">
-            <TextBlock Text="PhoneNumberSplitter"
-                   Foreground="White"
-                   FontSize="28"
-                   HorizontalAlignment="Left"
-                   Margin="10,0,10,0"/>
             <StackPanel Orientation="Vertical"
                         Margin="20">
                 <TextBlock Text="Enter the Phonenumber: "

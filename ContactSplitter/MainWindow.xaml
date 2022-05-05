@@ -30,7 +30,7 @@
         <Border x:Name="WindowBorder">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="150"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
@@ -181,11 +181,6 @@
                                  Style="{StaticResource MenuButtonTheme}"
                                  Command="{Binding PhoneNumberSplitterViewCommand}"/>
 
-                    <RadioButton Content="Data"
-                                 Height="50"
-                                 Foreground="White"
-                                 FontSize="14"
-                                 Style="{StaticResource MenuButtonTheme}"/>
                 </StackPanel>
 
                 <ContentControl Grid.Row="2"

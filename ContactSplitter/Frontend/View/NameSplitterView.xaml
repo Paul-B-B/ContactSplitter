@@ -3,9 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:ContactSplitter.Frontend.View"
-             xmlns:viewModels="clr-namespace:ContactSplitter.Frontend.ViewModel"
+             xmlns:viewModels="clr-namespace:ContactSplitter.Frontend.ViewModel" 
+             xmlns:system="clr-namespace:System;assembly=mscorlib" 
+             xmlns:vb="clr-namespace:Microsoft.VisualBasic;assembly=Microsoft.VisualBasic.Core"
              mc:Ignorable="d" 
              d:DesignHeight="525" d:DesignWidth="720"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -21,21 +24,17 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="160"/>
+            <RowDefinition Height="110"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
         <StackPanel FocusManager.FocusedElement="{Binding ElementName=TextInputString}">
-            <TextBlock Text="NameSplitter"
-                   HorizontalAlignment="Left"
-                   Margin="10,0,10,0"
-                   Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
             <StackPanel Orientation="Vertical"
                         Margin="10,10,10,0">
                 <TextBlock Text="Enter the Text: "
-                                   FontWeight="Regular"
-                                   FontSize="20"/>
-                <materialDesign:Card Height="80"
+                                   FontWeight="Bold"
+                                   FontSize="16"/>
+                <materialDesign:Card Height="70"
                                      MinWidth="500"
                                      Background="#4f5353"
                                      Padding="10">
@@ -90,6 +89,75 @@
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Vertical"
                         HorizontalAlignment="Left">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Vertical"
+                                Margin="10,0,10,0">
+                        <TextBlock Text="Gender: "
+                                       FontWeight="Medium"
+                                       FontSize="16"/>
+                        <materialDesign:Card Height="45"
+                                             Background="#4f5353">
+                            <Grid>
+                                <TextBox Grid.Row="1" 
+                                     Text="{Binding Gender, UpdateSourceTrigger=PropertyChanged}"
+                                     
+                                         Margin="10" 
+                                         materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
+                                         FontSize="16"
+                                         FontWeight="Regular" Cursor="Arrow" 
+                                         x:Name="GenderTextBox"/>
+                                <TextBlock IsHitTestVisible="False" Text="Male" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Text, ElementName=GenderTextBox}" Value="">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+                        </materialDesign:Card>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical"
+                                Margin="10,0,10,0"
+                                Grid.Column="1">
+                        <TextBlock Text="Salutation: "
+                                       FontWeight="Medium"
+                                       FontSize="16"/>
+                        <materialDesign:Card Height="45"
+                                             Background="#4f5353">
+                            <Grid>
+                                <TextBox Grid.Row="1" 
+                                     Text="{Binding Salutation, UpdateSourceTrigger=PropertyChanged}"
+                                     Margin="10" 
+                                     materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
+                                     FontSize="16"
+                                     FontWeight="Regular" Cursor="Arrow" 
+                                     x:Name="SalutationTextBox"/>
+                                <TextBlock IsHitTestVisible="False" Text="Herr" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Text, ElementName=SalutationTextBox}" Value="">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+                        </materialDesign:Card>
+                    </StackPanel>
+                </Grid>
                 <StackPanel Orientation="Vertical"
                             Margin="10,0,10,0">
                     <TextBlock Text="First Name: "
@@ -100,7 +168,7 @@
                                          Background="#4f5353">
                         <Grid>
                             <TextBox Grid.Row="1"
-                                 Text="{Binding Vorname, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}"
                                  Margin="10" 
                                  materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
                                  FontSize="16"
@@ -131,7 +199,7 @@
                                          Background="#4f5353">
                         <Grid>
                             <TextBox Grid.Row="1" 
-                                 Text="{Binding Nachname, UpdateSourceTrigger=PropertyChanged}"                                     
+                                 Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}"                                     
                                      Margin="10" 
                                      materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
                                      FontSize="16"
@@ -152,82 +220,190 @@
                         </Grid>
                     </materialDesign:Card>
                 </StackPanel>
-                <StackPanel Orientation="Vertical"
-                            Margin="10,0,10,0">
-                    <TextBlock Text="Gender: "
-                                   FontWeight="Medium"
-                                   FontSize="16"/>
-                    <materialDesign:Card Height="45"
-                                         MinWidth="200"
-                                         Background="#4f5353">
-                        <Grid>
-                            <TextBox Grid.Row="1" 
-                                 Text="{Binding Geschlecht, UpdateSourceTrigger=PropertyChanged}"
-                                     
-                                     Margin="10" 
-                                     materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
-                                     FontSize="16"
-                                     FontWeight="Regular" Cursor="Arrow" 
-                                     x:Name="GenderTextBox"/>
-                            <TextBlock IsHitTestVisible="False" Text="Male" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
-                                <TextBlock.Style>
-                                    <Style TargetType="{x:Type TextBlock}">
-                                        <Setter Property="Visibility" Value="Collapsed"/>
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Text, ElementName=GenderTextBox}" Value="">
-                                                <Setter Property="Visibility" Value="Visible"/>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBlock.Style>
-                            </TextBlock>
-                        </Grid>
-                    </materialDesign:Card>
+                <StackPanel Margin="10,10,10,0">
+                    <materialDesign:DialogHost
+                    DialogTheme="Inherit">
+                        <materialDesign:DialogHost.DialogContent>
+                            <StackPanel Margin="16">
+                                <TextBlock Text="Add a Title."/>
+
+                                <TextBox
+                                Margin="0 8 0 0"
+                                HorizontalAlignment="Stretch"
+                                x:Name="TitleTextBox"
+                                materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
+                                Text="{Binding NewTitle, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <StackPanel
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                                    <Button
+                                    Style="{StaticResource MaterialDesignFlatButton}"
+                                    IsDefault="True"
+                                    Margin="0 8 8 0"
+                                    Content="ACCEPT"
+                                    Foreground="#791C3a"
+                                    Command="{Binding AddTitleCommand}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Click">
+                                                <i:InvokeCommandAction Command="{Binding AddTitleCommand}" />
+                                                <i:InvokeCommandAction Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Button.CommandParameter>
+                                            <system:Boolean>True</system:Boolean>
+                                        </Button.CommandParameter>
+                                    </Button>
+
+                                    <Button
+                                    Style="{StaticResource MaterialDesignFlatButton}"
+                                    IsCancel="True"
+                                    Margin="0 8 8 0"
+                                    Content="CANCEL"
+                                    Foreground="#791C3a"
+                                    Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                                        <Button.CommandParameter>
+                                            <system:Boolean>False</system:Boolean>
+                                        </Button.CommandParameter>
+                                    </Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </materialDesign:DialogHost.DialogContent>
+
+                        <Border
+                        BorderThickness="1"
+                        BorderBrush="#4f5353"
+                        ClipToBounds="True">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <materialDesign:ColorZone
+                                Background="#4f5353"
+                                Grid.Row="0"
+                                Height="30"
+                                Effect="{DynamicResource MaterialDesignShadowDepth5}">
+                                    <Grid VerticalAlignment="Center">
+                                        <TextBlock
+                                        Text="Titles"
+                                            Margin="5"/>
+                                    </Grid>
+                                </materialDesign:ColorZone>
+
+                                <Button
+                                Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                                Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                                Background="#791C3a"
+                                BorderBrush="#791C3a"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Right" 
+                                Grid.Row="0"
+                                Margin="0 0 28 -20"
+                                Content="{materialDesign:PackIcon Kind=Plus, Size=22}"/>
+
+                                <ListBox x:Name="TitlesListBox"
+                                         Height="90"
+                                         Grid.Row="1"
+                                         ItemsSource="{Binding TitleList}">
+                                </ListBox>
+
+                            </Grid>
+                        </Border>
+                    </materialDesign:DialogHost>
+                    
+                    
                 </StackPanel>
-                <StackPanel Orientation="Vertical"
-                            Margin="10,0,10,0">
-                    <TextBlock Text="Title: "
-                                   FontWeight="Medium"
-                                   FontSize="16"/>
-                    <materialDesign:Card Height="45"
-                                         MinWidth="200"
-                                         Background="#4f5353">
-                        <Grid>
-                            <TextBox Grid.Row="1" 
-                                 Text="{Binding Titel, UpdateSourceTrigger=PropertyChanged}"                                     
-                                     Margin="10" 
-                                     materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
-                                     FontSize="16"
-                                     FontWeight="Regular" Cursor="Arrow" 
-                                     x:Name="TitleTextBox"/>
-                            <TextBlock IsHitTestVisible="False" Text="Title" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
-                                <TextBlock.Style>
-                                    <Style TargetType="{x:Type TextBlock}">
-                                        <Setter Property="Visibility" Value="Collapsed"/>
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Text, ElementName=GenderTextBox}" Value="">
-                                                <Setter Property="Visibility" Value="Visible"/>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBlock.Style>
-                            </TextBlock>
-                        </Grid>
-                    </materialDesign:Card>
-                </StackPanel>
+                <Button Content="Add Contact"
+                        Foreground="White"
+                        FontSize="18"
+                        Margin="10"
+                        Background="#791C3a" 
+                        BorderThickness="0" Cursor="Hand"
+                        Command="{Binding AddContactCommand}"/>
             </StackPanel>
             <StackPanel Grid.Column="1"
                         Margin="10,0,20,0">
-                <materialDesign:Card MinHeight="300">
-                    <Grid>
-                        <DataGrid ItemsSource="{Binding Persons}"
-                                  CanUserAddRows="False"
-                                  SelectionUnit="Cell"
-                                  SelectionMode="Extended">
+
+
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <materialDesign:Card Background="#4f5353">
+                        <Grid>
+                            <DataGrid ItemsSource="{Binding Persons}"
+                                      SelectedItem="{Binding Path=SelectedPerson, Mode=TwoWay}"
+                                      CanUserAddRows="False"
+                                      IsReadOnly="True"
+                                      SelectionUnit="FullRow"
+                                      SelectionMode="Extended"
+                                      Height="225">
                             
-                        </DataGrid>
-                    </Grid>
-                </materialDesign:Card>
+                            </DataGrid>
+                        </Grid>
+                    </materialDesign:Card>
+                    <StackPanel Grid.Row="1">
+                        <materialDesign:Card Margin="0,20,0,0">
+                            <TabControl HorizontalContentAlignment="Left"
+                                        Height="100"
+                                        MinWidth="400">
+                                <TabItem Header="German"
+                                         Width="45"
+                                         Height="40">
+                                    <Grid Margin="10">
+                                        <TextBlock VerticalAlignment="Center"
+                                                   Text="{Binding GermanSalutation}" 
+                                                   TextWrapping="Wrap"/>
+                                        <Button HorizontalAlignment="Right"
+                                            Foreground="White"
+                                            FontSize="18"
+                                            Background="#791C3a" 
+                                            BorderThickness="0" Cursor="Hand">
+                                            <materialDesign:PackIcon Kind="ContentCopy"/>
+                                        </Button>
+                                    </Grid>
+                                </TabItem>
+                                <TabItem Header="English"
+                                         Width="45"
+                                         Height="40">
+                                    <Grid Margin="10">
+                                        <TextBlock VerticalAlignment="Center"
+                                                   Text="{Binding EnglishSalutation}" 
+                                                   TextWrapping="Wrap"/>
+                                        <Button HorizontalAlignment="Right"
+                                            Foreground="White"
+                                            FontSize="18"
+                                            Background="#791C3a" 
+                                            BorderThickness="0" Cursor="Hand">
+                                            <materialDesign:PackIcon Kind="ContentCopy"/>
+                                        </Button>
+                                    </Grid>
+                                </TabItem>
+                                <TabItem Header="Spanish"
+                                         Width="45"
+                                         Height="40">
+                                    <Grid Margin="10">
+                                        <TextBlock VerticalAlignment="Center"
+                                                   Text="{Binding SpanishSalutation}" 
+                                                   TextWrapping="Wrap"/>
+                                        <Button HorizontalAlignment="Right"
+                                            Foreground="White"
+                                            FontSize="18"
+                                            Background="#791C3a" 
+                                            BorderThickness="0" Cursor="Hand">
+                                            <materialDesign:PackIcon Kind="ContentCopy"/>
+                                        </Button>
+                                    </Grid>
+                                </TabItem>
+                            </TabControl>
+                        </materialDesign:Card>
+                    </StackPanel>
+                </Grid>
             </StackPanel>
 
         </Grid>
