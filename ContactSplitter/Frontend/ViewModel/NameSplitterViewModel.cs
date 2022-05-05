@@ -14,6 +14,8 @@ namespace ContactSplitter.Frontend.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        #region Properties
+
         private string _textInputString;
         public string TextInputString
         {
@@ -102,6 +104,7 @@ namespace ContactSplitter.Frontend.ViewModel
             set { Update(ref _spanishSalutation, value); }
         }
 
+        #endregion
 
         public ObservableCollection<Person> Persons { get; private set; }
 
@@ -130,6 +133,7 @@ namespace ContactSplitter.Frontend.ViewModel
 
         private void OnSplitButtonClicked()
         {
+            if(this.TextInputString == string.Empty) return;
             var output = this._nameSplitterModel.GetSplitContact(this.TextInputString);
             this.FirstName = output.Vorname;
             this.LastName = output.Nachname;
@@ -146,6 +150,7 @@ namespace ContactSplitter.Frontend.ViewModel
 
         private void OnAddContactClicked()
         {
+            if(this.LastName == string.Empty) return;
             Person person = new Person();
             var titles = string.Empty;
             foreach (var title in this.TitleList)
