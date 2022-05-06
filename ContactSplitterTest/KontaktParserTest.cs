@@ -16,11 +16,12 @@ namespace ContactSplitterTest
         [TestMethod]
         [DataRow("Peter Lustig", "Peter", "Lustig", Geschlecht.unbekannt, Sprache.Unbekannt, "", "Guten Tag Peter Lustig")]
         [DataRow("Herr Peter Lustig", "Peter", "Lustig", Geschlecht.m, Sprache.Deutsch, "", "Sehr geehrter Herr Peter Lustig")]
-        [DataRow("Herr Dr. Peter Lustig", "Peter", "Lustig", Geschlecht.m, Sprache.Deutsch, "Dr. ", "Sehr geehrter Herr Dr. Peter Lustig")]
         [DataRow("Frau Professorin Petra Witzig", "Petra", "Witzig", Geschlecht.w, Sprache.Deutsch, "Prof. ", "Sehr geehrte Frau Prof. Petra Witzig")]
         [DataRow("Frau Prof. Dr. Dr. Petra Witzig", "Petra", "Witzig", Geschlecht.w, Sprache.Deutsch, "Prof. Dr. Dr. ", "Sehr geehrte Frau Prof. Dr. Dr. Petra Witzig")]
         [DataRow("Professor Doktor Dr. Peter Lustig", "Peter", "Lustig", Geschlecht.unbekannt, Sprache.Unbekannt, "Prof. Dr. Dr. ", "Guten Tag Prof. Dr. Dr. Peter Lustig")]
-        [DataRow("Mr. Doktor Dr. Peter Lustig", "Peter", "Lustig", Geschlecht.m, Sprache.Englisch,"Dr. Dr. ", "Dear Mr. Dr. Dr. Peter Lustig")]
+        [DataRow("Mr. Doktor Dr. Peter Lustig", "Peter", "Lustig", Geschlecht.m, Sprache.Englisch, "Dr. Dr. ", "Dear Dr. Peter Lustig")]
+        [DataRow("Mrs. Prof. Dr. rer. nat. Petra Funny", "Petra", "Funny", Geschlecht.w, Sprache.Englisch, "Prof. Dr. ", "Dear Prof. Petra Funny")]
+        [DataRow("Herr M.Sc. B. Sc. Peter Lustig", "Peter", "Lustig", Geschlecht.m, Sprache.Deutsch, "M.Sc. B. Sc. ", "Sehr geehrter Herr Peter Lustig")]
         public void ParseKontaktTest(string userInput, string vorname, string nachname, Geschlecht geschlecht, Sprache sprache, string alleTitel, string briefanrede)
         {
             var req = new SplitContactRequest()

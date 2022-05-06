@@ -4,7 +4,7 @@ using ContactSplitter.Shared.DataClass;
 
 namespace ContactSplitter.Backend.Services
 {
-    public class PhoneNumberSplitter : IPhoneNumberSplitter
+    public class PhoneNumberSplitterModel : IPhoneNumberSplitter
     {
 
         private readonly PhoneNumberParser _phoneNumberParser;
@@ -13,7 +13,7 @@ namespace ContactSplitter.Backend.Services
         /// Erstellt ein neues Objekt der PhoneNumberSplitter Klasse und gibt dieses zurück.
         /// Der PhoneNumberSplitter ist für das Einlesen und auftrennen von Telefonnummern zuständig
         /// </summary>
-        public PhoneNumberSplitter()
+        public PhoneNumberSplitterModel()
         {
             _phoneNumberParser = new PhoneNumberParser();
         }

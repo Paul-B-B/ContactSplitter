@@ -1,4 +1,5 @@
-﻿using ContactSplitter.Backend.Services;
+﻿using ContactSplitter.Backend.Model;
+using ContactSplitter.Backend.Services;
 using ContactSplitter.Frontend.Core;
 
 namespace ContactSplitter.Frontend.ViewModel
@@ -28,9 +29,10 @@ namespace ContactSplitter.Frontend.ViewModel
 
         public MainViewModel()
         {
-            var phoneNumberModel = new PhoneNumberSplitter();
+            var phoneNumberModel = new PhoneNumberSplitterModel();
+            var nameSplitterModel = new NameSplitterModel();
 
-            NameSplitterVM = new NameSplitterViewModel();
+            NameSplitterVM = new NameSplitterViewModel(nameSplitterModel);
             PhoneNumberSplitterVM = new PhoneNumberSplitterViewModel(phoneNumberModel);
 
             CurrentView = NameSplitterVM;
