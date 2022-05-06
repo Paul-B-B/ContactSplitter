@@ -1,15 +1,11 @@
-﻿using ContactSplitter.Backend.Model;
-using ContactSplitter.Backend.Model.Requests;
+﻿using ContactSplitter.Backend.Model.Requests;
 using ContactSplitter.Backend.Model.Responses;
 using ContactSplitter.Shared.DataClass;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace ContactSplitter.Backend.Services
 {
@@ -29,9 +25,6 @@ namespace ContactSplitter.Backend.Services
 
         // RegEx zur Anredenerkennung
         private readonly Regex anredeRegex = new("^\\w+\\.?");
-
-        // RegEx zur Titelerkennung
-        private readonly Regex titelRegex = new("^\\w+\\.?");
 
         //Hilfslisten (erhalten aus eingelesenen Dateien)
         private readonly List<TitelAnrede> TitelAnredeListe;
@@ -70,6 +63,8 @@ namespace ContactSplitter.Backend.Services
         /// <returns>Der geparste Kontakt als SplitContactResponse</returns>
         public SplitContactResponse ParseKontakt(SplitContactRequest input)
         {
+            //Prüfen ob Zahlen oder falsche Sonderzeichen drin sind, und dann Exception
+
             var splitContactResponse = new SplitContactResponse();
 
             splitContactResponse.RawInput = input.UserInput;
@@ -122,20 +117,35 @@ namespace ContactSplitter.Backend.Services
             if (!string.IsNullOrEmpty(request.UserInput))
             {
                 var moreTitlesPossible = true;
-                string possibleTitle;
+                Regex? matchingRegex;
+                Match? regMatch;
                 TitelAnrede? titelAnrede;
 
                 do
                 {
-                    possibleTitle = titelRegex.Match(request.UserInput).Value;
-                    titelAnrede = TitelAnredeListe.FirstOrDefault(ti => ti.Anrede.Equals(possibleTitle) || ti.Titel.Equals(possibleTitle));
+                    titelAnrede = null;
+                    matchingRegex = null;
+
+                    foreach (var title in TitelAnredeListe)
+                    {
+                        regMatch = Regex.Match(request.UserInput, $"^\\s*{title.Titel}\\s+");
+                        if (regMatch.Success)
+                        {
+                            matchingRegex = new Regex($"^\\s*{title.Titel}\\s+");
+                            titelAnrede = title;
+                            break;
+                        }
+                    }
 
                     if (titelAnrede is not null)
                     {
                         response.ListeAllerTitel.Add(titelAnrede);
-                        request.UserInput = Regex.Replace(request.UserInput, $"^\\s*{possibleTitle}\\s*", string.Empty);
+                        request.UserInput = matchingRegex.Replace(request.UserInput, string.Empty, 1);
                     }
-                    else { moreTitlesPossible = false; }
+                    else
+                    {
+                        moreTitlesPossible = false;
+                    }
                 } while (moreTitlesPossible && !string.IsNullOrEmpty(request.UserInput));
             }
         }
@@ -188,10 +198,10 @@ namespace ContactSplitter.Backend.Services
                     switch (response.Geschlecht)
                     {
                         case Geschlecht.m:
-                            response.Briefanrede = $"Dear Mr. {response.BriefTitel}{response.Vorname} {response.Nachname}";
+                            response.Briefanrede =  string.IsNullOrEmpty(response.BriefTitel)? $"Dear Mr. {response.Vorname} {response.Nachname}" : $"Dear {response.BriefTitel}{response.Vorname} {response.Nachname}";
                             break;
                         case Geschlecht.w:
-                            response.Briefanrede = $"Dear {response.Anrede} {response.BriefTitel}{response.Vorname} {response.Nachname}";
+                            response.Briefanrede = string.IsNullOrEmpty(response.BriefTitel) ? $"Dear {response.Anrede} {response.BriefTitel}{response.Vorname} {response.Nachname}" : $"Dear {response.BriefTitel}{response.Vorname} {response.Nachname}";
                             break;
                         default:
                             response.Briefanrede = $"Dear {response.BriefTitel}{response.Vorname} {response.Nachname}";

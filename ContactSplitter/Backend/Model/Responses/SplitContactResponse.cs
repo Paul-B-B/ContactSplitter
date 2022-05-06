@@ -63,7 +63,7 @@ namespace ContactSplitter.Backend.Model.Responses
             get
             {
                 var _AlleTitel = string.Empty;
-                ListeAllerTitel.ForEach(titel => _AlleTitel += $"{titel.Anrede} ");
+                ListeAllerTitel.ForEach(titel => _AlleTitel += string.IsNullOrEmpty(titel.Anrede) ? $"{titel.Titel} " : $"{titel.Anrede} ");
                 return _AlleTitel;
             }
         }
@@ -76,10 +76,19 @@ namespace ContactSplitter.Backend.Model.Responses
             get
             {
                 var _BriefTitel = string.Empty;
-                for (int i = 0; i < (ListeAllerTitel.Count >= 3 ? 3 : ListeAllerTitel.Count); i++)
+                if (Sprache == Sprache.Englisch)
                 {
-                    _BriefTitel += $"{ListeAllerTitel[i].Anrede} ";
+                    _BriefTitel = (ListeAllerTitel[0] is not null && !string.IsNullOrEmpty(ListeAllerTitel[0].Anrede)) ? $"{ListeAllerTitel[0].Anrede} " : string.Empty;
                 }
+                else
+                {
+                    for (int i = 0; i < (ListeAllerTitel.Count >= 3 ? 3 : ListeAllerTitel.Count); i++)
+                    {
+                        _BriefTitel += string.IsNullOrEmpty(ListeAllerTitel[i].Anrede) ? string.Empty : $"{ListeAllerTitel[i].Anrede} ";
+                    }
+
+                }
+
                 return _BriefTitel;
             }
         }
