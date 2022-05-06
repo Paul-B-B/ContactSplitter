@@ -47,7 +47,7 @@ namespace ContactSplitter.Backend.Services
             {
                 GeschlechtAnredeListe = JsonConvert.DeserializeObject<List<GeschlechtAnrede>>(streamReader.ReadToEnd());
             };
-          
+
             using (var streamReader = new StreamReader($"{pathToData}/{TitelAnredeJsonName}"))
             {
                 TitelAnredeListe = JsonConvert.DeserializeObject<List<TitelAnrede>>(streamReader.ReadToEnd());
@@ -70,12 +70,8 @@ namespace ContactSplitter.Backend.Services
         /// <returns>Der geparste Kontakt als SplitContactResponse</returns>
         public SplitContactResponse ParseKontakt(SplitContactRequest input)
         {
-            var splitContactResponse = new SplitContactResponse()
-            {
-                ListeAllerTitel = new List<TitelAnrede>(),
-                Sprache = Sprache.Unbekannt,
-                Geschlecht = Geschlecht.unbekannt
-            };
+            var splitContactResponse = new SplitContactResponse();
+
             splitContactResponse.RawInput = input.UserInput;
 
             SplitAnrede(ref input, ref splitContactResponse);
@@ -97,18 +93,22 @@ namespace ContactSplitter.Backend.Services
         /// <param name="response">Das ResponseObjekt inklusive Anrede, Geschlecht und Sprache</param>
         private void SplitAnrede(ref SplitContactRequest request, ref SplitContactResponse response)
         {
-            var firstWord = anredeRegex.Match(request.UserInput);
-
-            var geschlechtAnrede = GeschlechtAnredeListe.FirstOrDefault(an => an.Anrede.Equals(firstWord.Value));
-            if (geschlechtAnrede is not null)
+            if (!string.IsNullOrEmpty(request.UserInput))
             {
-                response.Anrede = geschlechtAnrede.Anrede;
-                response.Sprache = geschlechtAnrede.Sprache;
-                response.Geschlecht = geschlechtAnrede.Geschlecht;
-                request.UserInput = Regex.Replace(request.UserInput, $"^\\s*{firstWord.Value}\\s*", string.Empty);
-                return;
+                var firstWord = anredeRegex.Match(request.UserInput);
+
+                var geschlechtAnrede = GeschlechtAnredeListe.FirstOrDefault(an => an.Anrede.Equals(firstWord.Value));
+                if (geschlechtAnrede is not null)
+                {
+                    response.Anrede = geschlechtAnrede.Anrede;
+                    response.Sprache = geschlechtAnrede.Sprache;
+                    response.Geschlecht = geschlechtAnrede.Geschlecht;
+                    request.UserInput = Regex.Replace(request.UserInput, $"^\\s*{firstWord.Value}\\s*", string.Empty);
+                    return;
+                }
+                response.Anrede = string.Empty;
             }
-            response.Anrede = null;
+
         }
 
         /// <summary>
@@ -119,22 +119,25 @@ namespace ContactSplitter.Backend.Services
         /// <param name="response">Das ResponseObjekt inklusive aller gefundenen Titel</param>
         private void SplitTitel(ref SplitContactRequest request, ref SplitContactResponse response)
         {
-            var moreTitlesPossible = true;
-            string possibleTitle;
-            TitelAnrede? titelAnrede;
-
-            do
+            if (!string.IsNullOrEmpty(request.UserInput))
             {
-                possibleTitle = titelRegex.Match(request.UserInput).Value;
-                titelAnrede = TitelAnredeListe.FirstOrDefault(ti => ti.Anrede.Equals(possibleTitle) || ti.Titel.Equals(possibleTitle));
+                var moreTitlesPossible = true;
+                string possibleTitle;
+                TitelAnrede? titelAnrede;
 
-                if (titelAnrede is not null)
+                do
                 {
-                    response.ListeAllerTitel.Add(titelAnrede);
-                    request.UserInput = Regex.Replace(request.UserInput, $"^\\s*{possibleTitle}\\s*", string.Empty);
-                }
-                else { moreTitlesPossible = false; }
-            } while (moreTitlesPossible);
+                    possibleTitle = titelRegex.Match(request.UserInput).Value;
+                    titelAnrede = TitelAnredeListe.FirstOrDefault(ti => ti.Anrede.Equals(possibleTitle) || ti.Titel.Equals(possibleTitle));
+
+                    if (titelAnrede is not null)
+                    {
+                        response.ListeAllerTitel.Add(titelAnrede);
+                        request.UserInput = Regex.Replace(request.UserInput, $"^\\s*{possibleTitle}\\s*", string.Empty);
+                    }
+                    else { moreTitlesPossible = false; }
+                } while (moreTitlesPossible && !string.IsNullOrEmpty(request.UserInput));
+            }
         }
 
         /// <summary>
@@ -144,17 +147,18 @@ namespace ContactSplitter.Backend.Services
         /// <param name="response">Das ResponseObjekt inklusive des Namens</param>
         private void SplitName(ref SplitContactRequest request, ref SplitContactResponse response)
         {
-            var result = Regex.Match(request.UserInput, vornameNachnameRegex);
-
-            if (result.Success)
+            if (!string.IsNullOrEmpty(request.UserInput))
             {
-                response.Vorname = result.Groups[regexGruppeVorname].Value;
-                response.Nachname = result.Groups[regexGruppeNachname].Value;
-                return;
+                var result = Regex.Match(request.UserInput, vornameNachnameRegex);
+
+                if (result.Success)
+                {
+                    response.Vorname = result.Groups[regexGruppeVorname].Value;
+                    response.Nachname = result.Groups[regexGruppeNachname].Value;
+                    return;
+                }
+                //Wie machen wir error handling?
             }
-
-            //Wie machen wir error handling?
-
         }
 
         /// <summary>
@@ -175,7 +179,7 @@ namespace ContactSplitter.Backend.Services
                         case Geschlecht.w:
                             response.Briefanrede = $"Sehr geehrte Frau {response.BriefTitel}{response.Vorname} {response.Nachname}";
                             break;
-                        default: 
+                        default:
                             response.Briefanrede = $"Guten Tag {response.BriefTitel}{response.Vorname} {response.Nachname}";
                             break;
                     }

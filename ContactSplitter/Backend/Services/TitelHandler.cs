@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ContactSplitter.Backend.Services
 {
-    public class TitelHinzufuegen
+    public class TitelHandler
     {
         private string titelAnredeJsonPfad => @"Backend\Data\TitelAnrede.json";
         private string aktuellerPfad = Directory.GetCurrentDirectory();

@@ -12,7 +12,7 @@ namespace ContactSplitterTest
     public class TitelHinzufuegenTest
     {
         private TitelAnrede titelAnrede = new TitelAnrede();
-        private readonly TitelHinzufuegen titelHinzufuegen = new TitelHinzufuegen();
+        private readonly TitelHandler titelHinzufuegen = new TitelHandler();
 
         [TestMethod]
         public void TestMethod1()
