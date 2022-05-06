@@ -110,6 +110,7 @@ namespace ContactSplitter.Frontend.ViewModel
 
         private readonly INameSplitterModel _nameSplitterModel;
 
+        #region Konstruktor
         public NameSplitterViewModel(INameSplitterModel nameSplitterModel)
         {
             this._nameSplitterModel = nameSplitterModel;
@@ -117,13 +118,21 @@ namespace ContactSplitter.Frontend.ViewModel
             Persons = CreateData();
             this.TitleList = new ObservableCollection<string>();
         }
+        #endregion
 
+        #region Commands
         public ICommand SubmitTextCommand => new RelayCommand(x => this.OnSplitButtonClicked());
 
         public ICommand AddContactCommand => new RelayCommand(x => this.OnAddContactClicked());
 
         public ICommand AddTitleCommand => new RelayCommand(x => this.OnAddTitleClicked());
+        #endregion
 
+        #region private Methoden
+
+        /// <summary>
+        /// Fügt den eingegebenen Titel der Json hinzu, so dass dieser bei künftigen Eingaben berücksichtigt wird
+        /// </summary>
         private void OnAddTitleClicked()
         {
             if (this.NewTitle == string.Empty) return;
@@ -131,6 +140,9 @@ namespace ContactSplitter.Frontend.ViewModel
             this.NewTitle = string.Empty;
         }
 
+        /// <summary>
+        /// Formatiert die Eingabe und gibt diese in bearbeitbaren Feldern aus
+        /// </summary>
         private void OnSplitButtonClicked()
         {
             if(this.TextInputString == string.Empty) return;
@@ -148,6 +160,10 @@ namespace ContactSplitter.Frontend.ViewModel
             }
         }
 
+
+        /// <summary>
+        /// Fügt die formatierten Einträge in die Persons Liste hinzu, sobald der Hinzufügen-Button betätigt wird
+        /// </summary>
         private void OnAddContactClicked()
         {
             if(this.LastName == string.Empty) return;
@@ -166,6 +182,9 @@ namespace ContactSplitter.Frontend.ViewModel
             this.ClearBoxes();
         }
 
+        /// <summary>
+        /// Hilfsmethode um alle Eingabefelder zurückzusetzen
+        /// /// </summary>
         private void ClearBoxes()
         {
             this.TextInputString = string.Empty;
@@ -230,5 +249,6 @@ namespace ContactSplitter.Frontend.ViewModel
                 }
             };
         }
+        #endregion
     }
 }

@@ -9,6 +9,7 @@ namespace ContactSplitter.Frontend.ViewModel
 {
     internal class PhoneNumberSplitterViewModel : ObservableObject
     {
+        #region Properties
         private string _numberInputString;
         public string NumberInputString
         {
@@ -31,16 +32,29 @@ namespace ContactSplitter.Frontend.ViewModel
             set { Update(ref _ErrorMessage, value); }
         }
 
+        #endregion
 
         private readonly IPhoneNumberSplitter _phoneNumberModel;
 
+        #region Konstruktor
         public PhoneNumberSplitterViewModel(IPhoneNumberSplitter numberModel)
         {
             this._phoneNumberModel = numberModel;
         }
+        #endregion
 
+        #region Commands
         public ICommand SubmitNumberCommand => new RelayCommand(x => this.OnSubmitButtonClicked());
 
+        public ICommand CopyNumberCommand => new RelayCommand(x => this.OnCopyButtonClicked());
+
+        #endregion
+
+        /// <summary>
+        /// Formatiert eine Telefonnumer in ihre einzelnen Bestandteile mit Hilfe des Parsers, sobald der Formatieren-Button betätigt wird
+        /// </summary>
+
+        #region private Methoden
         private void OnSubmitButtonClicked()
         {
             try
@@ -54,12 +68,14 @@ namespace ContactSplitter.Frontend.ViewModel
             NumberInputString = string.Empty;
         }
 
-        public ICommand CopyNumberCommand => new RelayCommand(x => this.OnCopyButtonClicked());
-
+        /// <summary>
+        /// Kopiert die formatierte Telefonnummer in den Zwischenspeicher, sobald der Kopieren-Button betätigt wird
+        /// </summary>
         private void OnCopyButtonClicked()
         {
             Clipboard.SetText(FormattedNumber.FormattedNumber);
         }
+        #endregion
 
     }
 }
