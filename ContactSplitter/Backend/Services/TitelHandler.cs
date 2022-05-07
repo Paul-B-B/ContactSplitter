@@ -10,11 +10,8 @@ namespace ContactSplitter.Backend.Services
         private string titelAnredeJsonPfad => @"Backend\Data\TitelAnrede.json";
         private string aktuellerPfad = Directory.GetCurrentDirectory();
 
-
-
         public bool AddTitel(TitelAnrede titelAnrede)
         {
-
             List<TitelAnrede> titelAnredeListe = LoadTitleJson();
             titelAnredeListe.Add(titelAnrede);
 
@@ -26,7 +23,7 @@ namespace ContactSplitter.Backend.Services
             }
             catch
             {
-                return false;
+                throw new IOException(message: "Beim Schreiben des Titels ist etwas schiefgelaufen, bitte starten Sie das Programm neu und versuchen Sie es erneut.");
             }
 
             return true;
