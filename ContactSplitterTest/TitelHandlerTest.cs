@@ -7,16 +7,16 @@ namespace ContactSplitterTest
     [TestClass]
     public class TitelHandlerTest
     {
-        private readonly TitelHandler titelHinzufuegen = new TitelHandler();
-
+        private readonly TitelHandler _TitelHandler = new TitelHandler();
 
         [TestMethod]
         [DataRow("Dr. Med.", "Dr.")]
         public void AddTitelTest(string titel, string anrede)
         {
+
             var neueTitelAnrede = new TitelAnrede() { Anrede = anrede, Titel = titel };
 
-            var success = titelHinzufuegen.AddTitel(neueTitelAnrede);
+            var success = _TitelHandler.AddTitel(neueTitelAnrede);
 
             Assert.IsTrue(success);
         }

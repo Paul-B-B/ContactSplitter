@@ -13,8 +13,9 @@ namespace ContactSplitter.Backend.Services
     {
 
         // Dateinamen
-        private readonly string GeschlechtAnredeJsonName = "GeschlechtAnrede.json";
-        private readonly string TitelAnredeJsonName = "TitelAnrede.json";
+        private readonly string AktuellerPfad = Directory.GetCurrentDirectory();
+        private string GeschlechtAnredeJsonPfad => @"Backend\Data\GeschlechtAnrede.json";
+        private string TitelAnredeJsonPfad => @"Backend\Data\TitelAnrede.json";
 
         // RegEx zur Namenserkennung
         private readonly string vornameRegex = "([A-Z]\\w*([\\s\\-]+[A-Z]\\w*)*)";
@@ -27,21 +28,32 @@ namespace ContactSplitter.Backend.Services
         private readonly Regex anredeRegex = new("^\\w+\\.?");
 
         //Hilfslisten (erhalten aus eingelesenen Dateien)
-        private readonly List<TitelAnrede> TitelAnredeListe;
-        private readonly List<GeschlechtAnrede> GeschlechtAnredeListe;
+        private List<TitelAnrede> TitelAnredeListe;
+        private List<GeschlechtAnrede> GeschlechtAnredeListe;
 
         /// <summary>
         /// Erstellt ein neues Objekt des KontaktParsers
         /// </summary>
-        /// <param name="pathToData">Pfad zum Data Ordner (wird für die Tests benötigt)</param>
-        public KontaktParser(string pathToData = "../Data/")
+        public KontaktParser()
         {
-            using (var streamReader = new StreamReader($"{pathToData}/{GeschlechtAnredeJsonName}"))
+            LeseJsonDateien();
+
+            vornameNachnameRegex = $"(^(?<{regexGruppeVorname}>{vornameRegex})\\s+(?<{regexGruppeNachname}>{nachnameRegex})|" + // Vorname Nachname
+                            $"(^(?<{regexGruppeNachname}>{nachnameRegex}),\\s+(?<{regexGruppeVorname}>{vornameRegex})"; // Nachname, Vorname
+        }
+
+        /// <summary>
+        /// Liest die JSON Dateien, die die Titel und Anreden enthalten, neu ein
+        /// </summary>
+        /// <exception cref="DirectoryNotFoundException"></exception>
+        public void LeseJsonDateien()
+        {
+            using (var streamReader = new StreamReader(Path.Combine(AktuellerPfad, GeschlechtAnredeJsonPfad), false))
             {
                 GeschlechtAnredeListe = JsonConvert.DeserializeObject<List<GeschlechtAnrede>>(streamReader.ReadToEnd());
             };
 
-            using (var streamReader = new StreamReader($"{pathToData}/{TitelAnredeJsonName}"))
+            using (var streamReader = new StreamReader(Path.Combine(AktuellerPfad, TitelAnredeJsonPfad), false))
             {
                 TitelAnredeListe = JsonConvert.DeserializeObject<List<TitelAnrede>>(streamReader.ReadToEnd());
             };
@@ -52,8 +64,6 @@ namespace ContactSplitter.Backend.Services
                     "Bitte starten Sie das Programm neu.");
             }
 
-            vornameNachnameRegex = $"(^(?<{regexGruppeVorname}>{vornameRegex})\\s+(?<{regexGruppeNachname}>{nachnameRegex})|" + // Vorname Nachname
-                            $"(^(?<{regexGruppeNachname}>{nachnameRegex}),\\s+(?<{regexGruppeVorname}>{vornameRegex})"; // Nachname, Vorname
         }
 
         /// <summary>

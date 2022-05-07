@@ -11,7 +11,7 @@ namespace ContactSplitter.Backend.Model
 
         public NameSplitterModel()
         {
-            _kontaktParser = new KontaktParser(@"Backend\Data\");
+            _kontaktParser = new KontaktParser();
         }
 
         public SplitContactResponse GetSplitContact(string input)

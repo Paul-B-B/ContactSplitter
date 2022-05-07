@@ -13,7 +13,7 @@ namespace ContactSplitter.Backend.Services
         public bool AddTitel(TitelAnrede titelAnrede)
         {
             List<TitelAnrede> titelAnredeListe = LoadTitleJson();
-            titelAnredeListe.Add(titelAnrede);
+            titelAnredeListe.Insert(0, titelAnrede);
 
             try
             {   

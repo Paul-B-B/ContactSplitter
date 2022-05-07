@@ -9,7 +9,7 @@ namespace ContactSplitterTest
     public class KontaktParserTest
     {
 
-        private readonly KontaktParser _Parser = new KontaktParser(pathToData: "../../../../ContactSplitter/Backend/Data");
+        private readonly KontaktParser _Parser = new KontaktParser();
 
 
         /// <summary>
