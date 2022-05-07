@@ -1,13 +1,11 @@
-﻿using Newtonsoft.Json;
-using ContactSplitter.Shared.DataClass;
+﻿using ContactSplitter.Shared.DataClass;
+using Newtonsoft.Json;
+using PhoneNumbers;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using PhoneNumbers;
 using PhoneNumber = ContactSplitter.Shared.DataClass.PhoneNumber;
 
 namespace ContactSplitter.Backend.Services

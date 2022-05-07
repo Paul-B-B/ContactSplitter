@@ -12,6 +12,10 @@
     "Anrede": "Prof."
   },
   {
+    "Titel": "Dr. rer. nat.",
+    "Anrede": "Dr."
+  },
+  {
     "Titel": "Dr.",
     "Anrede": "Dr."
   },
@@ -24,20 +28,12 @@
     "Anrede": "Dr."
   },
   {
-    "Titel": "Dr. rer. nat.",
-    "Anrede": "Dr."
-  },
-  {
     "Titel": "Dipl.-Ing.",
-    "Anrede": "Dipl.-Ing."
+    "Anrede": ""
   },
   {
     "Titel": "Diplom-Ingenieur",
-    "Anrede": "Dipl.-Ing."
-  },
-  {
-    "Titel": "Diplom Ingenieur.",
-    "Anrede": "Dipl.-Ing."
+    "Anrede": ""
   },
   {
     "Titel": "M. Sc.",
