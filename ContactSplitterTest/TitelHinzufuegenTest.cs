@@ -1,10 +1,6 @@
-using ContactSplitter.Backend.Model.Requests;
-using ContactSplitter.Backend.Model.Responses;
 using ContactSplitter.Backend.Services;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ContactSplitter.Backend.Model;
-using System.Collections.Generic;
 using ContactSplitter.Shared.DataClass;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ContactSplitterTest
 {

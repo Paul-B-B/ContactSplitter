@@ -128,10 +128,10 @@ namespace ContactSplitter.Backend.Services
 
                     foreach (var title in TitelAnredeListe)
                     {
-                        regMatch = Regex.Match(request.UserInput, $"^\\s*{title.Titel}\\s+");
+                        regMatch = Regex.Match(request.UserInput, $"\\s*{title.Titel}\\s+");
                         if (regMatch.Success)
                         {
-                            matchingRegex = new Regex($"^\\s*{title.Titel}\\s+");
+                            matchingRegex = new Regex($"{title.Titel}\\s+");
                             titelAnrede = title;
                             break;
                         }
@@ -198,7 +198,7 @@ namespace ContactSplitter.Backend.Services
                     switch (response.Geschlecht)
                     {
                         case Geschlecht.m:
-                            response.Briefanrede =  string.IsNullOrEmpty(response.BriefTitel)? $"Dear Mr. {response.Vorname} {response.Nachname}" : $"Dear {response.BriefTitel}{response.Vorname} {response.Nachname}";
+                            response.Briefanrede = string.IsNullOrEmpty(response.BriefTitel) ? $"Dear Mr. {response.Vorname} {response.Nachname}" : $"Dear {response.BriefTitel}{response.Vorname} {response.Nachname}";
                             break;
                         case Geschlecht.w:
                             response.Briefanrede = string.IsNullOrEmpty(response.BriefTitel) ? $"Dear {response.Anrede} {response.BriefTitel}{response.Vorname} {response.Nachname}" : $"Dear {response.BriefTitel}{response.Vorname} {response.Nachname}";
