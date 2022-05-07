@@ -2,6 +2,7 @@
 using ContactSplitter.Backend.Model.Responses;
 using ContactSplitter.Shared.DataClass;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,9 +13,10 @@ namespace ContactSplitter.Backend.Services
     public class KontaktParser
     {
 
-        // Dateinamen
-        private readonly string GeschlechtAnredeJsonName = "GeschlechtAnrede.json";
-        private readonly string TitelAnredeJsonName = "TitelAnrede.json";
+        // Dateipfade
+        private readonly string AktuellerPfad = Directory.GetCurrentDirectory();
+        private string GeschlechtAnredeJsonPfad => @"Backend\Data\GeschlechtAnrede.json";
+        private string TitelAnredeJsonPfad => @"Backend\Data\TitelAnrede.json";
 
         // RegEx zur Namenserkennung
         private readonly string vornameRegex = "([A-Z]\\w*([\\s\\-]+[A-Z]\\w*)*)";
@@ -26,22 +28,36 @@ namespace ContactSplitter.Backend.Services
         // RegEx zur Anredenerkennung
         private readonly Regex anredeRegex = new("^\\w+\\.?");
 
+        // RegEx zur Erkennung eines Sonderzeichens
+        private readonly Regex sonderzeichenRegex = new("[!@#$%^&*()_=+\\[\\]\\(\\)\\{\\};:'\"\\\\,<>/?`~\\|]");
+
         //Hilfslisten (erhalten aus eingelesenen Dateien)
-        private readonly List<TitelAnrede> TitelAnredeListe;
-        private readonly List<GeschlechtAnrede> GeschlechtAnredeListe;
+        private List<TitelAnrede> TitelAnredeListe;
+        private List<GeschlechtAnrede> GeschlechtAnredeListe;
 
         /// <summary>
         /// Erstellt ein neues Objekt des KontaktParsers
         /// </summary>
-        /// <param name="pathToData">Pfad zum Data Ordner (wird für die Tests benötigt)</param>
-        public KontaktParser(string pathToData = "../Data/")
+        public KontaktParser()
         {
-            using (var streamReader = new StreamReader($"{pathToData}/{GeschlechtAnredeJsonName}"))
+            LeseJsonDateien();
+
+            vornameNachnameRegex = $"(^(?<{regexGruppeVorname}>{vornameRegex})\\s+(?<{regexGruppeNachname}>{nachnameRegex})|" + // Vorname Nachname
+                            $"(^(?<{regexGruppeNachname}>{nachnameRegex}),\\s+(?<{regexGruppeVorname}>{vornameRegex})"; // Nachname, Vorname
+        }
+
+        /// <summary>
+        /// Liest die JSON Dateien, die die Titel und Anreden enthalten, neu ein
+        /// </summary>
+        /// <exception cref="DirectoryNotFoundException"></exception>
+        public void LeseJsonDateien()
+        {
+            using (var streamReader = new StreamReader(Path.Combine(AktuellerPfad, GeschlechtAnredeJsonPfad), false))
             {
                 GeschlechtAnredeListe = JsonConvert.DeserializeObject<List<GeschlechtAnrede>>(streamReader.ReadToEnd());
             };
 
-            using (var streamReader = new StreamReader($"{pathToData}/{TitelAnredeJsonName}"))
+            using (var streamReader = new StreamReader(Path.Combine(AktuellerPfad, TitelAnredeJsonPfad), false))
             {
                 TitelAnredeListe = JsonConvert.DeserializeObject<List<TitelAnrede>>(streamReader.ReadToEnd());
             };
@@ -52,8 +68,6 @@ namespace ContactSplitter.Backend.Services
                     "Bitte starten Sie das Programm neu.");
             }
 
-            vornameNachnameRegex = $"(^(?<{regexGruppeVorname}>{vornameRegex})\\s+(?<{regexGruppeNachname}>{nachnameRegex})|" + // Vorname Nachname
-                            $"(^(?<{regexGruppeNachname}>{nachnameRegex}),\\s+(?<{regexGruppeVorname}>{vornameRegex})"; // Nachname, Vorname
         }
 
         /// <summary>
@@ -64,6 +78,10 @@ namespace ContactSplitter.Backend.Services
         public SplitContactResponse ParseKontakt(SplitContactRequest input)
         {
             //Prüfen ob Zahlen oder falsche Sonderzeichen drin sind, und dann Exception
+            if (sonderzeichenRegex.Match(input.UserInput).Success)
+            {
+                throw new Exception("Der Name enthält ein nicht erlaubtes Sonderzeichen. Bitte entfernen Sie dieses.");
+            }
 
             var splitContactResponse = new SplitContactResponse();
 
@@ -103,7 +121,6 @@ namespace ContactSplitter.Backend.Services
                 }
                 response.Anrede = string.Empty;
             }
-
         }
 
         /// <summary>
@@ -167,7 +184,6 @@ namespace ContactSplitter.Backend.Services
                     response.Nachname = result.Groups[regexGruppeNachname].Value;
                     return;
                 }
-                //Wie machen wir error handling?
             }
         }
 
