@@ -28,7 +28,7 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </UserControl.Resources>-->
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -41,55 +41,61 @@
 
         <StackPanel FocusManager.FocusedElement="{Binding ElementName=TextInputString}">
             <StackPanel Orientation="Vertical"
-                        Margin="10,10,10,0">
-                <TextBlock Text="Enter the Text: "
+                        Margin="10,10,20,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="400"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Enter the Text: "
                                    FontWeight="Bold"
                                    FontSize="16"/>
-                <materialDesign:Card Height="70"
-                                     MinWidth="500"
-                                     Background="#4f5353"
-                                     Padding="10">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="500"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
+                    <materialDesign:Card Height="70"
+                                         Background="#4f5353"
+                                         Padding="10">
+                        <Grid>
+                            <TextBox Grid.Row="1" 
+                                     Margin="10" 
+                                     materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
+                                     FontSize="16"
+                                     FontWeight="Regular" Cursor="Arrow" 
+                                     Text="{Binding TextInputString, UpdateSourceTrigger=PropertyChanged}"
+                                     x:Name="SplitTermTextBox"/>
+                            <TextBlock IsHitTestVisible="False" Text="Enter Text Here" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, ElementName=SplitTermTextBox}" Value="">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <!--<Button Grid.RowSpan="2" 
+                                    Grid.Column="1" 
+                                    Content="Split"
+                                    Foreground="White"
+                                    FontSize="18"
+                                    Background="#791C3a" 
+                                    BorderThickness="0" Cursor="Hand"
+                                    Command="{Binding SubmitTextCommand}"/>-->
+                        </Grid>
+                    </materialDesign:Card>
+                    <StackPanel Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                        <TextBlock Text="{Binding NameErrorMessage, UpdateSourceTrigger=PropertyChanged}"
+                                   FontWeight="Medium"
+                                   FontSize="12"
+                                   Foreground="Red"
+                                   Margin="5,0,5,0"
+                                   TextWrapping="Wrap"/>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-
-
-                        <TextBox Grid.Row="1" 
-                                 Margin="10" 
-                                 materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
-                                 FontSize="16"
-                                 FontWeight="Regular" Cursor="Arrow" 
-                                 Text="{Binding TextInputString, UpdateSourceTrigger=PropertyChanged}"
-                                 x:Name="SplitTermTextBox"/>
-                        <TextBlock IsHitTestVisible="False" Text="Enter Text Here" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
-                            <TextBlock.Style>
-                                <Style TargetType="{x:Type TextBlock}">
-                                    <Setter Property="Visibility" Value="Collapsed"/>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Text, ElementName=SplitTermTextBox}" Value="">
-                                            <Setter Property="Visibility" Value="Visible"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-                        </TextBlock>
-                        <Button Grid.RowSpan="2" 
-                                Grid.Column="1" 
-                                Content="Split"
-                                Foreground="White"
-                                FontSize="18"
-                                Background="#791C3a" 
-                                BorderThickness="0" Cursor="Hand"
-                                Command="{Binding SubmitTextCommand}"/>
-                    </Grid>
-
-                </materialDesign:Card>
+                    </StackPanel>
+                </Grid>
             </StackPanel>
         </StackPanel>
         <Grid Grid.Row="1">
@@ -147,31 +153,20 @@
                     <StackPanel Orientation="Vertical"
                                 Margin="10,0,10,0"
                                 Grid.Column="1">
-                        <TextBlock Text="Salutation: "
+                        <TextBlock Text="Language: "
                                        FontWeight="Medium"
                                        FontSize="16"/>
                         <materialDesign:Card Height="45"
                                              Background="#4f5353">
                             <Grid>
-                                <TextBox Grid.Row="1" 
-                                     Text="{Binding Salutation, UpdateSourceTrigger=PropertyChanged}"
-                                     Margin="10" 
-                                     materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
-                                     FontSize="16"
-                                     FontWeight="Regular" Cursor="Arrow" 
-                                     x:Name="SalutationTextBox"/>
-                                <TextBlock IsHitTestVisible="False" Text="Herr" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
-                                    <TextBlock.Style>
-                                        <Style TargetType="{x:Type TextBlock}">
-                                            <Setter Property="Visibility" Value="Collapsed"/>
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Text, ElementName=SalutationTextBox}" Value="">
-                                                    <Setter Property="Visibility" Value="Visible"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </TextBlock.Style>
-                                </TextBlock>
+                                <ComboBox Margin="10" 
+                                          materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
+                                          FontSize="16"
+                                          FontWeight="Regular" Cursor="Arrow" 
+                                          x:Name="LanguageComboBox"
+                                          ItemsSource="{Binding Source={core:EnumBindingSource data:Sprache}}"
+                                          SelectedItem="{Binding Language}">
+                                </ComboBox>
                             </Grid>
                         </materialDesign:Card>
                     </StackPanel>
@@ -251,7 +246,7 @@
                                 x:Name="TitleTextBox"
                                 materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
                                 Text="{Binding NewTitle, UpdateSourceTrigger=PropertyChanged}"/>
-
+                                <CheckBox Margin="5" Content="Recognize Title"  IsChecked="{Binding Recognize}"/>
                                 <StackPanel
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Right">
@@ -315,23 +310,24 @@
                                 Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
                                 Background="#791C3a"
                                 BorderBrush="#791C3a"
+                                Foreground="White"
                                 VerticalAlignment="Bottom"
                                 HorizontalAlignment="Right" 
                                 Grid.Row="0"
                                 Margin="0 0 28 -20"
-                                Content="{materialDesign:PackIcon Kind=Plus, Size=22}"/>
+                                Content="{materialDesign:PackIcon Kind=Plus, Size=22}" Panel.ZIndex="1"/>
 
                                 <ListBox x:Name="TitlesListBox"
                                          Height="90"
                                          Grid.Row="1"
-                                         ItemsSource="{Binding TitleList}">
+                                         ItemsSource="{Binding TitleList}" Panel.ZIndex="2">
                                 </ListBox>
 
                             </Grid>
                         </Border>
                     </materialDesign:DialogHost>
-                    
-                    
+
+
                 </StackPanel>
                 <Button Content="Add Contact"
                         Foreground="White"
@@ -359,9 +355,26 @@
                                       CanUserAddRows="False"
                                       IsReadOnly="True"
                                       SelectionUnit="FullRow"
-                                      SelectionMode="Extended"
+                                      AutoGenerateColumns="False"
                                       Height="225">
-                            
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Gender" Binding="{Binding Gender}"/>
+                                    <DataGridTextColumn Header="Title" Binding="{Binding Title}"/>
+                                    <DataGridTextColumn Header="FirstName" Binding="{Binding FirstName}"/>
+                                    <DataGridTextColumn Header="LastName" Binding="{Binding LastName}"/>
+                                    <DataGridTextColumn Header="Language" Binding="{Binding Language}"/>
+                                    <DataGridTemplateColumn Header="Delete">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}},
+                                                        Path=DataContext.DeleteCommand}"
+                                                        CommandParameter="{Binding}">
+                                                    <materialDesign:PackIcon Kind="Delete"/>
+                                                </Button>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
                     </materialDesign:Card>
@@ -370,23 +383,27 @@
                             <TabControl HorizontalContentAlignment="Left"
                                         Height="100"
                                         MinWidth="400">
-                                <TabItem Header="German"
-                                         Width="45"
+                                <TabItem Header="Letter salutation"
                                          Height="40">
                                     <Grid Margin="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="64*"/>
+                                            <ColumnDefinition Width="161*"/>
+                                        </Grid.ColumnDefinitions>
                                         <TextBlock VerticalAlignment="Center"
-                                                   Text="{Binding GermanSalutation}" 
-                                                   TextWrapping="Wrap"/>
-                                        <Button HorizontalAlignment="Right"
+                                                   Text="{Binding FullSalutation}" 
+                                                   TextWrapping="Wrap" Grid.ColumnSpan="2"/>
+                                        <Button HorizontalAlignment="Left"
                                             Foreground="White"
                                             FontSize="18"
+                                            Command="{Binding CopySalutationCommand}"
                                             Background="#791C3a" 
-                                            BorderThickness="0" Cursor="Hand">
+                                            BorderThickness="0" Cursor="Hand" Grid.Column="1" Margin="274,4,0,4">
                                             <materialDesign:PackIcon Kind="ContentCopy"/>
                                         </Button>
                                     </Grid>
                                 </TabItem>
-                                <TabItem Header="English"
+                                <!--<TabItem Header="English"
                                          Width="45"
                                          Height="40">
                                     <Grid Margin="10">
@@ -417,7 +434,7 @@
                                             <materialDesign:PackIcon Kind="ContentCopy"/>
                                         </Button>
                                     </Grid>
-                                </TabItem>
+                                </TabItem>-->
                             </TabControl>
                         </materialDesign:Card>
                     </StackPanel>
@@ -425,7 +442,7 @@
             </StackPanel>
 
         </Grid>
-        
+
     </Grid>
 
 
