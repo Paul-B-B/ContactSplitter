@@ -1,5 +1,4 @@
 ﻿using ContactSplitter.Backend.Model.Interfaces;
-using ContactSplitter.Backend.Services;
 using ContactSplitter.Shared.DataClass;
 
 namespace ContactSplitter.Backend.Services

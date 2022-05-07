@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ContactSplitter.Backend.Model.Requests
+﻿namespace ContactSplitter.Backend.Model.Requests
 {
     /// <summary>
     /// Request eines aufzuteilenden Kontakts

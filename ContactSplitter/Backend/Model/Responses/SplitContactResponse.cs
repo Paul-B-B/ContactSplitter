@@ -1,9 +1,5 @@
 ﻿using ContactSplitter.Shared.DataClass;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ContactSplitter.Backend.Model.Responses
 {
@@ -78,7 +74,7 @@ namespace ContactSplitter.Backend.Model.Responses
                 var _BriefTitel = string.Empty;
                 if (Sprache == Sprache.Englisch)
                 {
-                    _BriefTitel = (ListeAllerTitel[0] is not null && !string.IsNullOrEmpty(ListeAllerTitel[0].Anrede)) ? $"{ListeAllerTitel[0].Anrede} " : string.Empty;
+                    _BriefTitel = (ListeAllerTitel.Count != 0 && !string.IsNullOrEmpty(ListeAllerTitel[0].Anrede)) ? $"{ListeAllerTitel[0].Anrede} " : string.Empty;
                 }
                 else
                 {

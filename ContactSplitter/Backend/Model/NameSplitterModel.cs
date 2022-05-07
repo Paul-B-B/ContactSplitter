@@ -2,11 +2,6 @@
 using ContactSplitter.Backend.Model.Requests;
 using ContactSplitter.Backend.Model.Responses;
 using ContactSplitter.Backend.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ContactSplitter.Backend.Model
 {
