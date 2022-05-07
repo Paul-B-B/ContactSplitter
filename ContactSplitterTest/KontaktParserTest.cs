@@ -15,15 +15,8 @@ namespace ContactSplitterTest
         /// <summary>
         /// Test des KontaktParsers.
         /// Dieser deckt den gesamten Code des KontaktParsers ab.
-        /// Jeder Titel sowie jede Zusammenstellung eines möglichen Kontakts werden hiermit abgedeckt und überprüft
+        /// Jeder Titel sowie jede Zusammenstellung eines mï¿½glichen Kontakts werden hiermit abgedeckt und ï¿½berprï¿½ft
         /// </summary>
-        /// <param name="userInput"></param>
-        /// <param name="vorname"></param>
-        /// <param name="nachname"></param>
-        /// <param name="geschlecht"></param>
-        /// <param name="sprache"></param>
-        /// <param name="alleTitel"></param>
-        /// <param name="briefanrede"></param>
         [TestMethod]
         [DataRow("Peter Lustig", "Peter", "Lustig", Geschlecht.unbekannt, Sprache.Unbekannt, "", "Guten Tag Peter Lustig")]
         [DataRow("Herr Peter Lustig", "Peter", "Lustig", Geschlecht.m, Sprache.Deutsch, "", "Sehr geehrter Herr Peter Lustig")]

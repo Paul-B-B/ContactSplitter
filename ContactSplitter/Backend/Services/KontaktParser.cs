@@ -2,6 +2,7 @@
 using ContactSplitter.Backend.Model.Responses;
 using ContactSplitter.Shared.DataClass;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace ContactSplitter.Backend.Services
     public class KontaktParser
     {
 
-        // Dateinamen
+        // Dateipfade
         private readonly string AktuellerPfad = Directory.GetCurrentDirectory();
         private string GeschlechtAnredeJsonPfad => @"Backend\Data\GeschlechtAnrede.json";
         private string TitelAnredeJsonPfad => @"Backend\Data\TitelAnrede.json";
@@ -26,6 +27,9 @@ namespace ContactSplitter.Backend.Services
 
         // RegEx zur Anredenerkennung
         private readonly Regex anredeRegex = new("^\\w+\\.?");
+
+        // RegEx zur Erkennung eines Sonderzeichens
+        private readonly Regex sonderzeichenRegex = new("[!@#$%^&*()_=+\\[\\]\\(\\)\\{\\};:'\"\\\\,<>/?`~\\|]");
 
         //Hilfslisten (erhalten aus eingelesenen Dateien)
         private List<TitelAnrede> TitelAnredeListe;
@@ -74,6 +78,10 @@ namespace ContactSplitter.Backend.Services
         public SplitContactResponse ParseKontakt(SplitContactRequest input)
         {
             //Prüfen ob Zahlen oder falsche Sonderzeichen drin sind, und dann Exception
+            if (sonderzeichenRegex.Match(input.UserInput).Success)
+            {
+                throw new Exception("Der Name enthält ein nicht erlaubtes Sonderzeichen. Bitte entfernen Sie dieses.");
+            }
 
             var splitContactResponse = new SplitContactResponse();
 
@@ -113,7 +121,6 @@ namespace ContactSplitter.Backend.Services
                 }
                 response.Anrede = string.Empty;
             }
-
         }
 
         /// <summary>
@@ -177,7 +184,6 @@ namespace ContactSplitter.Backend.Services
                     response.Nachname = result.Groups[regexGruppeNachname].Value;
                     return;
                 }
-                //Wie machen wir error handling?
             }
         }
 
