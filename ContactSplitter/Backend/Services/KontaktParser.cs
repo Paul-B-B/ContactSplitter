@@ -20,7 +20,7 @@ namespace ContactSplitter.Backend.Services
 
         // RegEx zur Namenserkennung
         private readonly string vornameRegex = "([A-Z]\\w*([\\s\\-]+[A-Z]\\w*)*)";
-        private readonly string nachnameRegex = "(([A-Z]\\w*\\s+\\w+\\s+)*[A-Z]\\w*(\\-?[A-Z]\\w*)*)";
+        private readonly string nachnameRegex = "(([a-z]+\\s+)*[A-Z]\\w*(\\-?[A-Z]\\w*)*)";
         private readonly string regexGruppeVorname = "Vorname";
         private readonly string regexGruppeNachname = "Nachname";
         private readonly string vornameNachnameRegex;
@@ -41,9 +41,9 @@ namespace ContactSplitter.Backend.Services
         public KontaktParser()
         {
             LeseJsonDateien();
-
-            vornameNachnameRegex = $"(^((?<{regexGruppeVorname}>{vornameRegex})\\s+)?(?<{regexGruppeNachname}>{nachnameRegex}))|" + // Vorname Nachname
-                            $"(^(?<{regexGruppeNachname}>{nachnameRegex}),\\s+(?<{regexGruppeVorname}>{vornameRegex}))"; // Nachname, Vorname
+            
+            vornameNachnameRegex = $"(^(?<{regexGruppeNachname}>{nachnameRegex}),\\s+(?<{regexGruppeVorname}>{vornameRegex}))|" + // Nachname, Vorname
+                            $"(^((?<{regexGruppeVorname}>{vornameRegex})\\s+)?(?<{regexGruppeNachname}>{nachnameRegex}))"; // Vorname Nachname
         }
 
         /// <summary>
