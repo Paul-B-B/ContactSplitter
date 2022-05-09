@@ -19,6 +19,10 @@ namespace ContactSplitterTest
         /// </summary>
         [TestMethod]
         [DataRow("Peter Lustig", "Peter", "Lustig", Geschlecht.unbekannt, Sprache.unbekannt, "", "Guten Tag Peter Lustig")]
+        [DataRow("Lustig, Peter", "Peter", "Lustig", Geschlecht.unbekannt, Sprache.unbekannt, "", "Guten Tag Peter Lustig")]
+        [DataRow("Peter-Erich Lustig", "Peter-Erich", "Lustig", Geschlecht.unbekannt, Sprache.unbekannt, "", "Guten Tag Peter-Erich Lustig")]
+        [DataRow("Lustig, Peter-Erich", "Peter-Erich", "Lustig", Geschlecht.unbekannt, Sprache.unbekannt, "", "Guten Tag Peter-Erich Lustig")]
+        [DataRow("Peter Lustig-Hans", "Peter", "Lustig-Hans", Geschlecht.unbekannt, Sprache.unbekannt, "", "Guten Tag Peter Lustig-Hans")]
         [DataRow("Herr Peter Lustig", "Peter", "Lustig", Geschlecht.m, Sprache.Deutsch, "", "Sehr geehrter Herr Peter Lustig")]
         [DataRow("Frau Petra Witzig", "Petra", "Witzig", Geschlecht.w, Sprache.Deutsch, "", "Sehr geehrte Frau Petra Witzig")]
         [DataRow("Mr. Stanley Funny", "Stanley", "Funny", Geschlecht.m, Sprache.Englisch, "", "Dear Mr. Stanley Funny")]
