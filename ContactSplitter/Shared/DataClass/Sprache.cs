@@ -11,7 +11,7 @@ namespace ContactSplitter.Shared.DataClass
     /// </summary>
     public enum Sprache
     {
-        Unbekannt = 0,
+        unbekannt = 0,
         Deutsch = 1,
         Englisch = 2
     }

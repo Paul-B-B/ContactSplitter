@@ -5,5 +5,7 @@ namespace ContactSplitter.Backend.Model.Interfaces
     internal interface INameSplitterModel
     {
         SplitContactResponse GetSplitContact(string input);
+
+        void AddTitle(string input);
     }
 }

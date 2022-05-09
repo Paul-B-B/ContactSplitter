@@ -18,6 +18,10 @@ namespace ContactSplitter.Shared.DataClass
 
         public Geschlecht Gender { get; set; }
 
+        public Sprache Language { get; set; }
+
+        public string FullSalutation { get; set; }
+
 
     }
 }

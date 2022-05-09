@@ -81,7 +81,7 @@
                                 </Button.Style>
                             </Button>
 
-                            <!--<Button Width="25" Height="25"
+                            <Button Width="25" Height="25"
                                     Content="⬜"
                                     BorderThickness="0"
                                     FontWeight="Bold"
@@ -109,7 +109,7 @@
                                         </Style.Triggers>
                                     </Style>
                                 </Button.Style>
-                            </Button>-->
+                            </Button>
 
                             <Button Width="25" Height="25"
                                     Content="╳"
@@ -172,9 +172,9 @@
                                  FontSize="14"
                                  Style="{StaticResource MenuButtonTheme}"
                                  IsChecked="True"
-                                 Command="{Binding NameSplitterViewCommand}"/>
+                                 Command="{Binding NameSplitterViewCommand}" Checked="RadioButton_Checked"/>
 
-                    <RadioButton Content="Number-Splitter"
+                    <RadioButton Content="Rufnummer-Splitter"
                                  Height="50"
                                  Foreground="White"
                                  FontSize="14"

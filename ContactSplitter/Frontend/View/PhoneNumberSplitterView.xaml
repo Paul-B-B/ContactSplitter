@@ -27,7 +27,7 @@
         <StackPanel FocusManager.FocusedElement="{Binding ElementName=NumberInputString}">
             <StackPanel Orientation="Vertical"
                         Margin="20">
-                <TextBlock Text="Enter the Phonenumber: "
+                <TextBlock Text="Telefonnummer eingeben: "
                                    FontWeight="Medium"
                                    FontSize="20"/>
                 <materialDesign:Card Height="80"
@@ -52,7 +52,7 @@
                                  FontWeight="Regular" Cursor="Arrow" 
                                  Text="{Binding NumberInputString, UpdateSourceTrigger=PropertyChanged}"
                                  x:Name="SplitNumberTextBox"/>
-                        <TextBlock IsHitTestVisible="False" Text="Enter PhoneNumber Here" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                        <TextBlock IsHitTestVisible="False" Text="Telefonnummer hier eingeben" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
                             <TextBlock.Style>
                                 <Style TargetType="{x:Type TextBlock}">
                                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -66,7 +66,7 @@
                         </TextBlock>
                         <Button Grid.RowSpan="2" 
                                 Grid.Column="1" 
-                                Content="Split"
+                                Content="Teilen"
                                 Foreground="White"
                                 FontSize="18"
                                 Background="#791C3a" 
@@ -88,7 +88,7 @@
                         HorizontalAlignment="Center">
                 <StackPanel Orientation="Vertical"
                             Margin="10,0,10,0">
-                    <TextBlock Text="Country: "
+                    <TextBlock Text="Land: "
                                    FontWeight="Medium"
                                    FontSize="20"/>
                     <materialDesign:Card Height="60"
@@ -107,7 +107,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Vertical"
                             Margin="10,0,10,0">
-                    <TextBlock Text="AreaCode"
+                    <TextBlock Text="Vorwahl"
                                    FontWeight="Medium"
                                    FontSize="20"/>
                     <materialDesign:Card Height="60"
@@ -126,7 +126,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Vertical"
                             Margin="10,0,10,0">
-                    <TextBlock Text="MainNumber"
+                    <TextBlock Text="Anschlusskennung"
                                    FontWeight="Medium"
                                    FontSize="20"/>
                     <materialDesign:Card Height="60"
@@ -145,7 +145,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Vertical"
                             Margin="10,0,10,0">
-                    <TextBlock Text="DirectDial"
+                    <TextBlock Text="Durchwahl"
                                    FontWeight="Medium"
                                    FontSize="20"/>
                     <materialDesign:Card Height="60"
@@ -171,7 +171,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="FormattedNumber"
+                        <TextBlock Text="formatierte Rufnummer"
                                    FontWeight="Medium"
                                    FontSize="20"/>
                         <materialDesign:Card Height="60"

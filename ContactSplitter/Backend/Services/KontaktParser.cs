@@ -195,7 +195,7 @@ namespace ContactSplitter.Backend.Services
         {
             switch (response.Sprache)
             {
-                case Sprache.Unbekannt:
+                case Sprache.unbekannt:
                 case Sprache.Deutsch:
                     switch (response.Geschlecht)
                     {
