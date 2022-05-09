@@ -51,7 +51,7 @@
                                      FontWeight="Regular" Cursor="Arrow" 
                                      Text="{Binding TextInputString, UpdateSourceTrigger=PropertyChanged}"
                                      x:Name="SplitTermTextBox"/>
-                            <TextBlock IsHitTestVisible="False" Text="Enter Text Here" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                            <TextBlock IsHitTestVisible="False" Text="Name hier eingeben" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
                                 <TextBlock.Style>
                                     <Style TargetType="{x:Type TextBlock}">
                                         <Setter Property="Visibility" Value="Collapsed"/>
