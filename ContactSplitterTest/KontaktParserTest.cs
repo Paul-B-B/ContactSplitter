@@ -22,7 +22,7 @@ namespace ContactSplitterTest
         [DataRow("Herr Peter Lustig", "Peter", "Lustig", Geschlecht.m, Sprache.Deutsch, "", "Sehr geehrter Herr Peter Lustig")]
         [DataRow("Frau Petra Witzig", "Petra", "Witzig", Geschlecht.w, Sprache.Deutsch, "", "Sehr geehrte Frau Petra Witzig")]
         [DataRow("Mr. Stanley Funny", "Stanley", "Funny", Geschlecht.m, Sprache.Englisch, "", "Dear Mr. Stanley Funny")]
-        [DataRow("Mrs. Karen Silly", "Karen", "Silly", Geschlecht.w, Sprache.Englisch, "", "Dear Mrs. Karen Silly")]
+        [DataRow("Mrs. Karen Silly", "Karen", "Silly", Geschlecht.w, Sprache.Englisch, "", "Dear Ms. Karen Silly")]
         [DataRow("Ms. Karen Silly", "Karen", "Silly", Geschlecht.w, Sprache.Englisch, "", "Dear Ms. Karen Silly")]
         [DataRow("Herr Professor Peter Lustig", "Peter", "Lustig", Geschlecht.m, Sprache.Deutsch, "Prof. ", "Sehr geehrter Herr Prof. Peter Lustig")]
         [DataRow("Frau Professorin Petra Witzig", "Petra", "Witzig", Geschlecht.w, Sprache.Deutsch, "Prof. ", "Sehr geehrte Frau Prof. Petra Witzig")]

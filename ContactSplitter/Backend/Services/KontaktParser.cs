@@ -176,6 +176,7 @@ namespace ContactSplitter.Backend.Services
         {
             if (!string.IsNullOrEmpty(request.UserInput))
             {
+
                 var result = Regex.Match(request.UserInput, vornameNachnameRegex);
 
                 if (result.Success)
@@ -217,7 +218,7 @@ namespace ContactSplitter.Backend.Services
                             response.Briefanrede = string.IsNullOrEmpty(response.BriefTitel) ? $"Dear Mr. {response.Vorname} {response.Nachname}" : $"Dear {response.BriefTitel}{response.Vorname} {response.Nachname}";
                             break;
                         case Geschlecht.w:
-                            response.Briefanrede = string.IsNullOrEmpty(response.BriefTitel) ? $"Dear {response.Anrede} {response.BriefTitel}{response.Vorname} {response.Nachname}" : $"Dear {response.BriefTitel}{response.Vorname} {response.Nachname}";
+                            response.Briefanrede = string.IsNullOrEmpty(response.BriefTitel) ? $"Dear Ms. {response.BriefTitel}{response.Vorname} {response.Nachname}" : $"Dear {response.BriefTitel}{response.Vorname} {response.Nachname}";
                             break;
                         default:
                             response.Briefanrede = $"Dear {response.BriefTitel}{response.Vorname} {response.Nachname}";
