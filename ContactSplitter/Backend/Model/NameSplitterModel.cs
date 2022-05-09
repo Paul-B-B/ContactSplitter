@@ -1,6 +1,4 @@
 ﻿using ContactSplitter.Backend.Model.Interfaces;
-using ContactSplitter.Backend.Model.Requests;
-using ContactSplitter.Backend.Model.Responses;
 using ContactSplitter.Backend.Services;
 using ContactSplitter.Shared.DataClass;
 
@@ -18,21 +16,27 @@ namespace ContactSplitter.Backend.Model
             _titelHandler = new TitelHandler();
         }
 
-        public SplitContactResponse GetSplitContact(string input)
+        public Contact GetSplitContact(string input)
         {
             if (string.IsNullOrEmpty(input)) return null;
 
-            var output = _kontaktParser.ParseKontakt(new SplitContactRequest() { UserInput = input});
+            var output = _kontaktParser.ParseKontakt(input);
             return output;
         }
 
-        public void AddTitle(string title)
+        public string GetLetterSalutation(Contact contact)
         {
-            if (string.IsNullOrEmpty(title)) return;
+            if (contact == null) return null;
+            var output = this._kontaktParser.CreateLetterSalutation(contact);
+            return output;
+        }
 
-            var titleAnrede = new TitelAnrede() { Anrede = "", Titel = title };
-            _titelHandler.AddTitel(titleAnrede);
-            this._kontaktParser.LeseJsonDateien();
+        public void AddTitle(TitleSalutation titleSalutation)
+        {
+            if (titleSalutation == null) return;
+
+            _titelHandler.AddTitle(titleSalutation);
+            this._kontaktParser.ReadJsonFiles();
         }
     }
 }

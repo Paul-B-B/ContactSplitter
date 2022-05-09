@@ -1,33 +1,38 @@
 [
   {
-    "Anrede": "Herr",
-    "Geschlecht": "0",
-    "Sprache":  "1"
+    "Salutation": "Herr",
+    "Gender": "0",
+    "Language": "1"
   },
   {
-    "Anrede": "Mr.",
-    "Geschlecht": "0",
-    "Sprache": "2"
+    "Salutation": "Mr.",
+    "Gender": "0",
+    "Language": "2"
   },
   {
-    "Anrede": "Frau",
-    "Geschlecht": "1",
-    "Sprache": "1"
+    "Salutation": "Frau",
+    "Gender": "1",
+    "Language": "1"
   },
   {
-    "Anrede": "Mrs.",
-    "Geschlecht": "1",
-    "Sprache": "2"
+    "Salutation": "Mrs.",
+    "Gender": "1",
+    "Language": "2"
   },
   {
-    "Anrede": "Ms.",
-    "Geschlecht": "1",
-    "Sprache": "2"
+    "Salutation": "Ms.",
+    "Gender": "1",
+    "Language": "2"
   },
   {
-    "Anrede": "",
-    "Geschlecht": "2",
-    "Sprache": "3"
+    "Salutation": "Mme.",
+    "Gender": "1",
+    "Language": "2"
+  },
+  {
+    "Salutation": "",
+    "Gender": "2",
+    "Language": "3"
   }
 ]
 

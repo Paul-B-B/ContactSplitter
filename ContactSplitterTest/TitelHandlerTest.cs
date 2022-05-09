@@ -18,7 +18,7 @@ namespace ContactSplitterTest
         {
             var neueTitelAnrede = new TitelAnrede() { Anrede = anrede, Titel = titel };
 
-            var success = _TitelHandler.AddTitel(neueTitelAnrede);
+            var success = _TitelHandler.AddTitle(neueTitelAnrede);
 
             Assert.IsTrue(success);
         }

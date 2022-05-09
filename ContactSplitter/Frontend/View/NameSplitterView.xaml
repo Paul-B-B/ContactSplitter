@@ -1,18 +1,16 @@
 ﻿<UserControl x:Class="ContactSplitter.Frontend.View.NameSplitterView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:ContactSplitter.Frontend.View"
-             xmlns:viewModels="clr-namespace:ContactSplitter.Frontend.ViewModel" 
+             xmlns:viewModels="clr-namespace:ContactSplitter.Frontend.ViewModel"
              xmlns:core="clr-namespace:ContactSplitter.Frontend.Core"
-             xmlns:data="clr-namespace:ContactSplitter.Shared.DataClass" 
-             xmlns:system="clr-namespace:System;assembly=mscorlib" 
-             xmlns:vb="clr-namespace:Microsoft.VisualBasic;assembly=Microsoft.VisualBasic.Core"
-             mc:Ignorable="d" 
-             d:DesignHeight="525" d:DesignWidth="720"
+             xmlns:data="clr-namespace:ContactSplitter.Shared.DataClass"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              Background="Transparent"
              TextElement.FontWeight="Medium"
@@ -21,7 +19,7 @@
              d:DataContext="{d:DesignInstance viewModels:NameSplitterViewModel}">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -34,30 +32,39 @@
                         Margin="10,10,20,0">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="2*" />
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Text="Text eingeben: "
-                                   FontWeight="Bold"
-                                   FontSize="16"/>
+                               FontWeight="Bold"
+                               FontSize="16" />
                     <materialDesign:Card Background="#4f5353"
                                          Padding="10">
                         <Grid>
-                            <TextBox Grid.Row="1" 
-                                     Margin="10" 
+                            <TextBox Grid.Row="1"
+                                     Margin="10"
                                      materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
                                      FontSize="16"
-                                     FontWeight="Regular" Cursor="Arrow" 
+                                     FontWeight="Regular"
+                                     Cursor="Arrow"
                                      Text="{Binding TextInputString, UpdateSourceTrigger=PropertyChanged}"
-                                     x:Name="SplitTermTextBox"/>
-                            <TextBlock IsHitTestVisible="False" Text="Name hier eingeben" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                                     x:Name="SplitTermTextBox" />
+                            <TextBlock IsHitTestVisible="False"
+                                       Text="Name hier eingeben"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="10,0,0,0"
+                                       Foreground="DarkGray">
                                 <TextBlock.Style>
                                     <Style TargetType="{x:Type TextBlock}">
-                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Setter Property="Visibility"
+                                                Value="Collapsed" />
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Text, ElementName=SplitTermTextBox}" Value="">
-                                                <Setter Property="Visibility" Value="Visible"/>
+                                            <DataTrigger Binding="{Binding Text, ElementName=SplitTermTextBox}"
+                                                         Value="">
+                                                <Setter Property="Visibility"
+                                                        Value="Visible" />
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
@@ -73,40 +80,41 @@
                                    FontSize="12"
                                    Foreground="Red"
                                    Margin="5,0,5,0"
-                                   TextWrapping="Wrap"/>
-
+                                   TextWrapping="Wrap" />
                     </StackPanel>
                 </Grid>
             </StackPanel>
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="4*" />
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Vertical"
                         HorizontalAlignment="Stretch">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Orientation="Vertical"
                                 Margin="10,0,10,0">
                         <TextBlock Text="Geschlecht: "
-                                       FontWeight="Medium"
-                                       FontSize="16"/>
+                                   FontWeight="Medium"
+                                   FontSize="16"
+                                   Margin="0,0,0,3" />
                         <materialDesign:Card Background="#4f5353">
                             <Grid>
-                                <ComboBox Margin="10" 
+                                <ComboBox Margin="10"
                                           materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
                                           FontSize="16"
-                                          FontWeight="Regular" Cursor="Arrow" 
+                                          FontWeight="Regular"
+                                          Cursor="Arrow"
                                           x:Name="GenderComboBox"
-                                          ItemsSource="{Binding Source={core:EnumBindingSource data:Geschlecht}}"
+                                          ItemsSource="{Binding Source={core:EnumBindingSource data:Gender}}"
                                           SelectedItem="{Binding Gender}">
-                                </ComboBox>                              
+                                </ComboBox>
                             </Grid>
                         </materialDesign:Card>
                     </StackPanel>
@@ -114,16 +122,18 @@
                                 Margin="10,0,10,0"
                                 Grid.Column="1">
                         <TextBlock Text="Sprache: "
-                                       FontWeight="Medium"
-                                       FontSize="16"/>
+                                   FontWeight="Medium"
+                                   FontSize="16"
+                                   Margin="0,0,0,3"/>
                         <materialDesign:Card Background="#4f5353">
                             <Grid>
-                                <ComboBox Margin="10" 
+                                <ComboBox Margin="10"
                                           materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
                                           FontSize="16"
-                                          FontWeight="Regular" Cursor="Arrow" 
+                                          FontWeight="Regular"
+                                          Cursor="Arrow"
                                           x:Name="LanguageComboBox"
-                                          ItemsSource="{Binding Source={core:EnumBindingSource data:Sprache}}"
+                                          ItemsSource="{Binding Source={core:EnumBindingSource data:Language}}"
                                           SelectedItem="{Binding Language}">
                                 </ComboBox>
                             </Grid>
@@ -133,24 +143,34 @@
                 <StackPanel Orientation="Vertical"
                             Margin="10,0,10,0">
                     <TextBlock Text="Vorname: "
-                                   FontWeight="Medium"
-                                   FontSize="16"/>
+                               FontWeight="Medium"
+                               FontSize="16"
+                               Margin="0,0,0,3" />
                     <materialDesign:Card Background="#4f5353">
                         <Grid>
                             <TextBox Grid.Row="1"
-                                 Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}"
-                                 Margin="10" 
-                                 materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
-                                 FontSize="16"
-                                 FontWeight="Regular" Cursor="Arrow" 
-                                 x:Name="FirstNameTextBox"/>
-                            <TextBlock IsHitTestVisible="False" Text="Max" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                                     Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}"
+                                     Margin="10"
+                                     materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
+                                     FontSize="16"
+                                     FontWeight="Regular"
+                                     Cursor="Arrow"
+                                     x:Name="FirstNameTextBox" />
+                            <TextBlock IsHitTestVisible="False"
+                                       Text="Max"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="10,0,0,0"
+                                       Foreground="DarkGray">
                                 <TextBlock.Style>
                                     <Style TargetType="{x:Type TextBlock}">
-                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Setter Property="Visibility"
+                                                Value="Collapsed" />
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Text, ElementName=FirstNameTextBox}" Value="">
-                                                <Setter Property="Visibility" Value="Visible"/>
+                                            <DataTrigger Binding="{Binding Text, ElementName=FirstNameTextBox}"
+                                                         Value="">
+                                                <Setter Property="Visibility"
+                                                        Value="Visible" />
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
@@ -162,24 +182,34 @@
                 <StackPanel Orientation="Vertical"
                             Margin="10,0,10,0">
                     <TextBlock Text="Nachname: "
-                                   FontWeight="Medium"
-                                   FontSize="16"/>
+                               FontWeight="Medium"
+                               FontSize="16"
+                               Margin="0,0,0,3" />
                     <materialDesign:Card Background="#4f5353">
                         <Grid>
-                            <TextBox Grid.Row="1" 
-                                 Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}"                                     
-                                     Margin="10" 
+                            <TextBox Grid.Row="1"
+                                     Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}"
+                                     Margin="10"
                                      materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
                                      FontSize="16"
-                                     FontWeight="Regular" Cursor="Arrow" 
-                                     x:Name="LastNameTextBox"/>
-                            <TextBlock IsHitTestVisible="False" Text="Mustermann" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                                     FontWeight="Regular"
+                                     Cursor="Arrow"
+                                     x:Name="LastNameTextBox" />
+                            <TextBlock IsHitTestVisible="False"
+                                       Text="Mustermann"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="10,0,0,0"
+                                       Foreground="DarkGray">
                                 <TextBlock.Style>
                                     <Style TargetType="{x:Type TextBlock}">
-                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Setter Property="Visibility"
+                                                Value="Collapsed" />
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Text, ElementName=LastNameTextBox}" Value="">
-                                                <Setter Property="Visibility" Value="Visible"/>
+                                            <DataTrigger Binding="{Binding Text, ElementName=LastNameTextBox}"
+                                                         Value="">
+                                                <Setter Property="Visibility"
+                                                        Value="Visible" />
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
@@ -189,29 +219,34 @@
                     </materialDesign:Card>
                 </StackPanel>
                 <StackPanel Margin="10,10,10,0">
-                    <materialDesign:DialogHost
-                    DialogTheme="Inherit">
+                    <materialDesign:DialogHost DialogTheme="Inherit">
                         <materialDesign:DialogHost.DialogContent>
                             <StackPanel Margin="16">
-                                <TextBlock Text="Titel hinzugügen."/>
-
-                                <TextBox
-                                Margin="0 8 0 0"
-                                HorizontalAlignment="Stretch"
-                                x:Name="TitleTextBox"
-                                materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
-                                Text="{Binding NewTitle, UpdateSourceTrigger=PropertyChanged}"/>
-                                <CheckBox Margin="5" Content="Recognize Title"  IsChecked="{Binding Recognize}"/>
-                                <StackPanel
-                                Orientation="Horizontal"
-                                HorizontalAlignment="Right">
-                                    <Button
-                                    Style="{StaticResource MaterialDesignFlatButton}"
-                                    IsDefault="True"
-                                    Margin="0 8 8 0"
-                                    Content="AKZEPTIEREN"
-                                    Foreground="#791C3a"
-                                    Command="{Binding AddTitleCommand}">
+                                <TextBlock Margin="4"
+                                           Text="Titel hinzufügen:" />
+                                <TextBox Margin="4"
+                                         HorizontalAlignment="Stretch"
+                                         x:Name="TitleTextBox"
+                                         materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
+                                         Text="{Binding NewTitle, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Margin="4"
+                                           Text="Anrede hinzugügen:" />
+                                <TextBox Margin="4"
+                                         HorizontalAlignment="Stretch"
+                                         x:Name="SalutationTextBox"
+                                         materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
+                                         Text="{Binding NewSalutation, UpdateSourceTrigger=PropertyChanged}" />
+                                <CheckBox Margin="5"
+                                          Content="Titel merken"
+                                          IsChecked="{Binding Recognize}" />
+                                <StackPanel Orientation="Horizontal"
+                                            HorizontalAlignment="Right">
+                                    <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                            IsDefault="True"
+                                            Margin="0 8 8 0"
+                                            Content="AKZEPTIEREN"
+                                            Foreground="#791C3a"
+                                            Command="{Binding AddTitleCommand}">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="Click">
                                                 <i:InvokeCommandAction Command="{Binding AddTitleCommand}" />
@@ -223,13 +258,12 @@
                                         </Button.CommandParameter>
                                     </Button>
 
-                                    <Button
-                                    Style="{StaticResource MaterialDesignFlatButton}"
-                                    IsCancel="True"
-                                    Margin="0 8 8 0"
-                                    Content="ABBRECHEN"
-                                    Foreground="#791C3a"
-                                    Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                                    <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                            IsCancel="True"
+                                            Margin="0 8 8 0"
+                                            Content="ABBRECHEN"
+                                            Foreground="#791C3a"
+                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
                                         <Button.CommandParameter>
                                             <system:Boolean>False</system:Boolean>
                                         </Button.CommandParameter>
@@ -238,100 +272,108 @@
                             </StackPanel>
                         </materialDesign:DialogHost.DialogContent>
 
-                        <Border
-                        BorderThickness="1"
-                        BorderBrush="#4f5353"
-                        ClipToBounds="True">
+                        <Border BorderThickness="1"
+                                BorderBrush="#4f5353"
+                                ClipToBounds="True">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
 
-                                <materialDesign:ColorZone
-                                Background="#4f5353"
-                                Grid.Row="0"
-                                Effect="{DynamicResource MaterialDesignShadowDepth5}">
+                                <materialDesign:ColorZone Background="#4f5353"
+                                                          Grid.Row="0"
+                                                          Effect="{DynamicResource MaterialDesignShadowDepth5}">
                                     <Grid VerticalAlignment="Center">
-                                        <TextBlock
-                                        Text="Titel"
-                                            Margin="5"/>
+                                        <TextBlock Text="Titel"
+                                                   Margin="5" />
                                     </Grid>
                                 </materialDesign:ColorZone>
 
-                                <Button
-                                Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
-                                Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
-                                Background="#791C3a"
-                                BorderBrush="#791C3a"
-                                Foreground="White"
-                                VerticalAlignment="Bottom"
-                                HorizontalAlignment="Right" 
-                                Grid.Row="0"
-                                Margin="0 0 28 -20"
-                                Content="{materialDesign:PackIcon Kind=Plus, Size=22}" Panel.ZIndex="1"/>
+                                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                                        Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                                        Background="#791C3a"
+                                        BorderBrush="#791C3a"
+                                        Foreground="White"
+                                        VerticalAlignment="Bottom"
+                                        HorizontalAlignment="Right"
+                                        Grid.Row="0"
+                                        Margin="0 0 28 -20"
+                                        Content="{materialDesign:PackIcon Kind=Plus, Size=22}"
+                                        Panel.ZIndex="1" />
 
                                 <ListBox x:Name="TitlesListBox"
                                          Height="90"
                                          Grid.Row="1"
-                                         ItemsSource="{Binding TitleList}" Panel.ZIndex="2">
+                                         ItemsSource="{Binding TitleList}"
+                                         Panel.ZIndex="2">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Title}" />
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
                                 </ListBox>
 
                             </Grid>
                         </Border>
                     </materialDesign:DialogHost>
-
-
                 </StackPanel>
                 <Button Content="Kontakt hinzufügen"
                         Foreground="White"
                         FontSize="18"
                         Margin="10"
-                        Background="#791C3a" 
-                        BorderThickness="0" Cursor="Hand"
-                        Command="{Binding AddContactCommand}"/>
+                        Background="#791C3a"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Command="{Binding AddContactCommand}" />
             </StackPanel>
+
             <StackPanel Grid.Column="1"
-                        Margin="10,0,20,0">
-
-
-
+                        Margin="10,10,20,10">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="3*"/>
-                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
-
-                    <materialDesign:Card Background="#4f5353">
-                        <Grid>
-                            <DataGrid ItemsSource="{Binding Persons}"
-                                      SelectedItem="{Binding Path=SelectedPerson, Mode=TwoWay}"
-                                      CanUserAddRows="False"
-                                      IsReadOnly="True"
-                                      SelectionUnit="FullRow"
-                                      AutoGenerateColumns="False"
-                                      Height="250">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Geschlecht" Binding="{Binding Gender}"/>
-                                    <DataGridTextColumn Header="Titel" Binding="{Binding Title}"/>
-                                    <DataGridTextColumn Header="Vorname" Binding="{Binding FirstName}"/>
-                                    <DataGridTextColumn Header="Nachname" Binding="{Binding LastName}"/>
-                                    <DataGridTextColumn Header="Sprache" Binding="{Binding Language}"/>
-                                    <DataGridTemplateColumn Header="Löschen">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <Button Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}},
-                                                        Path=DataContext.DeleteCommand}"
-                                                        CommandParameter="{Binding}">
-                                                    <materialDesign:PackIcon Kind="Delete"/>
-                                                </Button>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
-                                </DataGrid.Columns>
-                            </DataGrid>
-                        </Grid>
-                    </materialDesign:Card>
+                    <Grid >
+                        <materialDesign:Card Background="#4f5353"
+                                             VerticalAlignment="Stretch">
+                            <Grid VerticalAlignment="Stretch">
+                                <DataGrid ItemsSource="{Binding Contacts}"
+                                          SelectedItem="{Binding Path=SelectedContact, Mode=TwoWay}"
+                                          CanUserAddRows="False"
+                                          IsReadOnly="True"
+                                          SelectionUnit="FullRow"
+                                          AutoGenerateColumns="False"
+                                          VerticalAlignment="Stretch"
+                                          Height="250">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Geschlecht"
+                                                            Binding="{Binding Gender}" />
+                                        <DataGridTextColumn Header="Titel"
+                                                            Binding="{Binding AllTitles}" />
+                                        <DataGridTextColumn Header="Vorname"
+                                                            Binding="{Binding FirstName}" />
+                                        <DataGridTextColumn Header="Nachname"
+                                                            Binding="{Binding LastName}" />
+                                        <DataGridTextColumn Header="Sprache"
+                                                            Binding="{Binding Language}" />
+                                        <DataGridTemplateColumn Header="Löschen">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}},
+                                                            Path=DataContext.DeleteCommand}"
+                                                            CommandParameter="{Binding}">
+                                                        <materialDesign:PackIcon Kind="Delete" />
+                                                    </Button>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </materialDesign:Card>
+                    </Grid>
                     <StackPanel Grid.Row="1">
                         <materialDesign:Card Margin="0,20,0,0">
                             <TabControl HorizontalContentAlignment="Left"
@@ -341,31 +383,31 @@
                                          Height="40">
                                     <Grid Margin="10">
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="64*"/>
-                                            <ColumnDefinition Width="161*"/>
+                                            <ColumnDefinition Width="64*" />
+                                            <ColumnDefinition Width="161*" />
                                         </Grid.ColumnDefinitions>
                                         <TextBlock VerticalAlignment="Center"
-                                                   Text="{Binding FullSalutation}" 
-                                                   TextWrapping="Wrap" Grid.ColumnSpan="2"/>
+                                                   Text="{Binding ContactSalutation}"
+                                                   TextWrapping="Wrap"
+                                                   Grid.ColumnSpan="2" />
                                         <Button HorizontalAlignment="Left"
-                                            Foreground="White"
-                                            FontSize="18"
-                                            Command="{Binding CopySalutationCommand}"
-                                            Background="#791C3a" 
-                                            BorderThickness="0" Cursor="Hand" Grid.Column="1" Margin="274,4,0,4">
-                                            <materialDesign:PackIcon Kind="ContentCopy"/>
+                                                Foreground="White"
+                                                FontSize="18"
+                                                Command="{Binding CopySalutationCommand}"
+                                                Background="#791C3a"
+                                                BorderThickness="0"
+                                                Cursor="Hand"
+                                                Grid.Column="1"
+                                                Margin="274,4,0,4">
+                                            <materialDesign:PackIcon Kind="ContentCopy" />
                                         </Button>
                                     </Grid>
-                                </TabItem>                             
+                                </TabItem>
                             </TabControl>
                         </materialDesign:Card>
                     </StackPanel>
                 </Grid>
             </StackPanel>
-
         </Grid>
-
     </Grid>
-
-
 </UserControl>

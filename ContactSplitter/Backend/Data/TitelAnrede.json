@@ -1,54 +1,106 @@
 [
   {
-    "Titel": "Professor",
-    "Anrede": "Prof."
+    "Title": "Professor",
+    "Salutation": "Prof."
   },
   {
-    "Titel": "Professorin",
-    "Anrede": "Prof."
+    "Title": "Professorin",
+    "Salutation": "Prof."
   },
   {
-    "Titel": "Prof.",
-    "Anrede": "Prof."
+    "Title": "Prof.",
+    "Salutation": "Prof."
   },
   {
-    "Titel": "Dr. rer. nat.",
-    "Anrede": "Dr."
+    "Title": "Dr.",
+    "Salutation": "Dr."
   },
   {
-    "Titel": "Dr.",
-    "Anrede": "Dr."
+    "Title": "Dr. rer. nat.",
+    "Salutation": "Dr."
   },
   {
-    "Titel": "Doktor",
-    "Anrede": "Dr."
+    "Title": "Dr. med.",
+    "Salutation": "Dr."
   },
   {
-    "Titel": "Doctor",
-    "Anrede": "Dr."
+    "Title": "Dr. med. dent.",
+    "Salutation": "Dr."
   },
   {
-    "Titel": "Dipl.-Ing.",
-    "Anrede": ""
+    "Title": "Dr. med. vet.",
+    "Salutation": "Dr."
   },
   {
-    "Titel": "Diplom-Ingenieur",
-    "Anrede": ""
+    "Title": "Dr. phil.",
+    "Salutation": "Dr."
   },
   {
-    "Titel": "M. Sc.",
-    "Anrede": ""
+    "Title": "Dr. iur.",
+    "Salutation": "Dr."
   },
   {
-    "Titel": "M.Sc.",
-    "Anrede": ""
+    "Title": "Dr. oec.",
+    "Salutation": "Dr."
   },
   {
-    "Titel": "B. Sc.",
-    "Anrede": ""
+    "Title": "Dr. oec. publ.",
+    "Salutation": "Dr."
   },
   {
-    "Titel": "B.Sc.",
-    "Anrede": ""
+    "Title": "Dr. h.c.",
+    "Salutation": "Dr."
+  },
+  {
+    "Title": "Dr. e.h.",
+    "Salutation": "Dr."
+  },
+  {
+    "Title": "Dr. mult.",
+    "Salutation": "Dr."
+  },
+  {
+    "Title": "Dr. des.",
+    "Salutation": "Dr."
+  },
+  {
+    "Title": "Dr. habil.",
+    "Salutation": "Dr."
+  },
+  {
+    "Title": "Doktor",
+    "Salutation": "Dr."
+  },
+  {
+    "Title": "Doctor",
+    "Salutation": "Dr."
+  },
+  {
+    "Title": "Dipl.-Ing.",
+    "Salutation": ""
+  },
+  {
+    "Title": "Dipl. Ing.",
+    "Salutation": ""
+  },
+  {
+    "Title": "Diplom-Ingenieur",
+    "Salutation": ""
+  },
+  {
+    "Title": "M. Sc.",
+    "Salutation": ""
+  },
+  {
+    "Title": "M.Sc.",
+    "Salutation": ""
+  },
+  {
+    "Title": "B. Sc.",
+    "Salutation": ""
+  },
+  {
+    "Title": "B.Sc.",
+    "Salutation": ""
   }
 ]

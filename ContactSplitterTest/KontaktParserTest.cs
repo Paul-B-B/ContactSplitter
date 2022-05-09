@@ -1,4 +1,3 @@
-using ContactSplitter.Backend.Model.Requests;
 using ContactSplitter.Backend.Services;
 using ContactSplitter.Shared.DataClass;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -35,20 +34,17 @@ namespace ContactSplitterTest
         [DataRow("Herr M.Sc. B.Sc. Peter Lustig", "Peter", "Lustig", Geschlecht.m, Sprache.Deutsch, "M.Sc. B.Sc. ", "Sehr geehrter Herr Peter Lustig")]
         public void ParseKontaktTest(string userInput, string vorname, string nachname, Geschlecht geschlecht, Sprache sprache, string alleTitel, string briefanrede)
         {
-            var req = new SplitContactRequest()
-            {
-                UserInput = userInput
-            };
+            var req = userInput;
 
             var parsedContact = _Parser.ParseKontakt(req);
 
             Assert.IsNotNull(parsedContact);
-            Assert.AreEqual(vorname, parsedContact.Vorname );
-            Assert.AreEqual(nachname, parsedContact.Nachname);
-            Assert.AreEqual(geschlecht, parsedContact.Geschlecht);
-            Assert.AreEqual(sprache, parsedContact.Sprache);
-            Assert.AreEqual(alleTitel, parsedContact.AlleTitel);
-            Assert.AreEqual(briefanrede, parsedContact.Briefanrede);
+            Assert.AreEqual(vorname, parsedContact.FirstName );
+            Assert.AreEqual(nachname, parsedContact.LastName);
+            Assert.AreEqual(geschlecht, parsedContact.Gender);
+            Assert.AreEqual(sprache, parsedContact.Language);
+            Assert.AreEqual(alleTitel, parsedContact.AllTitles);
+            Assert.AreEqual(briefanrede, parsedContact.LetterSalutation);
 
         }
     }

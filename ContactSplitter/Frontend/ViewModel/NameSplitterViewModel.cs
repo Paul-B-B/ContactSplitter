@@ -1,6 +1,4 @@
 ﻿using ContactSplitter.Backend.Model.Interfaces;
-using ContactSplitter.Backend.Model.Requests;
-using ContactSplitter.Backend.Services;
 using ContactSplitter.Frontend.Core;
 using ContactSplitter.Shared.DataClass;
 using System;
@@ -20,8 +18,8 @@ namespace ContactSplitter.Frontend.ViewModel
         public string TextInputString
         {
             get { return _textInputString; }
-            set 
-            { 
+            set
+            {
                 Update(ref _textInputString, value);
                 this.OnTextInputChanged();
             }
@@ -48,22 +46,22 @@ namespace ContactSplitter.Frontend.ViewModel
             set { Update(ref _title, value); }
         }
 
-        private Geschlecht _gender;
-        public Geschlecht Gender
+        private Gender _gender;
+        public Gender Gender
         {
             get { return _gender; }
             set { Update(ref _gender, value); }
         }
 
-        private Sprache _language;
-        public Sprache Language
+        private Language _language;
+        public Language Language
         {
             get { return _language; }
             set { Update(ref _language, value); }
         }
 
-        private ObservableCollection<string> _titleList;
-        public ObservableCollection<string> TitleList
+        private ObservableCollection<TitleSalutation> _titleList;
+        public ObservableCollection<TitleSalutation> TitleList
         {
             get { return _titleList; }
             set { Update(ref _titleList, value); }
@@ -76,14 +74,21 @@ namespace ContactSplitter.Frontend.ViewModel
             set { Update(ref _newTitle, value); }
         }
 
-        private Person _selectedPerson;
-        public Person SelectedPerson
+        private string _newSalutation;
+        public string NewSalutation
         {
-            get { return _selectedPerson; }
+            get { return _newSalutation; }
+            set { Update(ref _newSalutation, value); }
+        }
+
+        private Contact _selectedContact;
+        public Contact SelectedContact
+        {
+            get { return _selectedContact; }
             set
             {
-                Update(ref _selectedPerson, value);
-                this.OnSelectedPersonChanged();
+                Update(ref _selectedContact, value);
+                this.OnSelectedContactChanged();
             }
         }
 
@@ -115,11 +120,11 @@ namespace ContactSplitter.Frontend.ViewModel
             set { Update(ref _recognize, value); }
         }
 
-        private string _fullSalutation;
-        public string FullSalutation
+        private string _contactSalutation;
+        public string ContactSalutation
         {
-            get { return _fullSalutation; }
-            set { Update(ref _fullSalutation, value); }
+            get { return _contactSalutation; }
+            set { Update(ref _contactSalutation, value); }
         }
 
         private string _nameErrorMessage;
@@ -132,10 +137,12 @@ namespace ContactSplitter.Frontend.ViewModel
 
         private string _salutation;
         private string _letterSalutation;
+        private string _rawInput;
+
 
         #endregion
 
-        public ObservableCollection<Person> Persons { get; private set; }
+        public ObservableCollection<Contact> Contacts { get; private set; }
 
         private readonly INameSplitterModel _nameSplitterModel;
 
@@ -144,8 +151,8 @@ namespace ContactSplitter.Frontend.ViewModel
         {
             this._nameSplitterModel = nameSplitterModel;
             this.ClearBoxes();
-            this.Persons = new ObservableCollection<Person>();
-            this.TitleList = new ObservableCollection<string>();
+            this.Contacts = new ObservableCollection<Contact>();
+            this.TitleList = new ObservableCollection<TitleSalutation>();
         }
         #endregion
 
@@ -167,12 +174,14 @@ namespace ContactSplitter.Frontend.ViewModel
         private void OnAddTitleClicked()
         {
             if (this.NewTitle == string.Empty) return;
-            this.TitleList.Add(this.NewTitle);
+            var newTitle = new TitleSalutation() { Salutation = this.NewSalutation, Title = this.NewTitle };
+            this.TitleList.Add(newTitle);
             if (this.Recognize)
             {
-                this._nameSplitterModel.AddTitle(this.NewTitle);
+                this._nameSplitterModel.AddTitle(newTitle);
             }
             this.NewTitle = string.Empty;
+            this.NewSalutation = string.Empty;
         }
 
         /// <summary>
@@ -180,62 +189,73 @@ namespace ContactSplitter.Frontend.ViewModel
         /// </summary>
         private void OnTextInputChanged()
         {
-            if(this.TextInputString == string.Empty) return;
+            if (this.TextInputString == string.Empty) return;
             try
             {
                 this.ClearBoxes();
                 var output = this._nameSplitterModel.GetSplitContact(this.TextInputString);
-                this.FirstName = output.Vorname;
-                this.LastName = output.Nachname;
-                this.Gender = output.Geschlecht;
-                this.Language = output.Sprache;
-                this._salutation = output.Anrede;
-                this._letterSalutation = output.Briefanrede;
-                if (output.ListeAllerTitel != null)
+                this._salutation = output.Salutation;
+                this._letterSalutation = output.LetterSalutation;
+                this.FirstName = output.FirstName;
+                this.LastName = output.LastName;
+                this._rawInput = output.RawInput;
+                this.Gender = output.Gender;
+                this.Language = output.Language;
+                if (output.TitleList != null)
                 {
-                    foreach (var item in output.ListeAllerTitel)
+                    foreach (var item in output.TitleList)
                     {
-                        if (item != null) this.TitleList.Add(item.Titel);
+                        if (item != null) this.TitleList.Add(item);
                     }
                 }
             }
             catch (Exception ex)
-            { 
+            {
                 NameErrorMessage = "The following Error occured: " + ex.Message;
             }
         }
 
         /// <summary>
-        /// Fügt die formatierten Einträge in die Persons Liste hinzu, sobald der Hinzufügen-Button betätigt wird
+        /// Fügt die formatierten Einträge in die Contacts Liste hinzu, sobald der Hinzufügen-Button betätigt wird
         /// </summary>
         private void OnAddContactClicked()
         {
-            if(this.LastName == string.Empty) return;
-            Person person = new Person();
-            var titles = string.Empty;
+            if (this.LastName == string.Empty) return;
+            var contact = new Contact();
+            var titles = new List<TitleSalutation>();
             foreach (var title in this.TitleList)
             {
-                titles = titles += $"{title} ";
+                titles.Add(title);
             }
-            person.Title = titles;
-            person.LastName = this.LastName;
-            person.FirstName = this.FirstName;
-            person.Gender = this.Gender;
-            person.Language = this.Language;
-            person.Salutation = this._salutation;
-            person.FullSalutation = this._letterSalutation;
-            Persons.Add(person);
+            contact.TitleList = titles;
+            contact.Salutation = this._salutation;
+            contact.FirstName = this.FirstName;
+            contact.LastName = this.LastName;
+            contact.RawInput = this._rawInput;
+            contact.Gender = this.Gender;
+            contact.Language = this.Language;
+            contact.LetterSalutation = this._nameSplitterModel.GetLetterSalutation(contact);
+            Contacts.Add(contact);
             this.ClearBoxes();
             this.TextInputString = string.Empty;
         }
 
         /// <summary>
-        /// Kopiert die Briefanrede der aktuell ausgewählten Person
+        /// Zeigt die Briefanrede der ausgewählten Person an
+        /// </summary>
+        private void OnSelectedContactChanged()
+        {
+            if (this.SelectedContact == null) return;
+            this.ContactSalutation = this.SelectedContact.LetterSalutation;
+        }
+
+        /// <summary>
+        /// Kopiert die Briefanrede der aktuell ausgewählten Contact
         /// </summary>
         private void OnCopySalutationClicked()
         {
-            if(this.SelectedPerson == null || this.SelectedPerson.FullSalutation == null) return;
-            Clipboard.SetText(this.SelectedPerson.FullSalutation);
+            if (this.SelectedContact == null || this.SelectedContact.LetterSalutation == null) return;
+            Clipboard.SetText(this.SelectedContact.LetterSalutation);
         }
 
         /// <summary>
@@ -243,23 +263,21 @@ namespace ContactSplitter.Frontend.ViewModel
         /// /// </summary>
         private void ClearBoxes()
         {
-            //this.TextInputString = string.Empty;
+            this._salutation = null;
+            this._letterSalutation = null;
             this.FirstName = string.Empty;
             this.LastName = string.Empty;
-            this.Gender = Geschlecht.unbekannt;
-            this.Language = Sprache.unbekannt;
+            this._rawInput = string.Empty;
+            this.Gender = Gender.unknown;
+            this.Language = Language.Unknown;
             this.Title = string.Empty;
-            this.TitleList = new ObservableCollection<string>();
+            this.TitleList = new ObservableCollection<TitleSalutation>();
             this._salutation = string.Empty;
-            this._letterSalutation = string.Empty;
+            this._contactSalutation = string.Empty;
             this.NameErrorMessage = string.Empty;
         }
 
         #region Delete
-        private bool CanDelete
-        {
-            get { return SelectedPerson != null; }
-        }
 
         /// <summary>
         /// Löscht die selektierte Person aus der Tabelle
@@ -271,72 +289,19 @@ namespace ContactSplitter.Frontend.ViewModel
             {
                 if (m_deleteCommand == null)
                 {
-                    m_deleteCommand = new RelayCommand(param => Delete((Person)param), param => CanDelete);
+                    m_deleteCommand = new RelayCommand(param => Delete((Contact)param), param => true);
                 }
                 return m_deleteCommand;
             }
         }
 
-        private void Delete(Person result)
+        private void Delete(Contact result)
         {
-            this.Persons.Remove(result);
+            this.Contacts.Remove(result);
         }
         #endregion
 
-        private void OnSelectedPersonChanged()
-        {
-            if (this.SelectedPerson == null) return;
-            this.FullSalutation = this.SelectedPerson.FullSalutation;
-            //switch (this.SelectedPerson.Gender) 
-            //{
-            //    case Geschlecht.m:
-            //        this.GermanSalutation = "Sehr geehrter Herr " + this.SelectedPerson.Title + " " + this.SelectedPerson.LastName;
-            //        this.EnglishSalutation = "Dear Mr. " + this.SelectedPerson.Title + " " + this.SelectedPerson.LastName;
-            //        this.SpanishSalutation = "Estimado señor " + this.SelectedPerson.Title + " " + this.SelectedPerson.LastName;
-            //        break;
-            //    case Geschlecht.w:
-            //        this.GermanSalutation = "Sehr geehrte Frau " + this.SelectedPerson.Title + " " + this.SelectedPerson.LastName;
-            //        this.EnglishSalutation = "Dear Ms. " + this.SelectedPerson.Title + " " + this.SelectedPerson.LastName;
-            //        this.SpanishSalutation = "Estimada señora " + this.SelectedPerson.Title + " " + this.SelectedPerson.LastName;
-            //        break;
-            //    default:
-            //        this.GermanSalutation = "Sehr geehrte Damen und Herren";
-            //        this.EnglishSalutation = "Dear Ladies and Gentleman";
-            //        this.SpanishSalutation = "Estimadas señoras y señores";
-            //        break;
-            //}
-        }
 
-        //private static ObservableCollection<Person> CreateData()
-        //{
-        //    return new ObservableCollection<Person>
-        //    {
-        //        new Person
-        //        {
-        //            Salutation = "Herr",
-        //            Title = "Prof. Dr.",
-        //            FirstName = "Kevin",
-        //            LastName = "Kudlik",
-        //            Gender = Geschlecht.m
-        //        },
-        //        new Person
-        //        {
-        //            Salutation = "Frau",
-        //            Title = "Dr.",
-        //            FirstName = "Charlotte",
-        //            LastName = "Stöffler",
-        //            Gender = Geschlecht.w
-        //        },
-        //        new Person
-        //        {
-        //            Salutation = "Herr",
-        //            Title = "Dr. Dr.",
-        //            FirstName = "Paul-Benedict",
-        //            LastName = "Burkard",
-        //            Gender = Geschlecht.m
-        //        }
-        //    };
-        //}
         #endregion
     }
 }

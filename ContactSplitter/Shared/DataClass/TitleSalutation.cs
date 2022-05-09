@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ContactSplitter.Shared.DataClass
+﻿namespace ContactSplitter.Shared.DataClass
 {
     /// <summary>
     /// Modell eines Titels eines Kontakts
     /// </summary>
-    public class TitelAnrede
+    public class TitleSalutation
     {
         /// <summary>
         /// Die Schreibweise des Titels
         /// </summary>
-        public string Titel { get; set; }
+        public string Title { get; set; }
 
         /// <summary>
         /// Die in der Briefanrede zu verwendende Schreibweise
         /// </summary>
-        public string Anrede { get; set; }
+        public string Salutation { get; set; }
     }
 }
