@@ -20,7 +20,7 @@ namespace ContactSplitter.Backend.Services
 
         // RegEx zur Namenserkennung
         private readonly string vornameRegex = "([A-Z]\\w*([\\s\\-]+[A-Z]\\w*)*)";
-        private readonly string nachnameRegex = "(\\w+\\s+)*[A-Z]\\w*(\\-?[A-Z]\\w*)*)";
+        private readonly string nachnameRegex = "([A-Z]\\w*\\s+\\w+\\s+)*[A-Z]\\w*(\\-?[A-Z]\\w*)*)";
         private readonly string regexGruppeVorname = "Vorname";
         private readonly string regexGruppeNachname = "Nachname";
         private readonly string vornameNachnameRegex;
