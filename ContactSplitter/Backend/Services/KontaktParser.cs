@@ -29,7 +29,7 @@ namespace ContactSplitter.Backend.Services
         private readonly Regex anredeRegex = new("^\\w+\\.?");
 
         // RegEx zur Erkennung eines Sonderzeichens
-        private readonly Regex sonderzeichenRegex = new("[!@#$%^&*()_=+\\[\\]\\(\\)\\{\\};:'\"\\\\,<>/?`~\\|]");
+        private readonly Regex sonderzeichenRegex = new("[!@#$%^&*()_=+\\[\\]\\(\\)\\{\\};:'\"\\\\<>/?`~\\|]");
 
         //Hilfslisten (erhalten aus eingelesenen Dateien)
         private List<TitelAnrede> TitelAnredeListe;
