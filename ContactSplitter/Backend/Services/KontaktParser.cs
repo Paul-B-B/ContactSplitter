@@ -176,7 +176,6 @@ namespace ContactSplitter.Backend.Services
         {
             if (!string.IsNullOrEmpty(request.UserInput))
             {
-
                 var result = Regex.Match(request.UserInput, vornameNachnameRegex);
 
                 if (result.Success)
