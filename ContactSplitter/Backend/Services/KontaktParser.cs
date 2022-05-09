@@ -20,7 +20,7 @@ namespace ContactSplitter.Backend.Services
 
         // RegEx zur Namenserkennung
         private readonly string vornameRegex = "([A-Z]\\w*([\\s\\-]+[A-Z]\\w*)*)";
-        private readonly string nachnameRegex = "(\\w+\\s+)*[A-Z]\\w*(\\-?[A-Z]\\w*)*)";
+        private readonly string nachnameRegex = "(([A-Z]\\w*\\s+\\w+\\s+)*[A-Z]\\w*(\\-?[A-Z]\\w*)*)";
         private readonly string regexGruppeVorname = "Vorname";
         private readonly string regexGruppeNachname = "Nachname";
         private readonly string vornameNachnameRegex;
@@ -29,7 +29,7 @@ namespace ContactSplitter.Backend.Services
         private readonly Regex anredeRegex = new("^\\w+\\.?");
 
         // RegEx zur Erkennung eines Sonderzeichens
-        private readonly Regex sonderzeichenRegex = new("[!@#$%^&*()_=+\\[\\]\\(\\)\\{\\};:'\"\\\\,<>/?`~\\|]");
+        private readonly Regex sonderzeichenRegex = new("[!@#$%^&*()_=+\\[\\]\\(\\)\\{\\};:'\"\\\\<>/?`~\\|]");
 
         //Hilfslisten (erhalten aus eingelesenen Dateien)
         private List<TitelAnrede> TitelAnredeListe;
@@ -42,8 +42,8 @@ namespace ContactSplitter.Backend.Services
         {
             LeseJsonDateien();
 
-            vornameNachnameRegex = $"(^(?<{regexGruppeVorname}>{vornameRegex})\\s+(?<{regexGruppeNachname}>{nachnameRegex})|" + // Vorname Nachname
-                            $"(^(?<{regexGruppeNachname}>{nachnameRegex}),\\s+(?<{regexGruppeVorname}>{vornameRegex})"; // Nachname, Vorname
+            vornameNachnameRegex = $"(^((?<{regexGruppeVorname}>{vornameRegex})\\s+)?(?<{regexGruppeNachname}>{nachnameRegex}))|" + // Vorname Nachname
+                            $"(^(?<{regexGruppeNachname}>{nachnameRegex}),\\s+(?<{regexGruppeVorname}>{vornameRegex}))"; // Nachname, Vorname
         }
 
         /// <summary>
