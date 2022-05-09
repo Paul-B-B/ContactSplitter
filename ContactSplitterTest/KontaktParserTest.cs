@@ -18,7 +18,7 @@ namespace ContactSplitterTest
         /// Jeder Titel sowie jede Zusammenstellung eines m�glichen Kontakts werden hiermit abgedeckt und �berpr�ft
         /// </summary>
         [TestMethod]
-        [DataRow("Peter Lustig", "Peter", "Lustig", Geschlecht.unbekannt, Sprache.Unbekannt, "", "Guten Tag Peter Lustig")]
+        [DataRow("Peter Lustig", "Peter", "Lustig", Geschlecht.unbekannt, Sprache.unbekannt, "", "Guten Tag Peter Lustig")]
         [DataRow("Herr Peter Lustig", "Peter", "Lustig", Geschlecht.m, Sprache.Deutsch, "", "Sehr geehrter Herr Peter Lustig")]
         [DataRow("Frau Petra Witzig", "Petra", "Witzig", Geschlecht.w, Sprache.Deutsch, "", "Sehr geehrte Frau Petra Witzig")]
         [DataRow("Mr. Stanley Funny", "Stanley", "Funny", Geschlecht.m, Sprache.Englisch, "", "Dear Mr. Stanley Funny")]
@@ -31,7 +31,7 @@ namespace ContactSplitterTest
         [DataRow("Herr Dr. Peter Lustig", "Peter", "Lustig", Geschlecht.m, Sprache.Deutsch, "Dr. ", "Sehr geehrter Herr Dr. Peter Lustig")]
         [DataRow("Mr. Doktor Doctor Peter Lustig", "Peter", "Lustig", Geschlecht.m, Sprache.Englisch, "Dr. Dr. ", "Dear Dr. Peter Lustig")]
         [DataRow("Frau Dr. Dr. M. Sc. Prof. Petra Witzig", "Petra", "Witzig", Geschlecht.w, Sprache.Deutsch, "Prof. Dr. Dr. M. Sc. ", "Sehr geehrte Frau Prof. Dr. Dr. Petra Witzig")]
-        [DataRow("Diplom-Ingenieur B. Sc. Peter Lustig", "Peter", "Lustig", Geschlecht.unbekannt, Sprache.Unbekannt, "Diplom-Ingenieur B. Sc. ", "Guten Tag Peter Lustig")]
+        [DataRow("Diplom-Ingenieur B. Sc. Peter Lustig", "Peter", "Lustig", Geschlecht.unbekannt, Sprache.unbekannt, "Diplom-Ingenieur B. Sc. ", "Guten Tag Peter Lustig")]
         [DataRow("Herr M.Sc. B.Sc. Peter Lustig", "Peter", "Lustig", Geschlecht.m, Sprache.Deutsch, "M.Sc. B.Sc. ", "Sehr geehrter Herr Peter Lustig")]
         public void ParseKontaktTest(string userInput, string vorname, string nachname, Geschlecht geschlecht, Sprache sprache, string alleTitel, string briefanrede)
         {

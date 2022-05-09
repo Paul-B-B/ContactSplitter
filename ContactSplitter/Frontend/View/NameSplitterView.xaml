@@ -19,16 +19,6 @@
              TextElement.FontSize="14"
              FontFamily="{materialDesign:RobotoFont}"
              d:DataContext="{d:DesignInstance viewModels:NameSplitterViewModel}">
-
-    <!--<UserControl.Resources>
-        <ObjectDataProvider x:Key="dataFromEnum" MethodName="GetValues"
-                            ObjectType="{x:Type system:Enum}">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="data:Geschlecht"/>
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
-    </UserControl.Resources>-->
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -48,7 +38,7 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="Enter the Text: "
+                    <TextBlock Text="Text eingeben: "
                                    FontWeight="Bold"
                                    FontSize="16"/>
                     <materialDesign:Card Background="#4f5353"
@@ -73,14 +63,6 @@
                                     </Style>
                                 </TextBlock.Style>
                             </TextBlock>
-                            <!--<Button Grid.RowSpan="2" 
-                                    Grid.Column="1" 
-                                    Content="Split"
-                                    Foreground="White"
-                                    FontSize="18"
-                                    Background="#791C3a" 
-                                    BorderThickness="0" Cursor="Hand"
-                                    Command="{Binding SubmitTextCommand}"/>-->
                         </Grid>
                     </materialDesign:Card>
                     <StackPanel Grid.Column="1"
@@ -112,7 +94,7 @@
 
                     <StackPanel Orientation="Vertical"
                                 Margin="10,0,10,0">
-                        <TextBlock Text="Gender: "
+                        <TextBlock Text="Geschlecht: "
                                        FontWeight="Medium"
                                        FontSize="16"/>
                         <materialDesign:Card Background="#4f5353">
@@ -124,34 +106,14 @@
                                           x:Name="GenderComboBox"
                                           ItemsSource="{Binding Source={core:EnumBindingSource data:Geschlecht}}"
                                           SelectedItem="{Binding Gender}">
-                                </ComboBox>
-                                <!--<TextBox Grid.Row="1" 
-                                     Text="{Binding Gender, UpdateSourceTrigger=PropertyChanged}"
-                                     
-                                         Margin="10" 
-                                         materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
-                                         FontSize="16"
-                                         FontWeight="Regular" Cursor="Arrow" 
-                                         x:Name="GenderTextBox"/>
-                                <TextBlock IsHitTestVisible="False" Text="Male" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
-                                    <TextBlock.Style>
-                                        <Style TargetType="{x:Type TextBlock}">
-                                            <Setter Property="Visibility" Value="Collapsed"/>
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Text, ElementName=GenderTextBox}" Value="">
-                                                    <Setter Property="Visibility" Value="Visible"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </TextBlock.Style>
-                                </TextBlock>-->
+                                </ComboBox>                              
                             </Grid>
                         </materialDesign:Card>
                     </StackPanel>
                     <StackPanel Orientation="Vertical"
                                 Margin="10,0,10,0"
                                 Grid.Column="1">
-                        <TextBlock Text="Language: "
+                        <TextBlock Text="Sprache: "
                                        FontWeight="Medium"
                                        FontSize="16"/>
                         <materialDesign:Card Background="#4f5353">
@@ -170,7 +132,7 @@
                 </Grid>
                 <StackPanel Orientation="Vertical"
                             Margin="10,0,10,0">
-                    <TextBlock Text="First Name: "
+                    <TextBlock Text="Vorname: "
                                    FontWeight="Medium"
                                    FontSize="16"/>
                     <materialDesign:Card Background="#4f5353">
@@ -199,7 +161,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Vertical"
                             Margin="10,0,10,0">
-                    <TextBlock Text="Last Name: "
+                    <TextBlock Text="Nachname: "
                                    FontWeight="Medium"
                                    FontSize="16"/>
                     <materialDesign:Card Background="#4f5353">
@@ -231,7 +193,7 @@
                     DialogTheme="Inherit">
                         <materialDesign:DialogHost.DialogContent>
                             <StackPanel Margin="16">
-                                <TextBlock Text="Add a Title."/>
+                                <TextBlock Text="Titel hinzugügen."/>
 
                                 <TextBox
                                 Margin="0 8 0 0"
@@ -247,7 +209,7 @@
                                     Style="{StaticResource MaterialDesignFlatButton}"
                                     IsDefault="True"
                                     Margin="0 8 8 0"
-                                    Content="ACCEPT"
+                                    Content="AKZEPTIEREN"
                                     Foreground="#791C3a"
                                     Command="{Binding AddTitleCommand}">
                                         <i:Interaction.Triggers>
@@ -265,7 +227,7 @@
                                     Style="{StaticResource MaterialDesignFlatButton}"
                                     IsCancel="True"
                                     Margin="0 8 8 0"
-                                    Content="CANCEL"
+                                    Content="ABBRECHEN"
                                     Foreground="#791C3a"
                                     Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
                                         <Button.CommandParameter>
@@ -292,7 +254,7 @@
                                 Effect="{DynamicResource MaterialDesignShadowDepth5}">
                                     <Grid VerticalAlignment="Center">
                                         <TextBlock
-                                        Text="Titles"
+                                        Text="Titel"
                                             Margin="5"/>
                                     </Grid>
                                 </materialDesign:ColorZone>
@@ -321,7 +283,7 @@
 
 
                 </StackPanel>
-                <Button Content="Add Contact"
+                <Button Content="Kontakt hinzufügen"
                         Foreground="White"
                         FontSize="18"
                         Margin="10"
@@ -350,12 +312,12 @@
                                       AutoGenerateColumns="False"
                                       Height="250">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Gender" Binding="{Binding Gender}"/>
-                                    <DataGridTextColumn Header="Title" Binding="{Binding Title}"/>
-                                    <DataGridTextColumn Header="FirstName" Binding="{Binding FirstName}"/>
-                                    <DataGridTextColumn Header="LastName" Binding="{Binding LastName}"/>
-                                    <DataGridTextColumn Header="Language" Binding="{Binding Language}"/>
-                                    <DataGridTemplateColumn Header="Delete">
+                                    <DataGridTextColumn Header="Geschlecht" Binding="{Binding Gender}"/>
+                                    <DataGridTextColumn Header="Titel" Binding="{Binding Title}"/>
+                                    <DataGridTextColumn Header="Vorname" Binding="{Binding FirstName}"/>
+                                    <DataGridTextColumn Header="Nachname" Binding="{Binding LastName}"/>
+                                    <DataGridTextColumn Header="Sprache" Binding="{Binding Language}"/>
+                                    <DataGridTemplateColumn Header="Löschen">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
                                                 <Button Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}},
@@ -375,7 +337,7 @@
                             <TabControl HorizontalContentAlignment="Left"
                                         Height="100"
                                         MinWidth="400">
-                                <TabItem Header="Letter salutation"
+                                <TabItem Header="Briefanrede"
                                          Height="40">
                                     <Grid Margin="10">
                                         <Grid.ColumnDefinitions>
@@ -394,39 +356,7 @@
                                             <materialDesign:PackIcon Kind="ContentCopy"/>
                                         </Button>
                                     </Grid>
-                                </TabItem>
-                                <!--<TabItem Header="English"
-                                         Width="45"
-                                         Height="40">
-                                    <Grid Margin="10">
-                                        <TextBlock VerticalAlignment="Center"
-                                                   Text="{Binding EnglishSalutation}" 
-                                                   TextWrapping="Wrap"/>
-                                        <Button HorizontalAlignment="Right"
-                                            Foreground="White"
-                                            FontSize="18"
-                                            Background="#791C3a" 
-                                            BorderThickness="0" Cursor="Hand">
-                                            <materialDesign:PackIcon Kind="ContentCopy"/>
-                                        </Button>
-                                    </Grid>
-                                </TabItem>
-                                <TabItem Header="Spanish"
-                                         Width="45"
-                                         Height="40">
-                                    <Grid Margin="10">
-                                        <TextBlock VerticalAlignment="Center"
-                                                   Text="{Binding SpanishSalutation}" 
-                                                   TextWrapping="Wrap"/>
-                                        <Button HorizontalAlignment="Right"
-                                            Foreground="White"
-                                            FontSize="18"
-                                            Background="#791C3a" 
-                                            BorderThickness="0" Cursor="Hand">
-                                            <materialDesign:PackIcon Kind="ContentCopy"/>
-                                        </Button>
-                                    </Grid>
-                                </TabItem>-->
+                                </TabItem>                             
                             </TabControl>
                         </materialDesign:Card>
                     </StackPanel>

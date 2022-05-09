@@ -247,7 +247,7 @@ namespace ContactSplitter.Frontend.ViewModel
             this.FirstName = string.Empty;
             this.LastName = string.Empty;
             this.Gender = Geschlecht.unbekannt;
-            this.Language = Sprache.Unbekannt;
+            this.Language = Sprache.unbekannt;
             this.Title = string.Empty;
             this.TitleList = new ObservableCollection<string>();
             this._salutation = string.Empty;

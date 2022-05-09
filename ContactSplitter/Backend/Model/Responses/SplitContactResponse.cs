@@ -44,7 +44,7 @@ namespace ContactSplitter.Backend.Model.Responses
         /// Aus der Anrede gefundene Sprache des Kontakts, Möglichkeiten siehe Enum "Sprache"
         /// Default: Unbekannt
         /// </summary>
-        public Sprache Sprache { get; set; } = Sprache.Unbekannt;
+        public Sprache Sprache { get; set; } = Sprache.unbekannt;
 
         /// <summary>
         /// Liste aller einzelnen Titel
