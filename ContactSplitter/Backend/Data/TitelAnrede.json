@@ -108,8 +108,12 @@
     "Salutation": ""
   },
   {
-    "Title": "Diplom-Ingenieur",
-    "Salutation": ""
+    "Titel": "Dipl. Ing.",
+    "Anrede": ""
+  },
+  {
+    "Titel": "Diplom-Ingenieur",
+    "Anrede": ""
   },
   {
     "Title": "M. Sc.",
