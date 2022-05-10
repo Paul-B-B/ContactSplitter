@@ -27,7 +27,7 @@ namespace ContactSplitter.Backend.Services
         private readonly Regex salutationRegex = new("^\\w+\\.?");
 
         // RegEx zur Erkennung eines Sonderzeichens
-        private readonly Regex specialCharacterRegex = new("[!@#$%^&*()_=+\\[\\]\\(\\)\\{\\};:'\"\\\\<>/?`~\\|]");
+        private readonly Regex specialCharacterRegex = new("[!@#$%^&*()_=+\\[\\]\\(\\)\\{\\};:'\"\\\\<>/?`´~\\|]");
 
         //Hilfslisten (erhalten aus eingelesenen Dateien)
         private List<TitleSalutation> TitleSalutationList;
