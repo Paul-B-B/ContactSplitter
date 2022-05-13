@@ -1,11 +1,14 @@
-﻿using ContactSplitter.Backend.Model.Responses;
+﻿using ContactSplitter.Shared.DataClass;
 
 namespace ContactSplitter.Backend.Model.Interfaces
 {
     internal interface INameSplitterModel
     {
-        SplitContactResponse GetSplitContact(string input);
+        Contact GetSplitContact(string input);
 
-        void AddTitle(string input);
+        string GetLetterSalutation(Contact contact);
+
+        void AddTitle(TitleSalutation input);
+
     }
 }

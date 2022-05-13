@@ -1,13 +1,14 @@
 ﻿<UserControl x:Class="ContactSplitter.Frontend.View.PhoneNumberSplitterView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:ContactSplitter.Frontend.View"
              xmlns:viewModels="clr-namespace:ContactSplitter.Frontend.ViewModel"
-             mc:Ignorable="d" 
-             d:DesignHeight="525" d:DesignWidth="720"
+             mc:Ignorable="d"
+             d:DesignHeight="525"
+             d:DesignWidth="720"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Medium"
              TextElement.FontSize="14"
@@ -16,62 +17,72 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="140"/>
-            <RowDefinition/>
+            <RowDefinition Height="140" />
+            <RowDefinition />
         </Grid.RowDefinitions>
 
         <StackPanel FocusManager.FocusedElement="{Binding ElementName=NumberInputString}">
             <StackPanel Orientation="Vertical"
                         Margin="20">
                 <TextBlock Text="Telefonnummer eingeben: "
-                                   FontWeight="Medium"
-                                   FontSize="20"/>
+                           FontWeight="Medium"
+                           FontSize="20" />
                 <materialDesign:Card Height="80"
                                      MinWidth="500"
                                      Background="#4f5353"
                                      Padding="10">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="500"/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="500" />
+                            <ColumnDefinition />
                         </Grid.ColumnDefinitions>
 
                         <Grid.RowDefinitions>
-                            <RowDefinition/>
+                            <RowDefinition />
                         </Grid.RowDefinitions>
 
 
-                        <TextBox Grid.Row="1" 
-                                 Margin="10" 
+                        <TextBox Grid.Row="1"
+                                 Margin="10"
                                  materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
                                  FontSize="16"
-                                 FontWeight="Regular" Cursor="Arrow" 
+                                 FontWeight="Regular"
+                                 Cursor="Arrow"
                                  Text="{Binding NumberInputString, UpdateSourceTrigger=PropertyChanged}"
-                                 x:Name="SplitNumberTextBox"/>
-                        <TextBlock IsHitTestVisible="False" Text="Telefonnummer hier eingeben" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                                 x:Name="SplitNumberTextBox" />
+                        <TextBlock IsHitTestVisible="False"
+                                   Text="Telefonnummer hier eingeben"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"
+                                   Margin="10,0,0,0"
+                                   Foreground="DarkGray">
                             <TextBlock.Style>
                                 <Style TargetType="{x:Type TextBlock}">
-                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Setter Property="Visibility"
+                                            Value="Collapsed" />
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Text, ElementName=SplitNumberTextBox}" Value="">
-                                            <Setter Property="Visibility" Value="Visible"/>
+                                        <DataTrigger Binding="{Binding Text, ElementName=SplitNumberTextBox}"
+                                                     Value="">
+                                            <Setter Property="Visibility"
+                                                    Value="Visible" />
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
                             </TextBlock.Style>
                         </TextBlock>
-                        <Button Grid.RowSpan="2" 
-                                Grid.Column="1" 
+                        <Button Grid.RowSpan="2"
+                                Grid.Column="1"
                                 Content="Teilen"
                                 Foreground="White"
                                 FontSize="18"
-                                Background="#791C3a" 
-                                BorderThickness="0" Cursor="Hand"
-                                Command="{Binding SubmitNumberCommand}"/>
+                                Background="#791C3a"
+                                BorderThickness="0"
+                                Cursor="Hand"
+                                Command="{Binding SubmitNumberCommand}" />
                     </Grid>
 
                 </materialDesign:Card>
@@ -80,85 +91,89 @@
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center">
                 <StackPanel Orientation="Vertical"
                             Margin="10,0,10,0">
                     <TextBlock Text="Land: "
-                                   FontWeight="Medium"
-                                   FontSize="20"/>
+                               FontWeight="Medium"
+                               FontSize="20" />
                     <materialDesign:Card Height="60"
                                          MinWidth="150"
                                          Background="#4f5353">
                         <StackPanel VerticalAlignment="Center">
                             <TextBlock Grid.Row="1"
-                                 Text="{Binding FormattedNumber.Country.Name, UpdateSourceTrigger=PropertyChanged}"
-                                 Margin="10" 
-                                 materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
-                                 FontSize="16"
-                                 FontWeight="Regular" Cursor="Arrow" 
-                                 x:Name="CountryTextBox"/>
+                                       Text="{Binding FormattedNumber.Country.Name, UpdateSourceTrigger=PropertyChanged}"
+                                       Margin="10"
+                                       materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
+                                       FontSize="16"
+                                       FontWeight="Regular"
+                                       Cursor="Arrow"
+                                       x:Name="CountryTextBox" />
                         </StackPanel>
                     </materialDesign:Card>
                 </StackPanel>
                 <StackPanel Orientation="Vertical"
                             Margin="10,0,10,0">
-                    <TextBlock Text="Vorwahl"
-                                   FontWeight="Medium"
-                                   FontSize="20"/>
+                    <TextBlock Text="Vorwahl:"
+                               FontWeight="Medium"
+                               FontSize="20" />
                     <materialDesign:Card Height="60"
                                          MinWidth="150"
                                          Background="#4f5353">
                         <StackPanel VerticalAlignment="Center">
                             <TextBlock Grid.Row="1"
-                                 Text="{Binding FormattedNumber.AreaCode, UpdateSourceTrigger=PropertyChanged}"
-                                 Margin="10" 
-                                 materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
-                                 FontSize="16"
-                                 FontWeight="Regular" Cursor="Arrow" 
-                                 x:Name="AreaTextBox"/>
+                                       Text="{Binding FormattedNumber.AreaCode, UpdateSourceTrigger=PropertyChanged}"
+                                       Margin="10"
+                                       materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
+                                       FontSize="16"
+                                       FontWeight="Regular"
+                                       Cursor="Arrow"
+                                       x:Name="AreaTextBox" />
                         </StackPanel>
                     </materialDesign:Card>
                 </StackPanel>
                 <StackPanel Orientation="Vertical"
                             Margin="10,0,10,0">
-                    <TextBlock Text="Anschlusskennung"
-                                   FontWeight="Medium"
-                                   FontSize="20"/>
+                    <TextBlock Text="Anschlusskennung:"
+                               FontWeight="Medium"
+                               FontSize="20" />
                     <materialDesign:Card Height="60"
                                          MinWidth="150"
                                          Background="#4f5353">
                         <StackPanel VerticalAlignment="Center">
                             <TextBlock Grid.Row="1"
-                                 Text="{Binding FormattedNumber.MainNumber, UpdateSourceTrigger=PropertyChanged}"
-                                 Margin="10" 
-                                 materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
-                                 FontSize="16"
-                                 FontWeight="Regular" Cursor="Arrow" 
-                                 x:Name="MainNumberTextBox"/>
+                                       Text="{Binding FormattedNumber.MainNumber, UpdateSourceTrigger=PropertyChanged}"
+                                       Margin="10"
+                                       materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
+                                       FontSize="16"
+                                       FontWeight="Regular"
+                                       Cursor="Arrow"
+                                       x:Name="MainNumberTextBox" />
                         </StackPanel>
                     </materialDesign:Card>
                 </StackPanel>
                 <StackPanel Orientation="Vertical"
                             Margin="10,0,10,0">
-                    <TextBlock Text="Durchwahl"
-                                   FontWeight="Medium"
-                                   FontSize="20"/>
+                    <TextBlock Text="Durchwahl:"
+                               FontWeight="Medium"
+                               FontSize="20" />
                     <materialDesign:Card Height="60"
                                          MinWidth="150"
                                          Background="#4f5353">
                         <StackPanel VerticalAlignment="Center">
                             <TextBlock Grid.Row="1"
-                                 Text="{Binding FormattedNumber.DirectDial, UpdateSourceTrigger=PropertyChanged}"
-                                 Margin="10" 
-                                 materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
-                                 FontSize="16"
-                                 FontWeight="Regular" Cursor="Arrow" 
-                                 x:Name="DirectDialTextBox"/>
+                                       Text="{Binding FormattedNumber.DirectDial, UpdateSourceTrigger=PropertyChanged}"
+                                       Margin="10"
+                                       materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
+                                       FontSize="16"
+                                       FontWeight="Regular"
+                                       Cursor="Arrow"
+                                       x:Name="DirectDialTextBox" />
                         </StackPanel>
                     </materialDesign:Card>
                 </StackPanel>
@@ -167,33 +182,35 @@
                         Margin="20,0,20,0">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="formatierte Rufnummer"
+                        <TextBlock Text="Formatierte Rufnummer:"
                                    FontWeight="Medium"
-                                   FontSize="20"/>
+                                   FontSize="20" />
                         <materialDesign:Card Height="60"
                                              MinWidth="150"
                                              Background="#4f5353">
                             <StackPanel VerticalAlignment="Center"
                                         Orientation="Horizontal">
                                 <TextBlock Text="{Binding FormattedNumber.FormattedNumber, UpdateSourceTrigger=PropertyChanged}"
-                                           Margin="15" 
+                                           Margin="15"
                                            MinWidth="220"
                                            HorizontalAlignment="Left"
                                            materialDesign:BottomDashedLineAdorner.Brush="#791C3a"
                                            FontSize="16"
-                                           FontWeight="Regular" Cursor="Arrow" 
-                                           x:Name="FormattedNumberTextBox"/>
+                                           FontWeight="Regular"
+                                           Cursor="Arrow"
+                                           x:Name="FormattedNumberTextBox" />
                                 <Button HorizontalAlignment="Right"
                                         Foreground="White"
                                         FontSize="18"
-                                        Background="#791C3a" 
-                                        BorderThickness="0" Cursor="Hand"
+                                        Background="#791C3a"
+                                        BorderThickness="0"
+                                        Cursor="Hand"
                                         Command="{Binding CopyNumberCommand}">
-                                    <materialDesign:PackIcon Kind="ContentCopy"/>
+                                    <materialDesign:PackIcon Kind="ContentCopy" />
                                 </Button>
                             </StackPanel>
                         </materialDesign:Card>
@@ -206,8 +223,8 @@
                                    FontSize="12"
                                    Foreground="Red"
                                    Margin="5,0,5,0"
-                                   TextWrapping="Wrap"/>
-                        
+                                   TextWrapping="Wrap" />
+
                     </StackPanel>
                 </Grid>
             </StackPanel>

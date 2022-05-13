@@ -16,9 +16,9 @@ namespace ContactSplitterTest
         [DataRow("Dr. Med.", "Dr.")]
         public void AddTitelTest(string titel, string anrede)
         {
-            var neueTitelAnrede = new TitelAnrede() { Anrede = anrede, Titel = titel };
+            var neueTitelAnrede = new TitleSalutation() { Salutation = anrede, Title = titel };
 
-            var success = _TitelHandler.AddTitel(neueTitelAnrede);
+            var success = _TitelHandler.AddTitle(neueTitelAnrede);
 
             Assert.IsTrue(success);
         }

@@ -8,24 +8,24 @@ namespace ContactSplitter.Backend.Services
     public class TitelHandler
     {
         // Dateipfade
-        private string titelAnredeJsonPfad => @"Backend\Data\TitelAnrede.json";
-        private string aktuellerPfad = Directory.GetCurrentDirectory();
+        private string titleSalutationJsonPath => @"Backend\Data\TitelAnrede.json";
+        private string currentPath = Directory.GetCurrentDirectory();
 
         /// <summary>
         /// Fügt der Titel JSON Datei einen neuen Eintrag hinzu.
         /// </summary>
-        /// <param name="titelAnrede">Die hinzuzufügende TitelAnrede</param>
+        /// <param name="titleSalutation">Die hinzuzufügende TitleSalutation</param>
         /// <returns>Ob die Hinzufügenaktion erfolgreich war</returns>
         /// <exception cref="IOException"></exception>
-        public bool AddTitel(TitelAnrede titelAnrede)
+        public bool AddTitle(TitleSalutation titleSalutation)
         {
-            List<TitelAnrede> titelAnredeListe = LoadTitleJson();
-            titelAnredeListe.Insert(0, titelAnrede);
+            List<TitleSalutation> titleSalutationList = LoadTitleJson();
+            titleSalutationList.Insert(0, titleSalutation);
 
             try
             {
-                using var streamWriter = new StreamWriter(Path.Combine(aktuellerPfad, titelAnredeJsonPfad), false);
-                streamWriter.Write(JsonConvert.SerializeObject(titelAnredeListe));
+                using var streamWriter = new StreamWriter(Path.Combine(currentPath, titleSalutationJsonPath), false);
+                streamWriter.Write(JsonConvert.SerializeObject(titleSalutationList));
                 streamWriter.Flush();
             }
             catch
@@ -41,11 +41,11 @@ namespace ContactSplitter.Backend.Services
         /// Liest die JSON Dateien ein um den serialisierten Listen ein Objekt hinzufügen zu können. 
         /// </summary>
         /// <returns></returns>
-        private List<TitelAnrede> LoadTitleJson()
+        private List<TitleSalutation> LoadTitleJson()
         {
-            using var streamReader = new StreamReader(Path.Combine(aktuellerPfad, titelAnredeJsonPfad));
+            using var streamReader = new StreamReader(Path.Combine(currentPath, titleSalutationJsonPath));
             var json = streamReader.ReadToEnd();
-            return JsonConvert.DeserializeObject<List<TitelAnrede>>(json);
+            return JsonConvert.DeserializeObject<List<TitleSalutation>>(json);
         }
     }
 }

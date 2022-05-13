@@ -1,14 +1,13 @@
-﻿
-namespace ContactSplitter.Shared.DataClass
+﻿namespace ContactSplitter.Shared.DataClass
 {
     /// <summary>
     /// Enum der möglichen Geschlechter eines Kontakts
     /// </summary>
-    public enum Geschlecht
+    public enum Gender
     {
         m = 0,
-        w = 1,
+        f = 1,
         d = 2,
-        unbekannt = 3,
-    }   
+        unknown = 3,
+    }
 }
