@@ -14,7 +14,7 @@ namespace ContactSplitterTest
         /// <summary>
         /// Test des KontaktParsers.
         /// Dieser deckt den gesamten Code des KontaktParsers ab.
-        /// Jede Titelklasse sowie unterschiedliche Zusammenstellungen eines Namen.
+        /// Jede Titelklasse sowie unterschiedliche Zusammenstellungen eines Namen werden getestet.
         /// Außerdem getestet werden Features des KontaktParsers wie das korrekte Sortieren von Titeln
         /// </summary>
         [TestMethod]
