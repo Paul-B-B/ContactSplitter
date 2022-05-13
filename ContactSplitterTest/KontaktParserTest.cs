@@ -14,7 +14,8 @@ namespace ContactSplitterTest
         /// <summary>
         /// Test des KontaktParsers.
         /// Dieser deckt den gesamten Code des KontaktParsers ab.
-        /// Jeder Titel sowie jede Zusammenstellung eines m�glichen Kontakts werden hiermit abgedeckt und �berpr�ft
+        /// Jede Titelklasse sowie unterschiedliche Zusammenstellungen eines Namen.
+        /// Außerdem getestet werden Features des KontaktParsers wie das korrekte Sortieren von Titeln
         /// </summary>
         [TestMethod]
         [DataRow("Peter Lustig", "Peter", "Lustig", Gender.unknown, Language.Unknown, "", "Guten Tag Peter Lustig")]

@@ -13,7 +13,7 @@ namespace ContactSplitterTest
 
         /// <summary>
         /// Test zur gemeinsamen Verwenden des TitelHandlers und KontaktParsers.
-        /// Es wird ein bisher nicht vorhandener Titel hinzugefügt und anschließend muss dieser korrekt erkannt werden
+        /// Es werden ein bisher nicht vorhandene Titel hinzugefügt und anschließend müssen diese korrekt erkannt werden.
         /// </summary>
         [TestMethod]
         [DataRow("Dr. Med.", "Dr. Med.", "Dr. Med. Peter Lustig", "Dr. Med. ", "Guten Tag Dr. Med. Peter Lustig")] //Formell ist die Briefanrede mit "Dr. Med." nicht korrekt, dies dient lediglich dem Test
